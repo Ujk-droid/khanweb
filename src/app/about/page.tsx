@@ -11,7 +11,7 @@ export default function About() {
   return (
     <>
     <Insta/>
-    <section id="about" className="py-16 bg-black relative overflow-hidden">
+    <section id="about" className="py-16 bg-black relative overflow-hidden font-serif">
       <div className="absolute inset-0 w-full h-full">
         <SparklesCore
           id="tsparticles"

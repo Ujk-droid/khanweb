@@ -6,17 +6,17 @@ const Insta = () => {
     <div>
       {/* Background Section */}
       <div
-        className="h-[60vh] sm:h-[50vh] md:h-[60vh] lg:h-[60vh] w-full bg-cover bg-center bg-no-repeat rounded-lg transition-all duration-300 
+        className="h-[60vh] sm:h-[50vh] md:h-[60vh] lg:h-[60vh] w-full bg-cover bg-center bg-no-repeat rounded-lg transition-all duration-300 font-serif
         bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 dark:from-[#2b4141] dark:via-[#44667d] dark:to-[#2e3f3f]"
         style={{ backgroundImage: "url('/bg.jpg')" }} // Optional: keep or remove
       >
         {/* Content Section */}
-        <div className="flex flex-col items-center justify-center h-full text-center">
+        <div className="flex flex-col items-center justify-center h-full text-center ">
           {/* <h1 className="  bg-clip-text text-transparent bg-gradient-to-r from-[#464949] to-[#1A3636] text-3xl sm:text-7xl font-bold mb-4 font-serif">
             Our bloges
           </h1> */}
           <h1 className="bg-clip-text text-transparent bg-gradient-to-r from-[#D1D1D1] via-[#B0B0B0] to-[#464545] text-3xl sm:text-7xl font-bold mb-4 font-serif">
-  Our bloges
+  Our blogs
 </h1>
 
           <p className="text-gray-700 dark:text-gray-400 text-lg mb-6 font-serif max-w-xl">

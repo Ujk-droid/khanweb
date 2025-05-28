@@ -10,8 +10,6 @@ export default function Projects() {
       title: "E-Commerce Platform",
       description: "A full-featured small industry website with payment integration and inventory management.",
       image: "/hk.jpg",
-      width: 600,
-      height: 800,
       tags: ["Next.js", "Node.js", "MongoDB", "Stripe"],
       link: "https://marketplace-flax-omega.vercel.app",
     },
@@ -19,8 +17,6 @@ export default function Projects() {
       title: "Food Delivery App",
       description: "Food Delivery app with real-time tracking and payment integration.",
       image: "/fd.jpg",
-      width: 600,
-      height: 800,
       tags: ["React Native", "Firebase", "Google Maps API"],
       link: "https://09to05.vercel.app/",
     },
@@ -28,8 +24,6 @@ export default function Projects() {
       title: "Admin Dashboard",
       description: "A modern admin dashboard with user management, analytics, and role-based access control.",
       image: "/ad2.png",
-      width: 600,
-      height: 800,
       tags: ["Next.js", "Tailwind CSS", "Chart.js", "Prisma"],
       link: "https://admin-seven-snowy.vercel.app",
     },
@@ -37,8 +31,6 @@ export default function Projects() {
       title: "Blog Website",
       description: "A fully functional blog platform with markdown support, commenting, and SEO features.",
       image: "/blog.png",
-      width: 600,
-      height: 800,
       tags: ["Next.js", "MDX", "Tailwind CSS", "Firebase"],
       link: "https://blogproject-red.vercel.app",
     },
@@ -46,7 +38,8 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-20 bg-black">
-      <div className="container mx-auto px-4 sm:px-6 md:px-12"> {/* 👈 Horizontal spacing */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-12">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,15 +47,16 @@ export default function Projects() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-gradient-to-r from-[#73f3f3] to-[#1A3636] bg-clip-text">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-gradient-to-r from-[#73f3f3] to-[#1A3636] bg-clip-text font-serif">
             Our Projects
           </h2>
           <div className="h-1 w-20 bg-gradient-to-r from-[#73f3f3] to-[#1A3636] mx-auto"></div>
-          <p className="mt-6 text-gray-300 max-w-2xl mx-auto">
+          <p className="mt-6 text-gray-300 max-w-2xl mx-auto font-serif">
             Explore our portfolio of successful projects that showcase our expertise and creativity.
           </p>
         </motion.div>
 
+        {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
@@ -71,7 +65,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="group max-w-[360px] mx-auto" // 👈 Limit card width + center it
+              className="group w-full max-w-md mx-auto"
             >
               <GradientCard>
                 <div className="flex flex-col h-full">
@@ -80,24 +74,24 @@ export default function Projects() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full h-56 rounded-xl overflow-hidden mb-4 group-hover:shadow-lg group-hover:shadow-red-500/30 transition-all duration-300 block"
+                      className="relative w-full h-56 rounded-xl overflow-hidden mb-4 group-hover:shadow-lg group-hover:shadow-red-500/30 transition-all duration-300 block"
                     >
                       <Image
                         src={project.image || "/placeholder.svg"}
-                        height={project.height}
-                        width={project.width}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         alt={project.title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 360px"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                     </a>
                   ) : (
-                    <div className="w-full h-56 rounded-xl overflow-hidden mb-4 group-hover:shadow-lg group-hover:shadow-red-500/30 transition-all duration-300">
+                    <div className="relative w-full h-56 rounded-xl overflow-hidden mb-4 group-hover:shadow-lg group-hover:shadow-red-500/30 transition-all duration-300">
                       <Image
                         src={project.image || "/placeholder.svg"}
-                        height={project.height}
-                        width={project.width}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         alt={project.title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 360px"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                     </div>
                   )}

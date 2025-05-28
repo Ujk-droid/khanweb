@@ -13,12 +13,12 @@ export default function Hero() {
     { text: "that" },
     {
       text: "matter.",
-      className: "text-red-500 dark:text-[#BB3E00]",
+      className: "text-green-800 ",
     },
   ];
 
   return (
-    <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden pt-20">
+    <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden pt-20 font-serif">
       <BackgroundBeams className="absolute inset-0 z-0" />
 
       <div className="container mx-auto px-4 z-10 text-center">

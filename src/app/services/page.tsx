@@ -41,7 +41,7 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-16 md:py-20 bg-black">
+    <section id="services" className="py-16 md:py-20 bg-black font-serif">
       <div className="container mx-auto px-6 md:px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

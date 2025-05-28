@@ -5,6 +5,7 @@ import Hero from "./components/hero"
 // import Footer from "./components/Footer"
 import ImageSlider from "./components/image-slider"
 import Insta from "./components/Insta"
+import List from "./components/List"
 
 export default function Home() {
   // Sample images for the slider
@@ -49,6 +50,7 @@ export default function Home() {
         <ImageSlider images={sliderImages} className="w-full h-[300px] md:h-[400px] lg:h-[500px] mx-auto" />
       </section>
     <Insta />
+    <List/>
     <Friends/>
       {/* <Footer /> */}
     </main>

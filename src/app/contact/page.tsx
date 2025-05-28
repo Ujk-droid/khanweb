@@ -194,14 +194,14 @@ export default function Contact() {
             </div>
 
             <TextRevealCard text="Get In Touch" revealText="Let's Work Together" className="mx-auto relative z-10">
-              <h2 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#73f3f3] to-[#]">
+              <h2 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#73f3f3] to-[#1A3636] font-serif">
                 Get In Touch
               </h2>
             </TextRevealCard>
           </div>
 
           <div className="h-1 w-20 bg-gradient-to-r from-[#73f3f3] to-[#1A3636] mx-auto mt-4"></div>
-          <p className="mt-6 text-gray-300 max-w-2xl mx-auto">
+          <p className="mt-6 text-gray-300 max-w-2xl mx-auto font-serif">
             Ready to transform your digital presence? Contact us today to discuss your project and discover how TechExa
             Vision can help you achieve your goals.
           </p>
@@ -217,14 +217,14 @@ export default function Contact() {
           >
             <BackgroundGradient className="rounded-[22px] p-0.5 bg-black">
               <div className="bg-black/90 backdrop-blur-xl p-10 rounded-[20px] border border-gray-800 h-full">
-                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#73f3f3] to-[#1A3636]">
+                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#73f3f3] to-[#1A3636] font-serif">
                   Send Us a Message
                 </h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="group relative">
                     <label
                       htmlFor="name"
-                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors"
+                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors font-serif"
                     >
                       Name
                     </label>
@@ -246,7 +246,7 @@ export default function Contact() {
                   <div className="group relative">
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors"
+                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors font-serif"
                     >
                       Email
                     </label>
@@ -269,7 +269,7 @@ export default function Contact() {
                   <div className="group relative">
                     <label
                       htmlFor="message"
-                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors"
+                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors font-serif"
                     >
                       Message
                     </label>
@@ -332,7 +332,7 @@ export default function Contact() {
 
             <BackgroundGradient className="rounded-[22px] p-0.5 bg-black w-full">
               <div className="bg-black/70 backdrop-blur-xl p-8 rounded-[20px] border border-gray-800 h-full">
-                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#6EE7B7] to-[#3B82F6]">
+                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#6EE7B7] to-[#3B82F6] font-serif">
                   Contact Information
                 </h3>
                 <div className="space-y-6">
@@ -360,7 +360,7 @@ export default function Contact() {
                       </div>
                     </div>
                     <div>
-                      <h4 className="font-medium text-lg transition-colors duration-300">Email Us</h4>
+                      <h4 className="font-medium text-lg transition-colors duration-300 font-serif">Email Us</h4>
                       <p className="text-gray-400">info@techexavision.com</p>
                       <p className="text-gray-400">03312436713aa@gmail.com</p>
                     </div>
@@ -376,7 +376,7 @@ export default function Contact() {
                       </div>
                     </div>
                     <div>
-                      <h4 className="font-medium text-lg transition-colors duration-300">Call Us</h4>
+                      <h4 className="font-medium text-lg transition-colors duration-300 font-serif">Call Us</h4>
                       <p className="text-gray-400">03312436713</p>
                       <p className="text-gray-400">03298388739</p>
                     </div>
