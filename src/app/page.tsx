@@ -6,6 +6,7 @@ import Hero from "./components/hero"
 import ImageSlider from "./components/image-slider"
 import Insta from "./components/Insta"
 import List from "./components/List"
+import Tea from "./components/Tea"
 
 export default function Home() {
   // Sample images for the slider
@@ -40,7 +41,7 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white overflow-hidden">
       {/* <Navbar /> */}
       <Hero />
-      <section className="py-10 container mx-auto px-4 ">
+      <section className="py-10 container mx-auto px-4  ">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center ">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#6EE7B7] to-[#3B82F6]">
             Featured Projects
@@ -50,6 +51,7 @@ export default function Home() {
         <ImageSlider images={sliderImages} className="w-full h-[300px] md:h-[400px] lg:h-[500px] mx-auto" />
       </section>
     <Insta />
+    <Tea />
     <List/>
     <Friends/>
       {/* <Footer /> */}

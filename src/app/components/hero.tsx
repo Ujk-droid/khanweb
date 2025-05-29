@@ -13,7 +13,7 @@ export default function Hero() {
     { text: "that" },
     {
       text: "matter.",
-      className: "text-green-800 ",
+      className: "text-[#47663B] ",
     },
   ];
 
