@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { SparklesCore } from "../components/ui/sparkles";
-import Insta from "../components/Insta";
+
 import Friends from "../components/Friends";
 import List from "../components/List";
 // import { List } from "lucide-react";
@@ -10,7 +10,7 @@ import List from "../components/List";
 export default function About() {
   return (
     <>
-    <Insta/>
+  
     <section id="about" className="py-16 bg-black relative overflow-hidden font-serif">
       <div className="absolute inset-0 w-full h-full">
         <SparklesCore
