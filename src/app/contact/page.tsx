@@ -1,18 +1,10 @@
-
 "use client"
-import { motion, useScroll, useTransform } from "framer-motion"
-import type React from "react"
-import { useRef, useState, useEffect } from "react"
-import { CssGlobe } from "@/app/components/ui/CssGlobe"
-// import { Input } from "./ui/input"
-// import { Textarea } from "./ui/textarea"
-// import { Button } from "./ui/button"
 
+import { motion, useScroll, useTransform } from "framer-motion"
+import React, { useRef, useState, useEffect } from "react"
+import { CssGlobe } from "@/app/components/ui/CssGlobe"
 import { Mail, MapPin, Phone } from "lucide-react"
 import { cn } from "@/lib/utils"
-// import { BackgroundGradient } from "./ui/background-gradient"
-// import { SparklesCore } from "./ui/sparkles"
-// import { TextRevealCard } from "./ui/text-reveal-card"
 import Swal from "sweetalert2"
 import { Input } from "../components/ui/input"
 import { Button } from "../components/ui/button"
@@ -40,7 +32,6 @@ export default function Contact() {
   const [globeSize, setGlobeSize] = useState(400)
   const [isMobile, setIsMobile] = useState(false)
 
-  // Add resize listener to adjust globe size based on screen width
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
@@ -55,7 +46,6 @@ export default function Contact() {
       }
     }
 
-    // Set initial size
     handleResize()
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
@@ -69,7 +59,6 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Form validation
     if (!formData.name || !formData.email || !formData.message) {
       Swal.fire({
         title: "Incomplete Form",
@@ -82,7 +71,6 @@ export default function Contact() {
       return
     }
 
-    // Show loading state
     Swal.fire({
       title: "Sending your message...",
       allowOutsideClick: false,
@@ -140,7 +128,6 @@ export default function Contact() {
 
   return (
     <section id="contact" ref={ref} className="py-20 bg-black relative overflow-hidden min-h-screen">
-      {/* Animated background elements */}
       <div className="absolute inset-0 w-full h-full z-0">
         <SparklesCore
           id="tsparticles"
@@ -157,13 +144,11 @@ export default function Contact() {
       <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#547792] to-transparent z-0"></div>
       <div className="absolute bottom-0 right-0 w-full h-40 bg-gradient-to-t from-[#547792] to-transparent z-0"></div>
 
-      {/* Decorative blobs */}
       <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-red-500 rounded-full blur-[120px] -z-10"></div>
       <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-blue-500 rounded-full blur-[120px] -z-10"></div>
 
       <div className="container mx-auto px-4 relative z-20">
         <motion.div style={{ opacity, y }} className="text-center mb-16 relative">
-          {/* Main section sparkles */}
           <div className="absolute inset-0 w-full h-full -z-10">
             <SparklesCore
               id="heading-sparkles"
@@ -177,9 +162,7 @@ export default function Contact() {
             />
           </div>
 
-          {/* TextRevealCard with its own sparkles */}
           <div className="relative mx-auto max-w-3xl">
-            {/* Dedicated sparkles for TextRevealCard */}
             <div className="absolute inset-0 w-full h-full z-0">
               <SparklesCore
                 id="text-reveal-sparkles"
@@ -194,21 +177,20 @@ export default function Contact() {
             </div>
 
             <TextRevealCard text="Get In Touch" revealText="Let's Work Together" className="mx-auto relative z-10">
-              <h2 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#73f3f3] to-[#1A3636] font-serif">
+              <h2 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#73f3f3] to-[#1A3636] font-heading">
                 Get In Touch
               </h2>
             </TextRevealCard>
           </div>
 
           <div className="h-1 w-20 bg-gradient-to-r from-[#73f3f3] to-[#1A3636] mx-auto mt-4"></div>
-          <p className="mt-6 text-gray-300 max-w-2xl mx-auto font-serif">
+          <p className="mt-6 text-gray-300 max-w-2xl mx-auto font-body leading-relaxed">
             Ready to transform your digital presence? Contact us today to discuss your project and discover how TechExa
             Vision can help you achieve your goals.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -217,14 +199,14 @@ export default function Contact() {
           >
             <BackgroundGradient className="rounded-[22px] p-0.5 bg-black">
               <div className="bg-black/90 backdrop-blur-xl p-10 rounded-[20px] border border-gray-800 h-full">
-                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#73f3f3] to-[#1A3636] font-serif">
+                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#6EE7B7] to-[#3B82F6] font-heading">
                   Send Us a Message
                 </h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="group relative">
                     <label
                       htmlFor="name"
-                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors font-serif"
+                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors font-body"
                     >
                       Name
                     </label>
@@ -237,7 +219,7 @@ export default function Contact() {
                       required
                       className={cn(
                         "w-full bg-gray-900/50 border-gray-700 focus:border-red-500 focus:ring-red-500 transition-all",
-                        "hover:border-gray-500 focus:shadow-[0_0_0_2px_rgba(239,68,68,0.2)]",
+                        "hover:border-gray-500 focus:shadow-[0_0_0_2px_rgba(239,68,68,0.2)]"
                       )}
                     />
                     <div className="absolute inset-0 rounded-md -z-10 bg-gradient-to-r opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 blur transition-opacity"></div>
@@ -246,7 +228,7 @@ export default function Contact() {
                   <div className="group relative">
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors font-serif"
+                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors font-body"
                     >
                       Email
                     </label>
@@ -260,7 +242,7 @@ export default function Contact() {
                       required
                       className={cn(
                         "w-full bg-gray-900/50 border-gray-700 focus:border-red-500 focus:ring-red-500 transition-all",
-                        "hover:border-gray-500 focus:shadow-[0_0_0_2px_rgba(239,68,68,0.2)]",
+                        "hover:border-gray-500 focus:shadow-[0_0_0_2px_rgba(239,68,68,0.2)]"
                       )}
                     />
                     <div className="absolute inset-0 rounded-md -z-10 bg-gradient-to-r from-transparent via-red-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 blur transition-opacity"></div>
@@ -269,7 +251,7 @@ export default function Contact() {
                   <div className="group relative">
                     <label
                       htmlFor="message"
-                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors font-serif"
+                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors font-body"
                     >
                       Message
                     </label>
@@ -282,7 +264,7 @@ export default function Contact() {
                       required
                       className={cn(
                         "w-full bg-gray-900/50 border-gray-700 focus:border-red-500 focus:ring-red-500 min-h-[150px] transition-all",
-                        "hover:border-gray-500 focus:shadow-[0_0_0_2px_rgba(239,68,68,0.2)]",
+                        "hover:border-gray-500 focus:shadow-[0_0_0_2px_rgba(239,68,68,0.2)]"
                       )}
                     />
                     <div className="absolute inset-0 rounded-md -z-10 bg-gradient-to-r from-transparent via-red-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 blur transition-opacity"></div>
@@ -300,7 +282,6 @@ export default function Contact() {
             </BackgroundGradient>
           </motion.div>
 
-          {/* CSS Globe and Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -309,20 +290,24 @@ export default function Contact() {
             className="flex flex-col items-center gap-8 px-2 sm:px-4"
           >
             <div className="relative group w-full flex justify-center">
-              {/* Light Gray Gradient Border */}
               <div
-                className={`absolute inset-0 ${isMobile ? "max-w-[280px]" : "max-w-[400px]"} mx-auto aspect-square rounded-full bg-gradient-to-r from-gray-300 via-gray-100 to-gray-300 p-1 animate-spin-slow [animation-duration:8s] opacity-70 group-hover:opacity-100 transition-opacity`}
+                className={`absolute inset-0 ${
+                  isMobile ? "max-w-[280px]" : "max-w-[400px]"
+                } mx-auto aspect-square rounded-full bg-gradient-to-r from-gray-300 via-gray-100 to-gray-300 p-1 animate-spin-slow [animation-duration:8s] opacity-70 group-hover:opacity-100 transition-opacity`}
               >
                 <div className="absolute inset-0 rounded-full bg-black blur-sm"></div>
               </div>
 
-              {/* Subtle Glow Effect */}
               <div
-                className={`absolute inset-0 ${isMobile ? "max-w-[280px]" : "max-w-[400px]"} mx-auto aspect-square rounded-full bg-gradient-to-r from-gray-200 to-gray-400 opacity-0 group-hover:opacity-30 blur-md scale-95 group-hover:scale-105 transition-all duration-1000`}
+                className={`absolute inset-0 ${
+                  isMobile ? "max-w-[280px]" : "max-w-[400px]"
+                } mx-auto aspect-square rounded-full bg-gradient-to-r from-gray-200 to-gray-400 opacity-0 group-hover:opacity-30 blur-md scale-95 group-hover:scale-105 transition-all duration-1000`}
               ></div>
 
               <BackgroundGradient
-                className={`rounded-full p-0.5 bg-black ${isMobile ? "max-w-[280px]" : "max-w-[400px]"} w-full mx-auto`}
+                className={`rounded-full p-0.5 bg-black ${
+                  isMobile ? "max-w-[280px]" : "max-w-[400px]"
+                } w-full mx-auto`}
               >
                 <div className="relative w-full aspect-square rounded-full overflow-hidden bg-black/90 backdrop-blur-xl">
                   <CssGlobe className="w-full aspect-square" size={globeSize} />
@@ -332,11 +317,10 @@ export default function Contact() {
 
             <BackgroundGradient className="rounded-[22px] p-0.5 bg-black w-full">
               <div className="bg-black/70 backdrop-blur-xl p-8 rounded-[20px] border border-gray-800 h-full">
-                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#6EE7B7] to-[#3B82F6] font-serif">
+                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#6EE7B7] to-[#3B82F6] font-heading">
                   Contact Information
                 </h3>
                 <div className="space-y-6">
-                  {/* Location */}
                   <div className="flex items-start gap-4 relative overflow-hidden rounded-xl p-2 transition-all duration-300 hover:bg-gradient-to-r hover:from-red-500/10 hover:to-blue-500/10">
                     <div className="relative">
                       <div className="absolute -inset-1 rounded-full blur-sm bg-gradient-to-r from-[#73f3f3] to-[#006A71] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
@@ -351,7 +335,6 @@ export default function Contact() {
                     <div className="absolute -right-10 -top-10 h-20 w-20 rounded-full bg-gradient-to-br from-[#73f3f3] to-[#006A71] blur-xl opacity-0 transition-all duration-500 hover:opacity-100 hover:scale-150"></div>
                   </div>
 
-                  {/* Email */}
                   <div className="flex items-start gap-4 relative overflow-hidden rounded-xl p-2 transition-all duration-300 hover:bg-gradient-to-r hover:from-red-500/10 hover:to-blue-500/10">
                     <div className="relative">
                       <div className="absolute -inset-1 rounded-full blur-sm bg-gradient-to-r from-[#73f3f3] to-[#1A3636] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
@@ -367,7 +350,6 @@ export default function Contact() {
                     <div className="absolute -right-10 -top-10 h-20 w-20 rounded-full bg-gradient-to-br from-[#73f3f3] to-[#1A3636] blur-xl opacity-0 transition-all duration-500 hover:opacity-100 hover:scale-150"></div>
                   </div>
 
-                  {/* Phone */}
                   <div className="flex items-start gap-4 relative overflow-hidden rounded-xl p-2 transition-all duration-300 hover:bg-gradient-to-r hover:from-red-500/10 hover:to-blue-500/10">
                     <div className="relative">
                       <div className="absolute -inset-1 rounded-full blur-sm bg-gradient-to-r from-[#73f3f3] to-[#1A3636] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>

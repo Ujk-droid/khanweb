@@ -2,13 +2,25 @@
 
 import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Inter } from "next/font/google";
+import { Poppins, Playfair_Display } from "next/font/google";
 import Navbar from "@/app/components/Navbar";
 import Footer from "./components/Footer";
 import Loading from "./components/Loading";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+// Font definitions
+const poppins = Poppins({ 
+  subsets: ["latin"], 
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins" 
+});
+
+const playfair = Playfair_Display({ 
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["italic", "normal"],
+  variable: "--font-playfair" 
+});
 
 export default function RootLayout({
   children,
@@ -28,10 +40,12 @@ export default function RootLayout({
   }, [pathname]);
 
   return (
-    <html lang="en" className="dark">
-      <body className={inter.className}>
+    <html lang="en" className={`dark ${poppins.variable} ${playfair.variable}`}>
+      <body className="font-body bg-background text-foreground">
         <Navbar />
-        {isLoading ? <Loading /> : children}
+        <div className="min-h-screen">
+          {isLoading ? <Loading /> : children}
+        </div>
         <Footer />
       </body>
     </html>

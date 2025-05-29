@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 // import { HoverBorderGradient } from "./ui/hover-border-gradient";
 import { Code, Globe, Layers, Smartphone, Zap, Cpu } from "lucide-react"; // Import CPU icon for AI
 import { HoverBorderGradient } from "../components/ui/hover-border-gradient";
+import But from "../components/But";
+import Work from "../components/Work";
+
 
 export default function Services() {
   const services = [
@@ -41,6 +44,7 @@ export default function Services() {
   ];
 
   return (
+    <>
     <section id="services" className="py-16 md:py-20 bg-black font-serif">
       <div className="container mx-auto px-6 md:px-4">
         <motion.div
@@ -86,5 +90,8 @@ export default function Services() {
         </div>
       </div>
     </section>
+    <But />
+    <Work />
+    </>
   );
 }
