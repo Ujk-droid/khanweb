@@ -55,8 +55,8 @@ export default function Navbar() {
             <Image
               src="/logo1.jpg"
               alt="TechExa Vision Logo"
-              width={80}
-              height={80}
+              width={50}
+              height={50}
               className="mr-2"
             />
             <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#73f3f3] to-[#1A3636] font-heading">
