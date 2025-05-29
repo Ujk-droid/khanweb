@@ -4,12 +4,14 @@ import { SparklesCore } from "../components/ui/sparkles";
 
 import Friends from "../components/Friends";
 import List from "../components/List";
+import AboutHero from "../components/AboutHero";
 // import { List } from "lucide-react";
 // import { SparklesCore } from "./ui/sparkles";
 
 export default function About() {
   return (
     <>
+    <AboutHero />
   
     <section id="about" className="py-16 bg-black relative overflow-hidden font-serif">
       <div className="absolute inset-0 w-full h-full">

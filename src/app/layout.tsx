@@ -8,18 +8,18 @@ import Footer from "./components/Footer";
 import Loading from "./components/Loading";
 import "./globals.css";
 
-// Font definitions
-const poppins = Poppins({ 
-  subsets: ["latin"], 
+// Fonts
+const poppins = Poppins({
+  subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins" 
+  variable: "--font-poppins",
 });
 
-const playfair = Playfair_Display({ 
+const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
   style: ["italic", "normal"],
-  variable: "--font-playfair" 
+  variable: "--font-playfair",
 });
 
 export default function RootLayout({
@@ -43,9 +43,7 @@ export default function RootLayout({
     <html lang="en" className={`dark ${poppins.variable} ${playfair.variable}`}>
       <body className="font-body bg-background text-foreground">
         <Navbar />
-        <div className="min-h-screen">
-          {isLoading ? <Loading /> : children}
-        </div>
+        <div className="min-h-screen">{isLoading ? <Loading /> : children}</div>
         <Footer />
       </body>
     </html>
