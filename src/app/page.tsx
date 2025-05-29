@@ -1,4 +1,5 @@
 // import Navbar from "./components/Navbar"
+import But from "./components/But"
 import Friends from "./components/Friends"
 import Hero from "./components/hero"
 
@@ -43,16 +44,18 @@ export default function Home() {
       <Hero />
       <section className="py-10 container mx-auto px-4  ">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center ">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#6EE7B7] to-[#3B82F6]">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#73f3f3] to-[#1A3636]">
             Featured Projects
           </span>
         </h2>
-        <div className="h-1 w-20 bg-gradient-to-r from-[#6EE7B7] to-[#3B82F6] mx-auto mb-10"></div>
+        <div className="h-1 w-20 bg-gradient-to-r from-[#73f3f3] to-[#1A3636] mx-auto mb-10"></div>
         <ImageSlider images={sliderImages} className="w-full h-[300px] md:h-[400px] lg:h-[500px] mx-auto" />
       </section>
     <Insta />
     <Tea />
+    <But/>
     <List/>
+  
     <Friends/>
       {/* <Footer /> */}
     </main>

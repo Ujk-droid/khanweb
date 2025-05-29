@@ -187,19 +187,19 @@ export default function Footer() {
                 href="/privacy-policy"
                 className="text-gray-400 hover:text-white text-sm transition-colors hover:underline"
               >
-                Privacy Policy
+              
               </Link>
               <Link
                 href="/terms-of-service"
                 className="text-gray-400 hover:text-white text-sm transition-colors hover:underline"
               >
-                Terms of Service
+              
               </Link>
               <Link
                 href="/servies"
                 className="text-gray-400 hover:text-white text-sm transition-colors hover:underline"
               >
-                Cookie Policy
+              
               </Link>
             </div>
           </div>
