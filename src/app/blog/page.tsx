@@ -48,10 +48,10 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100">
+    <div className="min-h-screen bg-gray-950 text-gray-200">
       <div className="container mx-auto px-4 py-12">
         <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold mb-4 text-white">Our Blog</h1>
+          <h1 className="text-4xl font-bold mb-4 text-gray-300">Our Blog</h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Stay updated with the latest news, insights, and developments from our team
           </p>

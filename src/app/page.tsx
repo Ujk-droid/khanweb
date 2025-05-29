@@ -5,7 +5,7 @@ import Hero from "./components/hero"
 
 // import Footer from "./components/Footer"
 import ImageSlider from "./components/image-slider"
-import Insta from "./components/Insta"
+// import Insta from "./components/Insta"
 import List from "./components/List"
 import Tea from "./components/Tea"
 
@@ -51,7 +51,7 @@ export default function Home() {
         <div className="h-1 w-20 bg-gradient-to-r from-[#73f3f3] to-[#1A3636] mx-auto mb-10"></div>
         <ImageSlider images={sliderImages} className="w-full h-[300px] md:h-[400px] lg:h-[500px] mx-auto" />
       </section>
-    <Insta />
+    {/* <Insta /> */}
     <Tea />
     <But/>
     <List/>
