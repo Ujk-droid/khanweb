@@ -5,10 +5,10 @@ const List = () => {
     <section className="text-gray-600 dark:text-gray-300 body-font font-serif">
       <div className="container px-5 py-24 mx-auto">
         <div className="text-center mb-20">
-          <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 dark:text-white mb-4">
-            TechExa Vision – Crafting Digital Excellence
+          <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-300 mb-4">
+            TechExa Vision  Crafting Digital Excellence
           </h1>
-          <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
+          <p className="text-gray-400 leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
             TechExa Vision is a cutting-edge software house committed to transforming ideas into powerful digital solutions. From web design to full-stack development and mobile applications, we deliver tailored software that empowers businesses to grow in the digital era.
           </p>
         </div>
