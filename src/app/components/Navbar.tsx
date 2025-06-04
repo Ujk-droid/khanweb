@@ -39,8 +39,8 @@ export default function Navbar() {
     { name: "Services", href: "/services" },
     { name: "About", href: "/about" },
     { name: "Project", href: "/project" },
-    { name: "blog", href: "/blog" },
-     { name: "Contact", href: "/contact" },
+    { name: "Blog", href: "/blog" },
+     { name: "Team", href: "/team" },
   ];
 
   return (
@@ -84,7 +84,7 @@ export default function Navbar() {
               className="bg-gradient-to-r from-[#73f3f3] to-[#006A71] hover:from-[#71f9f9] hover:to-[#015c63] text-white font-body"
               asChild
             >
-              <Link href="/contact">Get Started</Link>
+              <Link href="/contact">contact us</Link>
             </Button>
           </div>
 
@@ -126,7 +126,7 @@ export default function Navbar() {
                   asChild
                 >
                   <Link href="/contact" onClick={closeMobileMenu}>
-                    Get Started
+                    contact
                   </Link>
                 </Button>
               </nav>
