@@ -25,7 +25,7 @@ export default function Projects() {
       description: "A modern admin dashboard with user management, analytics, and role-based access control.",
       image: "/ad2.png",
       tags: ["Next.js", "Tailwind CSS", "Chart.js", "Prisma"],
-      link: "https://admin-seven-snowy.vercel.app",
+      link: "https://marrigelawnsirtaha-rqma.vercel.app",
     },
     {
       title: "Blog Website",

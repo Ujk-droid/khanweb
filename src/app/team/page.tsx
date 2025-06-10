@@ -69,10 +69,10 @@ const teamMembers = [
     // image: "/placeholder.svg?height=400&width=400",
     skills: ["React", "Node.js", "TypeScript", "Database Design"],
     social: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/aisha-486a4b228?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       twitter: "#",
       github: "#",
-      email: "aisha@techexavision.com",
+      email: "creativegraphics911@gmail.com",
     },
   },
   {
