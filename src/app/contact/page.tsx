@@ -344,7 +344,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="font-medium text-lg transition-colors duration-300 font-serif">Email Us</h4>
-                      <p className="text-gray-400">info@techexavision.com</p>
+                      <p className="text-gray-400">techexav@gmail.com</p>
                       <p className="text-gray-400">03312436713aa@gmail.com</p>
                     </div>
                     <div className="absolute -right-10 -top-10 h-20 w-20 rounded-full bg-gradient-to-br from-[#73f3f3] to-[#1A3636] blur-xl opacity-0 transition-all duration-500 hover:opacity-100 hover:scale-150"></div>

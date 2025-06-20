@@ -8,6 +8,8 @@ import {
   FaLinkedin,
   FaFacebookF,
   FaWhatsapp,
+  FaEnvelope,
+  FaPhone,
 } from "react-icons/fa6";
 
 export default function Footer() {
@@ -165,11 +167,11 @@ export default function Footer() {
                 Pakistan
               </li>
               <li className="flex items-center">
-                <span className="w-1 h-1 bg-gray-400 rounded-full mr-2"></span>{" "}
+                <FaEnvelope className="text-gray-400 mr-2" />
                 03312436713aa@gmail.com
               </li>
               <li className="flex items-center">
-                <span className="w-1 h-1 bg-gray-400 rounded-full mr-2"></span>{" "}
+                <FaPhone className="text-gray-400 mr-2" />
                 0331 2436713
               </li>
             </ul>
@@ -187,19 +189,19 @@ export default function Footer() {
                 href="/privacy-policy"
                 className="text-gray-400 hover:text-white text-sm transition-colors hover:underline"
               >
-              
+                Privacy Policy
               </Link>
               <Link
                 href="/terms-of-service"
                 className="text-gray-400 hover:text-white text-sm transition-colors hover:underline"
               >
-              
+                Terms of Service
               </Link>
               <Link
-                href="/servies"
+                href="/services"
                 className="text-gray-400 hover:text-white text-sm transition-colors hover:underline"
               >
-              
+                Services
               </Link>
             </div>
           </div>
