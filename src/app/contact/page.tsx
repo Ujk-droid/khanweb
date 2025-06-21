@@ -1,375 +1,213 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import React, { useRef, useState, useEffect } from "react"
-import { CssGlobe } from "@/app/components/ui/CssGlobe"
-import { Mail, MapPin, Phone } from "lucide-react"
-import { cn } from "@/lib/utils"
-import Swal from "sweetalert2"
-import { Input } from "../components/ui/input"
-import { Button } from "../components/ui/button"
-import { Textarea } from "../components/ui/textarea"
-import { SparklesCore } from "../components/ui/sparkles"
-import { TextRevealCard } from "../components/ui/text-reveal-card"
-import { BackgroundGradient } from "../components/ui/background-gradient"
+import Image from "next/image"
+import { Dancing_Script } from "next/font/google"
+import { useEffect, useState, useMemo } from "react"
 
-export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  })
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+})
 
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  })
+export default function Loading() {
+  const [displayText, setDisplayText] = useState("")
+  const fullText = "Create Your Digital Home"
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [progress, setProgress] = useState(0)
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0, 1, 1, 0])
-  const y = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [100, 0, 0, -100])
+  // Memoized elements for better performance
+  const particles = useMemo(() => 
+    Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      size: `${Math.random() * 4 + 2}px`,
+      delay: `${i * 0.1}s`,
+      duration: `${Math.random() * 3 + 2}s`,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+    })), [])
 
-  const [globeSize, setGlobeSize] = useState(400)
-  const [isMobile, setIsMobile] = useState(false)
+  const floatingShapes = useMemo(() => 
+    Array.from({ length: 12 }, (_, i) => ({
+      id: i,
+      size: `${Math.random() * 40 + 20}px`,
+      delay: `${i * 0.2}s`,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      color: `rgba(0, 106, 113, ${Math.random() * 0.2 + 0.1})`,
+    })), [])
 
+  // Typewriter effect with smoother reset
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setGlobeSize(280)
-        setIsMobile(true)
-      } else if (window.innerWidth < 768) {
-        setGlobeSize(320)
-        setIsMobile(false)
-      } else {
-        setGlobeSize(400)
-        setIsMobile(false)
-      }
+    if (currentIndex < fullText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText(prev => prev + fullText[currentIndex])
+        setCurrentIndex(prev => prev + 1)
+      }, 100 + Math.random() * 50) // Slight randomness for natural feel
+      return () => clearTimeout(timeout)
+    } else {
+      const resetTimeout = setTimeout(() => {
+        setDisplayText("")
+        setCurrentIndex(0)
+      }, 2000)
+      return () => clearTimeout(resetTimeout)
     }
+  }, [currentIndex, fullText.length])
 
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
+  // Smooth progress animation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress(prev => (prev >= 100 ? 0 : prev + 0.5))
+    }, 20)
+    return () => clearInterval(interval)
   }, [])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!formData.name || !formData.email || !formData.message) {
-      Swal.fire({
-        title: "Incomplete Form",
-        text: "Please fill out all fields before submitting.",
-        icon: "warning",
-        confirmButtonColor: "#3B82F6",
-        background: "#0f172a",
-        color: "#ffffff",
-      })
-      return
-    }
-
-    Swal.fire({
-      title: "Sending your message...",
-      allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading()
-      },
-      background: "#0f172a",
-    })
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          access_key: "9bda5b9c-29c1-402e-b099-2de22660da48",
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-          subject: `New message from ${formData.name}`,
-        }),
-      })
-
-      const result = await response.json()
-
-      if (result.success) {
-        Swal.fire({
-          title: "Success!",
-          text: "Your message has been sent successfully. We will contact you soon!",
-          icon: "success",
-          confirmButtonText: "OK",
-          confirmButtonColor: "#3B82F6",
-          background: "#0f172a",
-          color: "#ffffff",
-          iconColor: "#6EE7B7",
-        }).then(() => {
-          setFormData({ name: "", email: "", message: "" })
-        })
-      } else {
-        throw new Error(result.message || "Failed to send message")
-      }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      Swal.fire({
-        title: "Error!",
-        text: "There was a problem sending your message. Please try again later or contact us directly at 03312436713aa@gmail.com",
-        icon: "error",
-        confirmButtonColor: "#3B82F6",
-        background: "#0f172a",
-        color: "#ffffff",
-      })
-    }
-  }
-
   return (
-    <section id="contact" ref={ref} className="py-20 bg-black relative overflow-hidden min-h-screen">
-      <div className="absolute inset-0 w-full h-full z-0">
-        <SparklesCore
-          id="tsparticles"
-          background="transparent"
-          minSize={0.6}
-          maxSize={1.4}
-          particleDensity={100}
-          className="w-full h-full"
-          particleColor="#ffffff"
-          particleOpacity={0.8}
-        />
+    <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black z-[999] overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {floatingShapes.map((shape) => (
+          <div
+            key={shape.id}
+            className="absolute rounded-full blur-md transform-gpu animate-float-slow pointer-events-none"
+            style={{
+              width: shape.size,
+              height: shape.size,
+              left: shape.left,
+              top: shape.top,
+              background: shape.color,
+              animationDelay: shape.delay,
+            }}
+          />
+        ))}
       </div>
 
-      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#547792] to-transparent z-0"></div>
-      <div className="absolute bottom-0 right-0 w-full h-40 bg-gradient-to-t from-[#547792] to-transparent z-0"></div>
+      {/* Glow overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#006A71]/10 via-[#01949f]/10 to-[#73f3f3]/10 pointer-events-none" />
 
-      <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-red-500 rounded-full blur-[120px] -z-10"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-blue-500 rounded-full blur-[120px] -z-10"></div>
+      {/* Main content */}
+      <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-2xl px-4">
+        {/* Animated text */}
+        <div className="relative mb-12 group">
+          <h1
+            className={`${dancingScript.className} text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#006A71] via-[#01949f] to-[#73f3f3] tracking-wide`}
+            style={{
+              textShadow: "0 0 15px rgba(115, 243, 243, 0.5)",
+              transform: "perspective(500px) rotateX(10deg)",
+            }}
+          >
+            {displayText}
+            <span className="ml-1 animate-pulse">|</span>
+          </h1>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#006A71]/20 to-[#73f3f3]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 rounded-full" />
+        </div>
 
-      <div className="container mx-auto px-4 relative z-20">
-        <motion.div style={{ opacity, y }} className="text-center mb-16 relative">
-          <div className="absolute inset-0 w-full h-full -z-10">
-            <SparklesCore
-              id="heading-sparkles"
-              background="transparent"
-              minSize={0.6}
-              maxSize={1.4}
-              particleDensity={100}
-              className="w-full h-full"
-              particleColor="#3B82F6"
-              particleOpacity={0.8}
+        {/* Animated logo */}
+        <div className="relative mb-12 animate-float">
+          <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32">
+            <Image
+              src="/logo1.jpg"
+              alt="Loading"
+              fill
+              className="rounded-full object-cover border-4 border-[#006A71]/80 shadow-lg"
+              style={{
+                boxShadow: "0 0 30px rgba(1, 148, 159, 0.7)",
+              }}
             />
+            <div className="absolute inset-0 rounded-full border-2 border-[#73f3f3]/50 animate-ping-slow pointer-events-none" />
           </div>
+          <div className="absolute -inset-4 bg-gradient-to-r from-[#006A71]/30 to-[#73f3f3]/30 rounded-full blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-500 -z-10" />
+        </div>
 
-          <div className="relative mx-auto max-w-3xl">
-            <div className="absolute inset-0 w-full h-full z-0">
-              <SparklesCore
-                id="text-reveal-sparkles"
-                background="transparent"
-                minSize={0.8}
-                maxSize={1.8}
-                particleDensity={120}
-                className="w-full h-full"
-                particleColor="#FF5555"
-                particleOpacity={0.9}
-              />
+        {/* Progress indicator */}
+        <div className="w-full max-w-md">
+          <div className="relative h-1.5 bg-gray-700/50 rounded-full overflow-hidden mb-2">
+            <div 
+              className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#006A71] to-[#73f3f3] rounded-full transition-all duration-300 ease-out"
+              style={{ width: `${progress}%` }}
+            >
+              <div className="absolute top-0 right-0 w-1 h-full bg-white/80 animate-pulse" />
             </div>
-
-            <TextRevealCard text="Get In Touch" revealText="Let's Work Together" className="mx-auto relative z-10">
-              <h2 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#73f3f3] to-[#1A3636] font-heading">
-                Get In Touch
-              </h2>
-            </TextRevealCard>
           </div>
-
-          <div className="h-1 w-20 bg-gradient-to-r from-[#73f3f3] to-[#1A3636] mx-auto mt-4"></div>
-          <p className="mt-6 text-gray-300 max-w-2xl mx-auto font-body leading-relaxed">
-            Ready to transform your digital presence? Contact us today to discuss your project and discover how TechExa
-            Vision can help you achieve your goals.
+          <p className="text-center text-[#73f3f3]/80 text-sm font-mono tracking-wider">
+            LOADING {Math.min(100, Math.floor(progress))}%
           </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <BackgroundGradient className="rounded-[22px] p-0.5 bg-black">
-              <div className="bg-black/90 backdrop-blur-xl p-10 rounded-[20px] border border-gray-800 h-full">
-                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#6EE7B7] to-[#3B82F6] font-heading">
-                  Send Us a Message
-                </h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="group relative">
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors font-body"
-                    >
-                      Name
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Your name"
-                      required
-                      className={cn(
-                        "w-full bg-gray-900/50 border-gray-700 focus:border-red-500 focus:ring-red-500 transition-all",
-                        "hover:border-gray-500 focus:shadow-[0_0_0_2px_rgba(239,68,68,0.2)]"
-                      )}
-                    />
-                    <div className="absolute inset-0 rounded-md -z-10 bg-gradient-to-r opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 blur transition-opacity"></div>
-                  </div>
-
-                  <div className="group relative">
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors font-body"
-                    >
-                      Email
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="Your email"
-                      required
-                      className={cn(
-                        "w-full bg-gray-900/50 border-gray-700 focus:border-red-500 focus:ring-red-500 transition-all",
-                        "hover:border-gray-500 focus:shadow-[0_0_0_2px_rgba(239,68,68,0.2)]"
-                      )}
-                    />
-                    <div className="absolute inset-0 rounded-md -z-10 bg-gradient-to-r from-transparent via-red-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 blur transition-opacity"></div>
-                  </div>
-
-                  <div className="group relative">
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium mb-2 text-gray-300 group-focus-within:text-red-500 transition-colors font-body"
-                    >
-                      Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Tell us about your project"
-                      required
-                      className={cn(
-                        "w-full bg-gray-900/50 border-gray-700 focus:border-red-500 focus:ring-red-500 min-h-[150px] transition-all",
-                        "hover:border-gray-500 focus:shadow-[0_0_0_2px_rgba(239,68,68,0.2)]"
-                      )}
-                    />
-                    <div className="absolute inset-0 rounded-md -z-10 bg-gradient-to-r from-transparent via-red-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 blur transition-opacity"></div>
-                  </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full relative group overflow-hidden rounded-full bg-gradient-to-r from-[#73f3f3] to-[#006A71] px-8 py-3 text-white"
-                  >
-                    <span className="relative z-10">Send Message</span>
-                    <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#73f3f3] to-[#006A71] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  </Button>
-                </form>
-              </div>
-            </BackgroundGradient>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col items-center gap-8 px-2 sm:px-4"
-          >
-            <div className="relative group w-full flex justify-center">
-              <div
-                className={`absolute inset-0 ${
-                  isMobile ? "max-w-[280px]" : "max-w-[400px]"
-                } mx-auto aspect-square rounded-full bg-gradient-to-r from-gray-300 via-gray-100 to-gray-300 p-1 animate-spin-slow [animation-duration:8s] opacity-70 group-hover:opacity-100 transition-opacity`}
-              >
-                <div className="absolute inset-0 rounded-full bg-black blur-sm"></div>
-              </div>
-
-              <div
-                className={`absolute inset-0 ${
-                  isMobile ? "max-w-[280px]" : "max-w-[400px]"
-                } mx-auto aspect-square rounded-full bg-gradient-to-r from-gray-200 to-gray-400 opacity-0 group-hover:opacity-30 blur-md scale-95 group-hover:scale-105 transition-all duration-1000`}
-              ></div>
-
-              <BackgroundGradient
-                className={`rounded-full p-0.5 bg-black ${
-                  isMobile ? "max-w-[280px]" : "max-w-[400px]"
-                } w-full mx-auto`}
-              >
-                <div className="relative w-full aspect-square rounded-full overflow-hidden bg-black/90 backdrop-blur-xl">
-                  <CssGlobe className="w-full aspect-square" size={globeSize} />
-                </div>
-              </BackgroundGradient>
-            </div>
-
-            <BackgroundGradient className="rounded-[22px] p-0.5 bg-black w-full">
-              <div className="bg-black/70 backdrop-blur-xl p-8 rounded-[20px] border border-gray-800 h-full">
-                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#6EE7B7] to-[#3B82F6] font-heading">
-                  Contact Information
-                </h3>
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4 relative overflow-hidden rounded-xl p-2 transition-all duration-300 hover:bg-gradient-to-r hover:from-red-500/10 hover:to-blue-500/10">
-                    <div className="relative">
-                      <div className="absolute -inset-1 rounded-full blur-sm bg-gradient-to-r from-[#73f3f3] to-[#006A71] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="relative bg-gray-700 p-3 rounded-full transition-colors duration-300 hover:bg-gradient-to-br hover:from-[#6EE7B7] hover:to-[#3B82F6]">
-                        <MapPin className="h-6 w-6 text-white" />
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-lg transition-colors duration-300">Our Location</h4>
-                      <p className="text-gray-400">Gardeneast karachi Pakistan</p>
-                    </div>
-                    <div className="absolute -right-10 -top-10 h-20 w-20 rounded-full bg-gradient-to-br from-[#73f3f3] to-[#006A71] blur-xl opacity-0 transition-all duration-500 hover:opacity-100 hover:scale-150"></div>
-                  </div>
-
-                  <div className="flex items-start gap-4 relative overflow-hidden rounded-xl p-2 transition-all duration-300 hover:bg-gradient-to-r hover:from-red-500/10 hover:to-blue-500/10">
-                    <div className="relative">
-                      <div className="absolute -inset-1 rounded-full blur-sm bg-gradient-to-r from-[#73f3f3] to-[#1A3636] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="relative bg-gray-700 p-3 rounded-full transition-colors duration-300 hover:bg-gradient-to-br hover:from-[#6EE7B7] hover:to-[#3B82F6]">
-                        <Mail className="h-6 w-6 text-white" />
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-lg transition-colors duration-300 font-serif">Email Us</h4>
-                      <p className="text-gray-400">techexav@gmail.com</p>
-                      <p className="text-gray-400">03312436713aa@gmail.com</p>
-                    </div>
-                    <div className="absolute -right-10 -top-10 h-20 w-20 rounded-full bg-gradient-to-br from-[#73f3f3] to-[#1A3636] blur-xl opacity-0 transition-all duration-500 hover:opacity-100 hover:scale-150"></div>
-                  </div>
-
-                  <div className="flex items-start gap-4 relative overflow-hidden rounded-xl p-2 transition-all duration-300 hover:bg-gradient-to-r hover:from-red-500/10 hover:to-blue-500/10">
-                    <div className="relative">
-                      <div className="absolute -inset-1 rounded-full blur-sm bg-gradient-to-r from-[#73f3f3] to-[#1A3636] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="relative bg-gray-700 p-3 rounded-full transition-colors duration-300 hover:bg-gradient-to-br hover:from-[#6EE7B7] hover:to-[#3B82F6]">
-                        <Phone className="h-6 w-6 text-white" />
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-lg transition-colors duration-300 font-serif">Call Us</h4>
-                      <p className="text-gray-400">03312436713</p>
-                      <p className="text-gray-400">03298388739</p>
-                    </div>
-                    <div className="absolute -right-10 -top-10 h-20 w-20 rounded-full bg-gradient-to-br from-[#73f3f3] to-[#1A3636] blur-xl opacity-0 transition-all duration-500 hover:opacity-100 hover:scale-150"></div>
-                  </div>
-                </div>
-              </div>
-            </BackgroundGradient>
-          </motion.div>
         </div>
       </div>
-    </section>
+
+      {/* Animated particles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {particles.map((particle) => (
+          <div
+            key={particle.id}
+            className="absolute rounded-full bg-[#73f3f3] transform-gpu animate-particle"
+            style={{
+              width: particle.size,
+              height: particle.size,
+              left: particle.left,
+              top: particle.top,
+              opacity: 0,
+              animationDelay: particle.delay,
+              animationDuration: particle.duration,
+              boxShadow: "0 0 10px rgba(115, 243, 243, 0.8)",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Global styles */}
+      <style jsx global>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(-20px) translateX(10px); }
+        }
+        
+        @keyframes particle {
+          0% { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
+          20% { opacity: 0.8; }
+          100% { transform: translateY(-100px) translateX(20px) scale(1.2); opacity: 0; }
+        }
+        
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.3; }
+        }
+        
+        @keyframes ping-slow {
+          0% { transform: scale(0.8); opacity: 0.8; }
+          70%, 100% { transform: scale(1.4); opacity: 0; }
+        }
+        
+        .animate-float {
+          animation: float 4s ease-in-out infinite;
+        }
+        
+        .animate-float-slow {
+          animation: float-slow 8s ease-in-out infinite;
+        }
+        
+        .animate-particle {
+          animation: particle linear infinite;
+        }
+        
+        .animate-pulse {
+          animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        .animate-ping-slow {
+          animation: ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        
+        .transform-gpu {
+          transform-style: preserve-3d;
+          backface-visibility: hidden;
+          will-change: transform;
+        }
+      `}</style>
+    </div>
   )
 }
