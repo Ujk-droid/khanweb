@@ -6,11 +6,10 @@ import { useState, useMemo } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 // import { Textarea } from "@/components/ui/textarea"
-// import { Card, CardContent } from "@/components/ui/card"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react"
 import { CssGlobe } from "../components/ui/CssGlobe"
 import { Textarea } from "../components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
 // import { CssGlobe } from "./components/css-globe"
 
 const dancingScript = Dancing_Script({
@@ -35,6 +34,12 @@ export default function ContactUs() {
     subject: "",
     message: "",
   })
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null
+    message: string
+  }>({ type: null, message: "" })
 
   // Memoized floating elements matching the loading theme
   const floatingShapes = useMemo(
@@ -68,10 +73,42 @@ export default function ContactUs() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
+    setIsSubmitting(true)
+    setSubmitStatus({ type: null, message: "" })
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: "success",
+          message: "Thank you! Your message has been sent successfully. We'll get back to you soon!",
+        })
+        setFormData({ name: "", email: "", subject: "", message: "" })
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message: data.error || "Failed to send message. Please try again.",
+        })
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message: "Network error. Please check your connection and try again.",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -151,6 +188,24 @@ export default function ContactUs() {
                 Send us a Message
               </h2>
 
+              {/* Status Message */}
+              {submitStatus.type && (
+                <div
+                  className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
+                    submitStatus.type === "success"
+                      ? "bg-green-900/30 border border-green-500/30 text-green-300"
+                      : "bg-red-900/30 border border-red-500/30 text-red-300"
+                  }`}
+                >
+                  {submitStatus.type === "success" ? (
+                    <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                  ) : (
+                    <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                  )}
+                  <p className={`${roboto.className} text-sm`}>{submitStatus.message}</p>
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
@@ -169,6 +224,7 @@ export default function ContactUs() {
                       className={`${roboto.className} bg-gray-700/50 border-[#006A71]/50 text-white placeholder-gray-400 focus:border-[#73f3f3] focus:ring-[#73f3f3]/20`}
                       placeholder="Your full name"
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div>
@@ -187,6 +243,7 @@ export default function ContactUs() {
                       className={`${roboto.className} bg-gray-700/50 border-[#006A71]/50 text-white placeholder-gray-400 focus:border-[#73f3f3] focus:ring-[#73f3f3]/20`}
                       placeholder="your.email@example.com"
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
                 </div>
@@ -207,6 +264,7 @@ export default function ContactUs() {
                     className={`${roboto.className} bg-gray-700/50 border-[#006A71]/50 text-white placeholder-gray-400 focus:border-[#73f3f3] focus:ring-[#73f3f3]/20`}
                     placeholder="What's this about?"
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -226,18 +284,29 @@ export default function ContactUs() {
                     className={`${roboto.className} bg-gray-700/50 border-[#006A71]/50 text-white placeholder-gray-400 focus:border-[#73f3f3] focus:ring-[#73f3f3]/20 resize-none`}
                     placeholder="Tell us about your project or inquiry..."
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  className={`${roboto.className} w-full bg-gradient-to-r from-[#006A71] to-[#01949f] hover:from-[#01949f] hover:to-[#73f3f3] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-[#73f3f3]/25`}
+                  disabled={isSubmitting}
+                  className={`${roboto.className} w-full bg-gradient-to-r from-[#006A71] to-[#01949f] hover:from-[#01949f] hover:to-[#73f3f3] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-[#73f3f3]/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
                   style={{
                     boxShadow: "0 4px 15px rgba(1, 148, 159, 0.3)",
                   }}
                 >
-                  <Send className="w-5 h-5 mr-2" />
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 mr-2" />
+                      Send Message
+                    </>
+                  )}
                 </Button>
               </form>
             </CardContent>
@@ -255,7 +324,7 @@ export default function ContactUs() {
                     </div>
                     <div>
                       <h3 className={`${roboto.className} text-lg font-medium text-white mb-1`}>Email</h3>
-                      <p className={`${roboto.className} text-gray-300`}>contact@digitalhome.com</p>
+                      <p className={`${roboto.className} text-gray-300`}>03312436713aa@gmail.com</p>
                       <p className={`${roboto.className} text-gray-400 text-sm`}>We'll respond within 24 hours</p>
                     </div>
                   </div>
@@ -266,8 +335,8 @@ export default function ContactUs() {
                     </div>
                     <div>
                       <h3 className={`${roboto.className} text-lg font-medium text-white mb-1`}>Phone</h3>
-                      <p className={`${roboto.className} text-gray-300`}>+1 (555) 123-4567</p>
-                      <p className={`${roboto.className} text-gray-400 text-sm`}>Mon-Fri, 9AM-6PM EST</p>
+                      <p className={`${roboto.className} text-gray-300`}>0331 2436713</p>
+                      <p className={`${roboto.className} text-gray-400 text-sm`}>Mon-Fri, 9AM-6PM PKT</p>
                     </div>
                   </div>
 
@@ -277,8 +346,8 @@ export default function ContactUs() {
                     </div>
                     <div>
                       <h3 className={`${roboto.className} text-lg font-medium text-white mb-1`}>Office</h3>
-                      <p className={`${roboto.className} text-gray-300`}>123 Digital Street</p>
-                      <p className={`${roboto.className} text-gray-300`}>Tech City, TC 12345</p>
+                      <p className={`${roboto.className} text-gray-300`}>Garden East</p>
+                      <p className={`${roboto.className} text-gray-300`}>Karachi, Pakistan</p>
                     </div>
                   </div>
                 </div>
