@@ -5,10 +5,11 @@ import { Dancing_Script, Roboto, Roboto_Mono } from "next/font/google"
 import { useState, useMemo } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
+// import { Textarea } from "@/components/ui/textarea"
+// import { Card, CardContent } from "@/components/ui/card"
 import { Mail, Phone, MapPin, Send } from "lucide-react"
 import { CssGlobe } from "../components/ui/CssGlobe"
+import { Textarea } from "../components/ui/textarea"
 // import { CssGlobe } from "./components/css-globe"
 
 const dancingScript = Dancing_Script({
