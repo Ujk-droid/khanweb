@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Mail, Phone, MapPin, Send } from "lucide-react"
 import { CssGlobe } from "../components/ui/CssGlobe"
 import { Textarea } from "../components/ui/textarea"
+import { Card, CardContent } from "@/components/ui/card"
 // import { CssGlobe } from "./components/css-globe"
 
 const dancingScript = Dancing_Script({
