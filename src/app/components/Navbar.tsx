@@ -40,7 +40,7 @@ export default function Navbar() {
     { name: "About", href: "/about" },
     { name: "Project", href: "/project" },
     { name: "Blog", href: "/blog" },
-     { name: "Team", href: "/team" },
+    { name: "Team", href: "/team" },
   ];
 
   return (
@@ -52,7 +52,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="#" className="flex items-center">
+          <Link href="#" className="flex items-center ml-[-10px]"> {/* Added ml-[-10px] here */}
             <Image
               src="/logo1.jpg"
               alt="TechExa Vision Logo"

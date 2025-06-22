@@ -1,3 +1,4 @@
+
 "use client"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
@@ -11,8 +12,8 @@ export const CssGlobe = ({
 }) => {
   return (
     <div className={cn("relative overflow-hidden rounded-full", className)} style={{ width: size, height: size }}>
-      {/* Enhanced glow effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-red-500/30 to-blue-500/30 rounded-full blur-xl"></div>
+      {/* Enhanced glow effect matching theme */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#006A71]/30 to-[#73f3f3]/30 rounded-full blur-xl"></div>
 
       <div className="w-full h-full relative rounded-full overflow-hidden">
         <div className="absolute inset-0 animate-spin-slow">
@@ -25,12 +26,12 @@ export const CssGlobe = ({
           />
         </div>
 
-        {/* Add a gradient overlay that enhances the colors */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-red-500/10 via-transparent to-blue-500/10 mix-blend-overlay"></div>
+        {/* Add a gradient overlay that enhances the colors with theme colors */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-[#006A71]/10 via-transparent to-[#73f3f3]/10 mix-blend-overlay"></div>
       </div>
 
-      {/* Add a pulsing glow effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-blue-500/20 rounded-full blur-xl animate-pulse"></div>
+      {/* Add a pulsing glow effect with theme colors */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#006A71]/20 to-[#73f3f3]/20 rounded-full blur-xl animate-pulse"></div>
     </div>
   )
 }
