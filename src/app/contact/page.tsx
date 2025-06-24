@@ -325,7 +325,7 @@ export default function ContactUs() {
                     <div>
                       <h3 className={`${roboto.className} text-lg font-medium text-white mb-1`}>Email</h3>
                       <p className={`${roboto.className} text-gray-300`}>03312436713aa@gmail.com</p>
-                      <p className={`${roboto.className} text-gray-400 text-sm`}>We'll respond within 24 hours</p>
+                      <p className={`${roboto.className} text-gray-400 text-sm`}>Well respond within 24 hours</p>
                     </div>
                   </div>
 
