@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
-import { SparklesCore } from '../components/ui/sparkles'; // Adjust path as needed
+import { SparklesCore } from '../components/ui/sparkles';
 
 const AboutHero = () => {
   return (
-    <section className="relative overflow-hidden bg-black">
+    <section className="relative overflow-hidden bg-[#030712]">
       {/* Sparkles background */}
       <div className="absolute inset-0 z-0">
         <SparklesCore
@@ -14,18 +14,18 @@ const AboutHero = () => {
           maxSize={1.4}
           particleDensity={80}
           className="w-full h-full"
-          particleColor="#00FFFF"
+          particleColor="#3B82F6"
         />
       </div>
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-black to-purple-900/20 z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/10 to-[#030712] z-10"></div>
 
       {/* Content */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 z-20">
         <div className="text-center">
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
-            <span className="bg-gradient-to-r from-[#57B4BA] via-[#015551] to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-blue-300 bg-clip-text text-transparent">
               Innovating Tomorrow
             </span>
             <br />

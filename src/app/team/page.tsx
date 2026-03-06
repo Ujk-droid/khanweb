@@ -1,33 +1,18 @@
 "use client"
 
-import { useEffect, useRef } from "react"
 import Link from "next/link"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
- import { Badge } from "@/components/ui/badge"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Github, Linkedin, Twitter, Mail } from "lucide-react"
-import { Poppins, Playfair_Display } from "next/font/google"
-
-// Fonts
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
-})
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  style: ["italic", "normal"],
-  variable: "--font-playfair",
-})
+import { motion } from "framer-motion"
 
 const teamMembers = [
   {
     name: "Uzma Khan",
     role: "Founder & CEO",
     bio: "Visionary leader with expertise in software development and business strategy. Founded TechExa Vision with a mission to transform digital experiences through innovation and excellence.",
-    image: "/placeholder.svg?height=400&width=400",
+    image: "",
     skills: ["Leadership", "Strategy", "Innovation", "Business Development"],
     social: {
       linkedin: "#",
@@ -88,394 +73,187 @@ const teamMembers = [
 ]
 
 export default function TeamPage() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const canvasRef2 = useRef<HTMLCanvasElement>(null)
-  const particlesRef = useRef<HTMLDivElement>(null)
-  const meteorsRef = useRef<HTMLDivElement>(null)
-
-  // Top wave animation
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
-
-    const resizeCanvas = () => {
-      canvas.width = canvas.offsetWidth * window.devicePixelRatio
-      canvas.height = canvas.offsetHeight * window.devicePixelRatio
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
-    }
-
-    resizeCanvas()
-    window.addEventListener("resize", resizeCanvas)
-
-    let animationId: number
-    let time = 0
-
-    const animate = () => {
-      const width = canvas.offsetWidth
-      const height = canvas.offsetHeight
-
-      ctx.clearRect(0, 0, width, height)
-
-      // Draw multiple waves
-      for (let i = 0; i < 3; i++) {
-        ctx.beginPath()
-        ctx.moveTo(0, height * 0.7)
-
-        for (let x = 0; x <= width; x += 10) {
-          const y =
-            height * 0.7 +
-            Math.sin((x * 0.01 + time * 0.002 + i * 0.5) * Math.PI) * (20 + i * 10) +
-            Math.sin((x * 0.005 + time * 0.001 + i * 0.3) * Math.PI) * (10 + i * 5)
-          ctx.lineTo(x, y)
-        }
-
-        ctx.lineTo(width, height)
-        ctx.lineTo(0, height)
-        ctx.closePath()
-
-        const alpha = 0.1 - i * 0.02
-        ctx.fillStyle = `rgba(${i === 0 ? "0, 106, 113" : i === 1 ? "1, 148, 159" : "115, 243, 243"}, ${alpha})`
-        ctx.fill()
-      }
-
-      time += 1
-      animationId = requestAnimationFrame(animate)
-    }
-
-    animate()
-
-    return () => {
-      window.removeEventListener("resize", resizeCanvas)
-      cancelAnimationFrame(animationId)
-    }
-  }, [])
-
-  // Bottom wave animation
-  useEffect(() => {
-    const canvas = canvasRef2.current
-    if (!canvas) return
-
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
-
-    const resizeCanvas = () => {
-      canvas.width = canvas.offsetWidth * window.devicePixelRatio
-      canvas.height = canvas.offsetHeight * window.devicePixelRatio
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
-    }
-
-    resizeCanvas()
-    window.addEventListener("resize", resizeCanvas)
-
-    let animationId: number
-    let time = 0
-
-    const animate = () => {
-      const width = canvas.offsetWidth
-      const height = canvas.offsetHeight
-
-      ctx.clearRect(0, 0, width, height)
-
-      // Draw multiple waves
-      for (let i = 0; i < 3; i++) {
-        ctx.beginPath()
-        ctx.moveTo(0, height * 0.3)
-
-        for (let x = 0; x <= width; x += 10) {
-          const y =
-            height * 0.3 +
-            Math.sin((x * 0.01 + time * 0.002 + i * 0.5) * Math.PI) * (20 + i * 10) +
-            Math.sin((x * 0.005 + time * 0.001 + i * 0.3) * Math.PI) * (10 + i * 5)
-          ctx.lineTo(x, y)
-        }
-
-        ctx.lineTo(width, 0)
-        ctx.lineTo(0, 0)
-        ctx.closePath()
-
-        const alpha = 0.1 - i * 0.02
-        ctx.fillStyle = `rgba(${i === 0 ? "0, 106, 113" : i === 1 ? "1, 148, 159" : "115, 243, 243"}, ${alpha})`
-        ctx.fill()
-      }
-
-      time += 1
-      animationId = requestAnimationFrame(animate)
-    }
-
-    animate()
-
-    return () => {
-      window.removeEventListener("resize", resizeCanvas)
-      cancelAnimationFrame(animationId)
-    }
-  }, [])
-
-  // Particles animation (matching loading component)
-  useEffect(() => {
-    const container = particlesRef.current
-    if (!container) return
-
-    const createParticle = () => {
-      const particle = document.createElement("div")
-      particle.className = "particle"
-
-      const size = Math.random() * 4 + 2
-      const duration = Math.random() * 3 + 2
-      const delay = Math.random() * 5
-
-      particle.style.cssText = `
-        position: absolute;
-        left: ${Math.random() * 100}%;
-        top: ${Math.random() * 100}%;
-        width: ${size}px;
-        height: ${size}px;
-        background: #73f3f3;
-        border-radius: 50%;
-        opacity: 0;
-        pointer-events: none;
-        z-index: 1;
-        box-shadow: 0 0 10px rgba(115, 243, 243, 0.8);
-        animation: particle ${duration}s ease-in-out ${delay}s infinite;
-      `
-
-      container.appendChild(particle)
-    }
-
-    for (let i = 0; i < 30; i++) {
-      createParticle()
-    }
-
-    return () => {
-      while (container.firstChild) {
-        container.removeChild(container.firstChild)
-      }
-    }
-  }, [])
-
-  // Meteors animation
-  useEffect(() => {
-    const meteorsContainer = meteorsRef.current
-    if (!meteorsContainer) return
-
-    const createMeteor = () => {
-      const meteor = document.createElement("div")
-      meteor.className = "meteor"
-
-      const startX = Math.random() * window.innerWidth
-      const startY = -50
-      const endX = startX + (Math.random() - 0.5) * 400
-      const endY = window.innerHeight + 50
-      const size = Math.random() * 3 + 1
-      const colors = ["#006A71", "#01949f", "#73f3f3"]
-      const color = colors[Math.floor(Math.random() * colors.length)]
-
-      meteor.style.cssText = `
-        position: absolute;
-        left: ${startX}px;
-        top: ${startY}px;
-        width: ${size}px;
-        height: ${size}px;
-        background: ${color};
-        border-radius: 50%;
-        box-shadow: 0 0 ${size * 4}px ${color}, 0 0 ${size * 8}px ${color}40;
-        pointer-events: none;
-        z-index: 1;
-      `
-
-      meteorsContainer.appendChild(meteor)
-
-      const duration = Math.random() * 3000 + 2000
-      meteor.animate(
-        [
-          { transform: `translate(0, 0) scale(1)`, opacity: 0 },
-          { transform: `translate(0, 50px) scale(1)`, opacity: 1, offset: 0.1 },
-          { transform: `translate(${endX - startX}px, ${endY - startY}px) scale(0.5)`, opacity: 0 },
-        ],
-        {
-          duration: duration,
-          easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-        },
-      ).onfinish = () => {
-        meteor.remove()
-      }
-    }
-
-    const meteorInterval = setInterval(() => {
-      if (Math.random() < 0.7) {
-        createMeteor()
-      }
-    }, 800)
-
-    return () => {
-      clearInterval(meteorInterval)
-    }
-  }, [])
-
   return (
-    <div className={`min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white relative overflow-hidden ${poppins.variable} ${playfair.variable}`}>
-      {/* Background elements */}
-      <div ref={particlesRef} className="absolute inset-0 pointer-events-none" />
-      <div ref={meteorsRef} className="fixed inset-0 pointer-events-none z-10" />
+    <div className="min-h-screen bg-[#030712] text-white relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/5 to-[#030712]" />
       
-      {/* Top wave canvas */}
-      <canvas ref={canvasRef} className="absolute bottom-0 left-0 w-full h-1/3 z-10" />
+      {/* Glow effects */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 z-20">
+      <section className="relative pt-24 pb-16 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className={`text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#006A71] via-[#01949f] to-[#73f3f3] bg-clip-text text-transparent ${playfair.className}`}>
+          <motion.span 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-4"
+          >
+            Our Team
+          </motion.span>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className={`text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-300 bg-clip-text text-transparent`}
+          >
             Meet Our Team
-          </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
+          >
             The brilliant minds behind TechExa Vision. Our diverse team of experts is passionate about creating
             innovative solutions and pushing the boundaries of technology.
-          </p>
+          </motion.p>
         </div>
       </section>
 
       {/* Featured Member */}
-      <section className="relative py-12 z-20">
+      <section className="relative py-12 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {teamMembers.filter(member => member.featured).map((member, index) => (
-            <div key={index} className="bg-gradient-to-br from-[#006A71]/20 to-[#01949f]/20 border border-[#01949f]/30 rounded-3xl p-8 md:p-12 backdrop-blur-sm">
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-3xl p-8 md:p-12 backdrop-blur-sm"
+            >
               <div className="grid md:grid-cols-3 gap-12 items-center">
                 <div className="md:col-span-1 flex justify-center">
                   <div className="relative">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-[#006A71] to-[#73f3f3] rounded-full blur opacity-30 animate-pulse" />
-                    <Avatar className="w-48 h-48 border-4 border-gray-800 ring-2 ring-[#01949f]/50">
-                      <AvatarImage src={member.image || "/placeholder.svg"} alt={member.name} />
-                      <AvatarFallback className="bg-gradient-to-br from-[#006A71] to-[#73f3f3] text-white text-4xl">
+                    <div className="absolute -inset-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-lg opacity-40" />
+                    <Avatar className="w-40 h-40 border-4 border-gray-800 ring-2 ring-blue-500/50 relative">
+                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white text-5xl font-bold">
                         {member.name.split(" ").map(n => n[0]).join("")}
                       </AvatarFallback>
                     </Avatar>
                   </div>
                 </div>
                 <div className="md:col-span-2">
-                  <Badge className="bg-[#006A71]/30 text-[#73f3f3] border border-[#01949f]/30 mb-4">
+                  <Badge className="bg-blue-500/20 text-blue-300 border border-blue-500/30 mb-4 px-4 py-1.5">
                     Founder
                   </Badge>
-                  <h2 className={`text-3xl font-bold text-white mb-2 ${playfair.className}`}>{member.name}</h2>
-                  <p className="text-[#73f3f3] text-xl font-medium mb-4">{member.role}</p>
+                  <h2 className={`text-3xl font-bold text-white mb-2`}>{member.name}</h2>
+                  <p className="text-blue-400 text-xl font-medium mb-4">{member.role}</p>
                   <p className="text-gray-300 mb-6 leading-relaxed">{member.bio}</p>
-                  
+
                   <div className="flex flex-wrap gap-2 mb-6">
                     {member.skills.map((skill, skillIndex) => (
-                      <Badge key={skillIndex} className="bg-gray-800/80 text-gray-300 hover:bg-gray-700">
+                      <Badge key={skillIndex} variant="outline" className="bg-gray-800/50 text-gray-300 border-gray-700 hover:border-blue-500/50">
                         {skill}
                       </Badge>
                     ))}
                   </div>
-                  
+
                   <div className="flex space-x-4">
-                    <Link href={member.social.linkedin} className="text-gray-400 hover:text-[#73f3f3] transition-colors">
+                    <Link href={member.social.linkedin} className="text-gray-400 hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-blue-500/10">
                       <Linkedin className="h-5 w-5" />
                     </Link>
-                    <Link href={member.social.twitter} className="text-gray-400 hover:text-[#73f3f3] transition-colors">
+                    <Link href={member.social.twitter} className="text-gray-400 hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-blue-500/10">
                       <Twitter className="h-5 w-5" />
                     </Link>
-                    <Link href={member.social.github} className="text-gray-400 hover:text-[#73f3f3] transition-colors">
+                    <Link href={member.social.github} className="text-gray-400 hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-blue-500/10">
                       <Github className="h-5 w-5" />
                     </Link>
-                    <Link href={`mailto:${member.social.email}`} className="text-gray-400 hover:text-[#73f3f3] transition-colors">
+                    <Link href={`mailto:${member.social.email}`} className="text-gray-400 hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-blue-500/10">
                       <Mail className="h-5 w-5" />
                     </Link>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* Team Grid */}
-      <section className="py-16 relative z-20">
+      <section className="py-16 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {teamMembers.filter(member => !member.featured).map((member, index) => (
-              <Card key={index} className="bg-gray-800/50 border-gray-700 hover:border-[#01949f]/50 transition-all duration-300 group backdrop-blur-sm">
-                <CardContent className="p-6">
-                  <div className="text-center">
-                    <Avatar className="w-24 h-24 mx-auto mb-4 ring-2 ring-gray-700 group-hover:ring-[#01949f]/50 transition-all">
-                      <AvatarImage src={member.image || "/placeholder.svg"} alt={member.name} />
-                      <AvatarFallback className="bg-gradient-to-br from-[#006A71] to-[#73f3f3] text-white">
-                        {member.name.split(" ").map(n => n[0]).join("")}
-                      </AvatarFallback>
-                    </Avatar>
-                    <h3 className={`text-xl font-semibold text-white mb-1 ${playfair.className}`}>{member.name}</h3>
-                    <p className="text-[#73f3f3] font-medium mb-3">{member.role}</p>
-                    <p className="text-gray-400 text-sm mb-4 leading-relaxed">{member.bio}</p>
-                    
-                    <div className="flex flex-wrap gap-2 justify-center mb-4">
-                      {member.skills.slice(0, 3).map((skill, skillIndex) => (
-                        <Badge key={skillIndex} className="bg-gray-700 text-gray-300 hover:bg-gray-600">
-                          {skill}
-                        </Badge>
-                      ))}
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+              >
+                <Card className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 group backdrop-blur-sm overflow-hidden">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="relative inline-block mb-4">
+                        <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <Avatar className="w-28 h-28 mx-auto ring-2 ring-gray-700 group-hover:ring-blue-500/50 transition-all relative">
+                          <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white text-2xl font-bold">
+                            {member.name.split(" ").map(n => n[0]).join("")}
+                          </AvatarFallback>
+                        </Avatar>
+                      </div>
+                      <h3 className={`text-xl font-semibold text-white mb-1`}>{member.name}</h3>
+                      <p className="text-blue-400 font-medium mb-3 text-sm">{member.role}</p>
+                      <p className="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-3">{member.bio}</p>
+
+                      <div className="flex flex-wrap gap-2 justify-center mb-4">
+                        {member.skills.slice(0, 3).map((skill, skillIndex) => (
+                          <Badge key={skillIndex} variant="outline" className="bg-gray-700/50 text-gray-300 border-gray-600 text-xs">
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      <div className="flex justify-center space-x-3">
+                        <Link href={member.social.linkedin} className="text-gray-400 hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-blue-500/10">
+                          <Linkedin className="h-4 w-4" />
+                        </Link>
+                        <Link href={member.social.twitter} className="text-gray-400 hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-blue-500/10">
+                          <Twitter className="h-4 w-4" />
+                        </Link>
+                        <Link href={member.social.github} className="text-gray-400 hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-blue-500/10">
+                          <Github className="h-4 w-4" />
+                        </Link>
+                        <Link href={`mailto:${member.social.email}`} className="text-gray-400 hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-blue-500/10">
+                          <Mail className="h-4 w-4" />
+                        </Link>
+                      </div>
                     </div>
-                    
-                    <div className="flex justify-center space-x-3">
-                      <Link href={member.social.linkedin} className="text-gray-400 hover:text-[#73f3f3] transition-colors">
-                        <Linkedin className="h-5 w-5" />
-                      </Link>
-                      <Link href={member.social.twitter} className="text-gray-400 hover:text-[#73f3f3] transition-colors">
-                        <Twitter className="h-5 w-5" />
-                      </Link>
-                      <Link href={member.social.github} className="text-gray-400 hover:text-[#73f3f3] transition-colors">
-                        <Github className="h-5 w-5" />
-                      </Link>
-                      <Link href={`mailto:${member.social.email}`} className="text-gray-400 hover:text-[#73f3f3] transition-colors">
-                        <Mail className="h-5 w-5" />
-                      </Link>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section with Bottom Wave */}
-      <section className="py-20 relative z-20">
-        {/* Bottom wave canvas */}
-        <canvas ref={canvasRef2} className="absolute top-0 left-0 w-full h-full z-0" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="bg-gradient-to-br from-[#006A71]/20 to-[#01949f]/20 border border-[#01949f]/30 rounded-3xl p-12 max-w-3xl mx-auto backdrop-blur-sm">
-            <h2 className={`text-3xl md:text-4xl font-bold text-white mb-4 ${playfair.className}`}>
-              The Vision of Techexa
+      {/* CTA Section */}
+      <section className="py-20 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-3xl p-12 max-w-3xl mx-auto backdrop-blur-sm"
+          >
+            <h2 className={`text-3xl md:text-4xl font-bold text-white mb-4`}>
+              The Vision of TechExa
             </h2>
             <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
-              At Techexa, we are driven by a bold vision to transform ideas into impactful digital solutions.
+              At TechExa, we are driven by a bold vision to transform ideas into impactful digital solutions.
             </p>
             <Link
               href="/about"
-              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#006A71] to-[#01949f] hover:from-[#006A71]/90 hover:to-[#01949f]/90 text-white font-medium rounded-lg transition-all"
+              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-600/90 hover:to-purple-600/90 text-white font-medium rounded-lg transition-all hover:shadow-lg hover:shadow-blue-500/25"
             >
               Learn More About Us
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
-
-      <style jsx global>{`
-        @keyframes particle {
-          0% { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
-          20% { opacity: 0.8; }
-          100% { transform: translateY(-100px) translateX(20px) scale(1.2); opacity: 0; }
-        }
-        
-        .font-playfair {
-          font-family: var(--font-playfair);
-        }
-        
-        .font-poppins {
-          font-family: var(--font-poppins);
-        }
-      `}</style>
     </div>
   )
 }

@@ -50,7 +50,7 @@ export default function ContactUs() {
         delay: `${i * 0.3}s`,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
-        color: `rgba(0, 106, 113, ${Math.random() * 0.15 + 0.05})`,
+        color: `rgba(59, 130, 246, ${Math.random() * 0.15 + 0.05})`,
       })),
     [],
   )
@@ -132,14 +132,14 @@ export default function ContactUs() {
       </div>
 
       {/* Glow overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#006A71]/5 via-[#01949f]/5 to-[#73f3f3]/5 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-blue-500/5 pointer-events-none" />
 
       {/* Particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {particles.map((particle) => (
           <div
             key={particle.id}
-            className="absolute rounded-full bg-[#73f3f3] transform-gpu animate-particle"
+            className="absolute rounded-full bg-blue-500 transform-gpu animate-particle"
             style={{
               width: particle.size,
               height: particle.size,
@@ -148,7 +148,7 @@ export default function ContactUs() {
               opacity: 0,
               animationDelay: particle.delay,
               animationDuration: particle.duration,
-              boxShadow: "0 0 8px rgba(115, 243, 243, 0.6)",
+              boxShadow: "0 0 8px rgba(59, 130, 246, 0.6)",
             }}
           />
         ))}
@@ -164,9 +164,9 @@ export default function ContactUs() {
           </div>
 
           <h1
-            className={`${dancingScript.className} text-5xl sm:text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#006A71] via-[#01949f] to-[#73f3f3] mb-6`}
+            className={`${dancingScript.className} text-5xl sm:text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-400 mb-6`}
             style={{
-              textShadow: "0 0 20px rgba(115, 243, 243, 0.5)",
+              textShadow: "0 0 20px rgba(59, 130, 246, 0.5)",
               transform: "perspective(500px) rotateX(5deg)",
             }}
           >
@@ -181,9 +181,9 @@ export default function ContactUs() {
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
-          <Card className="bg-gray-800/50 border-[#006A71]/30 backdrop-blur-sm shadow-2xl">
+          <Card className="bg-gray-800/50 border-blue-500/30 backdrop-blur-sm shadow-2xl">
             <CardContent className="p-8">
-              <h2 className={`${roboto.className} text-2xl font-semibold text-[#73f3f3] mb-6 flex items-center gap-2`}>
+              <h2 className={`${roboto.className} text-2xl font-semibold text-blue-400 mb-6 flex items-center gap-2`}>
                 <Send className="w-6 h-6" />
                 Send us a Message
               </h2>
@@ -221,7 +221,7 @@ export default function ContactUs() {
                       type="text"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className={`${roboto.className} bg-gray-700/50 border-[#006A71]/50 text-white placeholder-gray-400 focus:border-[#73f3f3] focus:ring-[#73f3f3]/20`}
+                      className={`${roboto.className} bg-gray-700/50 border-blue-500/50 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/20`}
                       placeholder="Your full name"
                       required
                       disabled={isSubmitting}
@@ -240,7 +240,7 @@ export default function ContactUs() {
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className={`${roboto.className} bg-gray-700/50 border-[#006A71]/50 text-white placeholder-gray-400 focus:border-[#73f3f3] focus:ring-[#73f3f3]/20`}
+                      className={`${roboto.className} bg-gray-700/50 border-blue-500/50 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/20`}
                       placeholder="your.email@example.com"
                       required
                       disabled={isSubmitting}
@@ -261,7 +261,7 @@ export default function ContactUs() {
                     type="text"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className={`${roboto.className} bg-gray-700/50 border-[#006A71]/50 text-white placeholder-gray-400 focus:border-[#73f3f3] focus:ring-[#73f3f3]/20`}
+                    className={`${roboto.className} bg-gray-700/50 border-blue-500/50 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/20`}
                     placeholder="What's this about?"
                     required
                     disabled={isSubmitting}
@@ -281,7 +281,7 @@ export default function ContactUs() {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={6}
-                    className={`${roboto.className} bg-gray-700/50 border-[#006A71]/50 text-white placeholder-gray-400 focus:border-[#73f3f3] focus:ring-[#73f3f3]/20 resize-none`}
+                    className={`${roboto.className} bg-gray-700/50 border-blue-500/50 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/20 resize-none`}
                     placeholder="Tell us about your project or inquiry..."
                     required
                     disabled={isSubmitting}
@@ -291,9 +291,9 @@ export default function ContactUs() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`${roboto.className} w-full bg-gradient-to-r from-[#006A71] to-[#01949f] hover:from-[#01949f] hover:to-[#73f3f3] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-[#73f3f3]/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
+                  className={`${roboto.className} w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-600/90 hover:to-purple-600/90 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
                   style={{
-                    boxShadow: "0 4px 15px rgba(1, 148, 159, 0.3)",
+                    boxShadow: "0 4px 15px rgba(59, 130, 246, 0.3)",
                   }}
                 >
                   {isSubmitting ? (
@@ -314,12 +314,12 @@ export default function ContactUs() {
 
           {/* Contact Information */}
           <div className="space-y-8">
-            <Card className="bg-gray-800/50 border-[#006A71]/30 backdrop-blur-sm shadow-2xl">
+            <Card className="bg-gray-800/50 border-blue-500/30 backdrop-blur-sm shadow-2xl">
               <CardContent className="p-8">
-                <h2 className={`${roboto.className} text-2xl font-semibold text-[#73f3f3] mb-6`}>Get in Touch</h2>
+                <h2 className={`${roboto.className} text-2xl font-semibold text-blue-400 mb-6`}>Get in Touch</h2>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4 group">
-                    <div className="p-3 bg-gradient-to-r from-[#006A71] to-[#01949f] rounded-lg group-hover:shadow-lg group-hover:shadow-[#73f3f3]/25 transition-all duration-300">
+                    <div className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
                       <Mail className="w-6 h-6 text-white" />
                     </div>
                     <div>
@@ -330,7 +330,7 @@ export default function ContactUs() {
                   </div>
 
                   <div className="flex items-start gap-4 group">
-                    <div className="p-3 bg-gradient-to-r from-[#006A71] to-[#01949f] rounded-lg group-hover:shadow-lg group-hover:shadow-[#73f3f3]/25 transition-all duration-300">
+                    <div className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
                       <Phone className="w-6 h-6 text-white" />
                     </div>
                     <div>
@@ -341,7 +341,7 @@ export default function ContactUs() {
                   </div>
 
                   <div className="flex items-start gap-4 group">
-                    <div className="p-3 bg-gradient-to-r from-[#006A71] to-[#01949f] rounded-lg group-hover:shadow-lg group-hover:shadow-[#73f3f3]/25 transition-all duration-300">
+                    <div className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
                       <MapPin className="w-6 h-6 text-white" />
                     </div>
                     <div>

@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-// import { HoverBorderGradient } from "./ui/hover-border-gradient";
-import { Code, Globe, Layers, Smartphone, Zap, Cpu } from "lucide-react"; // Import CPU icon for AI
+import { Code, Globe, Layers, Smartphone, Zap, Cpu } from "lucide-react";
 import { HoverBorderGradient } from "../components/ui/hover-border-gradient";
 import But from "../components/But";
 import Work from "../components/Work";
@@ -10,34 +9,32 @@ import Work from "../components/Work";
 export default function Services() {
   const services = [
     {
-      icon: <Globe className="h-10 w-10 text-red-500" />,
+      icon: <Globe className="h-10 w-10 text-blue-500" />,
       title: "Web Design",
       description: "Beautiful, responsive websites that engage users and drive conversions.",
     },
     {
-      icon: <Code className="h-10 w-10 text-blue-500" />,
+      icon: <Code className="h-10 w-10 text-purple-500" />,
       title: "Full-Stack Development",
       description: "End-to-end solutions with robust backend and intuitive frontend.",
     },
     {
-      icon: <Smartphone className="h-10 w-10 text-purple-500" />,
+      icon: <Smartphone className="h-10 w-10 text-blue-400" />,
       title: "Mobile Applications",
       description: "Native and cross-platform apps that deliver exceptional user experiences.",
     },
     {
-      icon: <Zap className="h-10 w-10 text-yellow-500" />,
+      icon: <Zap className="h-10 w-10 text-purple-400" />,
       title: "Performance Optimization",
       description: "Speed up your digital products for better user engagement and SEO.",
     },
     {
-      // Replacing UI/UX Design with Marketing
-      icon: <Layers className="h-10 w-10 text-green-500" />,
+      icon: <Layers className="h-10 w-10 text-blue-600" />,
       title: "Marketing",
       description: "Boost your online presence with targeted marketing strategies, content creation, and SEO optimization.",
     },
     {
-      // Adding the AI service card
-      icon: <Cpu className="h-10 w-10 text-purple-500" />,  // Using the CPU icon for AI
+      icon: <Cpu className="h-10 w-10 text-purple-600" />,
       title: "AI Solutions",
       description: "Developing intelligent solutions with machine learning, automation, and AI agents to enhance your business capabilities.",
     },
@@ -45,7 +42,7 @@ export default function Services() {
 
   return (
     <>
-    <section id="services" className="py-16 md:py-20 bg-black font-serif">
+    <section id="services" className="py-16 md:py-20 bg-[#030712] font-serif">
       <div className="container mx-auto px-6 md:px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -54,8 +51,8 @@ export default function Services() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Our Services</h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-[#6EE7B7] to-[#1A3636] mx-auto"></div>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-white">Our Services</h2>
+          <div className="h-1 w-20 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto"></div>
           <p className="mt-6 text-gray-300 max-w-2xl mx-auto text-sm sm:text-base">
             We provide comprehensive digital solutions to help your business thrive in the digital landscape.
           </p>
@@ -72,16 +69,16 @@ export default function Services() {
             >
               <HoverBorderGradient
                 containerClassName="h-full"
-                className="p-4 sm:p-6 h-full bg-black border border-[#333333] dark:border-neutral-800 rounded-xl transform transition-transform hover:scale-105"
+                className="p-4 sm:p-6 h-full bg-[#0a0f1c] border border-white/10 dark:border-neutral-800 rounded-xl transform transition-transform hover:scale-105"
                 as="div"
-                from="rgba(255, 70, 70, 0.5)"
-                to="rgba(70, 70, 255, 0.5)"
+                from="rgba(59, 130, 246, 0.5)"
+                to="rgba(139, 92, 246, 0.5)"
               >
                 <div className="flex flex-col h-full text-center">
                   <div className="mb-4 flex justify-center items-center">
                     {service.icon}
                   </div>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3">{service.title}</h3>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 text-white">{service.title}</h3>
                   <p className="text-gray-400 text-sm sm:text-base">{service.description}</p>
                 </div>
               </HoverBorderGradient>

@@ -5,15 +5,13 @@ import { SparklesCore } from "../components/ui/sparkles";
 import Friends from "../components/Friends";
 import List from "../components/List";
 import AboutHero from "../components/AboutHero";
-// import { List } from "lucide-react";
-// import { SparklesCore } from "./ui/sparkles";
 
 export default function About() {
   return (
     <>
     <AboutHero />
-  
-    <section id="about" className="py-16 bg-black relative overflow-hidden font-serif">
+
+    <section id="about" className="py-16 bg-[#030712] relative overflow-hidden font-serif">
       <div className="absolute inset-0 w-full h-full">
         <SparklesCore
           id="tsparticles"
@@ -22,7 +20,7 @@ export default function About() {
           maxSize={1.4}
           particleDensity={70}
           className="w-full h-full"
-          particleColor="#ff0000"
+          particleColor="#3B82F6"
         />
       </div>
 
@@ -36,8 +34,8 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="md:w-1/2"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">About TechExa Vision</h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-[#73f3f3] to-[#006A71] mb-6 mx-auto md:mx-0"></div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">About TechExa Vision</h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-blue-400 to-purple-500 mb-6 mx-auto md:mx-0"></div>
             <p className="text-gray-300 mb-4">
               TechExa Vision is a forward-thinking software house pushing the boundaries of digital innovation.
             </p>
@@ -62,10 +60,10 @@ export default function About() {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-gradient-to-br from-gray-600 to-transparent p-5 rounded-lg shadow-md"
+                className="bg-gradient-to-br from-gray-800 to-transparent p-5 rounded-lg shadow-md border border-white/10 hover:border-blue-500/30 transition-all duration-300"
                 whileTap={{ scale: 0.95 }}
               >
-                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                <h3 className="text-xl font-bold mb-2 text-white">{item.title}</h3>
                 <p className="text-gray-300">{item.text}</p>
               </motion.div>
             ))}

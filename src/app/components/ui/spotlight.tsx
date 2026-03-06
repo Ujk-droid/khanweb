@@ -1,56 +1,75 @@
-import React from "react";
+"use client";
+
+import React, { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
-type SpotlightProps = {
+export const Spotlight = ({
+  className,
+  fill,
+  children,
+}: {
   className?: string;
   fill?: string;
-};
+  children?: React.ReactNode;
+}) => {
+  const divRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [opacity, setOpacity] = useState(0);
 
-export const Spotlight = ({ className, fill }: SpotlightProps) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!divRef.current) return;
+
+    const div = divRef.current;
+    const rect = div.getBoundingClientRect();
+
+    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    setOpacity(1);
+  };
+
+  const handleMouseLeave = () => {
+    setOpacity(0);
+  };
+
   return (
-    <svg
+    <div
+      ref={divRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       className={cn(
-        "animate-spotlight pointer-events-none absolute z-[1]  h-[169%] w-[138%] lg:w-[84%] opacity-0",
+        "absolute inset-0 overflow-hidden rounded-lg",
         className
       )}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 3787 2842"
-      fill="none"
     >
-      <g filter="url(#filter)">
-        <ellipse
-          cx="1924.71"
-          cy="273.501"
-          rx="1924.71"
-          ry="273.501"
-          transform="matrix(-0.822377 -0.568943 -0.568943 0.822377 3631.88 2291.09)"
-          fill={fill || "white"}
-          fillOpacity="0.21"
-        ></ellipse>
-      </g>
-      <defs>
-        <filter
-          id="filter"
-          x="0.860352"
-          y="0.838989"
-          width="3785.16"
-          height="2840.26"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="BackgroundImageFix"
-            result="shape"
-          ></feBlend>
-          <feGaussianBlur
-            stdDeviation="151"
-            result="effect1_foregroundBlur_1065_8"
-          ></feGaussianBlur>
-        </filter>
-      </defs>
-    </svg>
+      <div
+        className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
+        style={{
+          opacity,
+          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${fill || "rgba(37, 95, 56, 0.4)"}, transparent 40%)`,
+        }}
+      />
+      {children}
+    </div>
+  );
+};
+
+export const SpotlightCard = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <Spotlight className="h-full">
+      <div
+        className={cn(
+          "relative h-full overflow-hidden rounded-lg border border-white/10 bg-[#030712] p-8",
+          "transition-all duration-300 hover:border-[#255F38]/50 hover:shadow-[0_0_40px_rgba(37,95,56,0.2)]",
+          className
+        )}
+      >
+        <div className="relative z-10">{children}</div>
+      </div>
+    </Spotlight>
   );
 };

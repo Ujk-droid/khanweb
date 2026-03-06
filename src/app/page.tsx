@@ -1,63 +1,57 @@
-// import Navbar from "./components/Navbar"
-import But from "./components/But"
-import Friends from "./components/Friends"
-import Hero from "./components/hero"
-
-// import Footer from "./components/Footer"
-import ImageSlider from "./components/image-slider"
-// import Insta from "./components/Insta"
-import List from "./components/List"
-import Tea from "./components/Tea"
+import { HeroSection } from "./components/ui/hero-new";
+import { ServicesCards } from "./components/ui/services-new";
 
 export default function Home() {
-  // Sample images for the slider
-  const sliderImages = [
-    {
-      src: "/placeholder.svg?height=600&width=1200",
-      alt: "Web Design Project",
-      title: "E-Commerce Website Redesign",
-      description: "A complete overhaul of an online store with improved UX and conversion rate optimization.",
-    },
-    {
-      src: "/placeholder.svg?height=600&width=1200",
-      alt: "Mobile App Development",
-      title: "Healthcare Mobile Application",
-      description: "A patient-centered mobile app for scheduling appointments and accessing medical records.",
-    },
-    {
-      src: "/placeholder.svg?height=600&width=1200",
-      alt: "Dashboard Interface",
-      title: "Analytics Dashboard",
-      description: "A comprehensive dashboard for monitoring business metrics and performance indicators.",
-    },
-    {
-      src: "/placeholder.svg?height=600&width=1200",
-      alt: "Web Application",
-      title: "Property Management System",
-      description: "A full-stack solution for real estate agencies to manage listings and client interactions.",
-    },
-  ]
-
   return (
-    <main className="min-h-screen bg-black text-white overflow-hidden">
-      {/* <Navbar /> */}
-      <Hero />
-      <section className="py-10 container mx-auto px-4  ">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center ">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#73f3f3] to-[#1A3636]">
-            Featured Projects
-          </span>
-        </h2>
-        <div className="h-1 w-20 bg-gradient-to-r from-[#73f3f3] to-[#1A3636] mx-auto mb-10"></div>
-        <ImageSlider images={sliderImages} className="w-full h-[300px] md:h-[400px] lg:h-[500px] mx-auto" />
+    <main className="min-h-screen bg-[#030712] text-white overflow-hidden">
+      {/* Hero Section with Logo */}
+      <HeroSection 
+        title="TechExa Vision"
+        subtitle="TechExa Vision delivers cutting-edge software solutions with modern design and exceptional performance. Transform your business with our expert team."
+        ctaText="Get Started"
+      />
+
+      {/* Services Section */}
+      <section className="relative py-24">
+        {/* Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#0a0f1c] to-[#030712]" />
+        
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="mb-16 text-center">
+            <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl">
+              Our Services
+            </h2>
+            <p className="mt-4 text-lg text-slate-400">
+              Comprehensive solutions tailored to your business needs
+            </p>
+            <div className="mt-4 h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full" />
+          </div>
+
+          {/* Services Grid */}
+          <ServicesCards />
+
+          {/* CTA Section */}
+          <div className="mt-20 text-center">
+            <div className="relative inline-block">
+              {/* Glow Effect */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-600/20 blur-xl rounded-full" />
+              
+              <button className="relative inline-flex items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-10 py-5 font-semibold text-white shadow-lg shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[#030712]">
+                <span className="flex items-center gap-2">
+                  Start Your Project
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
-    {/* <Insta /> */}
-    <Tea />
-    <But/>
-    <List/>
-  
-    <Friends/>
-      {/* <Footer /> */}
+
+      {/* Footer Spacer */}
+      <div className="h-20" />
     </main>
-  )
+  );
 }
