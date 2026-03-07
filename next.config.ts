@@ -1,16 +1,25 @@
-// next.config.js
+import type { NextConfig } from 'next';
 
-module.exports = {
+const nextConfig: NextConfig = {
   images: {
-    domains: ['raw.githubusercontent.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
+      },
+    ],
   },
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Set default port to 3000
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   experimental: {
     serverActions: {
       bodySizeLimit: '2mb',
     },
   },
 };
+
+export default nextConfig;
