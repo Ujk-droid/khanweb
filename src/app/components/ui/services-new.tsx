@@ -153,7 +153,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, ind
               transformStyle: "preserve-3d"
             }}
           >
-            {React.cloneElement(icon as React.ReactElement, {
+            {React.isValidElement(icon) && React.cloneElement(icon as React.ReactElement<any>, {
               className: "h-6 w-6",
               style: { color: "#F5F0EB", transform: "translateZ(20px)" },
             })}

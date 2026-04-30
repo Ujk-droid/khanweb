@@ -9,44 +9,51 @@ type ToastType = {
 }
 
 type ToastContextType = {
-  toast(arg0: { title: string; description: string }): unknown
+  toast: (arg0: { title: string; description: string }) => void
   showToast: (toast: ToastType) => void
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined)
 
 export function ToastProvider({ children }: { children: ReactNode }) {
-  const [toast, setToast] = useState<ToastType | null>(null)
+  const [toastData, setToastData] = useState<ToastType | null>(null)
   const [isVisible, setIsVisible] = useState(false)
 
   const showToast = (newToast: ToastType) => {
-    setToast(newToast)
+    setToastData(newToast)
     setIsVisible(true)
   }
 
+  const toast = ({ title, description }: { title: string; description: string }) => {
+    showToast({
+      message: `${title}: ${description}`,
+      type: 'info'
+    })
+  }
+
   useEffect(() => {
-    if (isVisible && toast) {
+    if (isVisible && toastData) {
       const timer = setTimeout(() => {
         setIsVisible(false)
-      }, toast.duration || 3000)
+      }, toastData.duration || 3000)
 
       return () => clearTimeout(timer)
     }
-  }, [isVisible, toast])
+  }, [isVisible, toastData])
 
   return (
-    <ToastContext.Provider value={{ showToast }}>
+    <ToastContext.Provider value={{ showToast, toast }}>
       {children}
-      {isVisible && toast && (
+      {isVisible && toastData && (
         <div className="fixed bottom-4 right-4 z-50">
           <div
             className={`px-6 py-4 rounded-md shadow-lg text-white ${
-              toast.type === 'success' ? 'bg-green-500' :
-              toast.type === 'error' ? 'bg-red-500' : 'bg-blue-500'
+              toastData.type === 'success' ? 'bg-green-500' :
+              toastData.type === 'error' ? 'bg-red-500' : 'bg-blue-500'
             }`}
           >
             <div className="flex items-center">
-              <span>{toast.message}</span>
+              <span>{toastData.message}</span>
             </div>
           </div>
         </div>

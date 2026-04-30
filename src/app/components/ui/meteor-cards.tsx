@@ -55,7 +55,7 @@ export const Meteors: React.FC<MeteorsProps> = ({ number = 20, className }) => {
 };
 
 interface MeteorCardProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   icon?: React.ReactNode;
   title?: string;
@@ -117,7 +117,7 @@ export const MeteorCard: React.FC<MeteorCardProps> = ({
           {/* Icon */}
           {icon && (
             <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-green-600 shadow-lg shadow-emerald-500/30">
-              {React.cloneElement(icon as React.ReactElement, {
+              {React.isValidElement(icon) && React.cloneElement(icon as React.ReactElement<any>, {
                 className: "h-6 w-6 text-white",
               })}
             </div>
