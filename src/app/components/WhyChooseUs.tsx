@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Shield, Zap, Users, Award, Clock, HeartHandshake } from "lucide-react";
-import { ChipBadge } from "./ui/AiChip";
+import { ChipBadge } from "./ui/AiChip.tsx";
 import { TiltWrapper } from "@/components/TiltWrapper";
 
 const reasons = [

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import CurvedText from "./CurvedText"; // Ensure path is correct
+import CurvedText from "./CurvedText.tsx"; // Ensure path is correct
 
 const Insta = () => {
   return (

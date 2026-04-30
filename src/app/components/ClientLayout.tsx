@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-import { ToastProvider } from "./ui/custom-toast";
+import Navbar from "./Navbar.tsx";
+import Footer from "./Footer.tsx";
+import { ToastProvider } from "./ui/custom-toast.tsx";
 
 export default function ClientLayout({
   children,

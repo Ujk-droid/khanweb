@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import BlogContent from "./BlogContent";
+import BlogContent from "./BlogContent.tsx";
 
 // Metadata for the main blog page
 export const metadata: Metadata = {
