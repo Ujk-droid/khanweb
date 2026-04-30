@@ -11,7 +11,7 @@ interface BlogPostContent {
 }
 
 interface BlogPostPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 const getBlogPost = async (slug: string): Promise<BlogPostContent | undefined> => {
@@ -77,7 +77,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
-  const post = await getBlogPost(params.slug);
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
   if (!post) return { title: "Post Not Found | TechExa Vision" };
   const description = post.content.replace(/<[^>]*>?/gm, "").slice(0, 150) + "...";
   return {
@@ -87,7 +88,8 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await getBlogPost(params.slug);
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
 
   if (!post) {
     return (
