@@ -1,19 +1,26 @@
-"use client"
-import { cn } from "@/lib/utils"
-import Image from "next/image"
+"use client";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export const CssGlobe = ({
   className,
   size = 400,
 }: {
-  className?: string
-  size?: number
+  className?: string;
+  size?: number;
 }) => {
   return (
-    <div className={cn("relative overflow-hidden rounded-full", className)} style={{ width: size, height: size }}>
-      {/* Enhanced glow effect matching theme */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#006A71]/30 to-[#73f3f3]/30 rounded-full blur-xl"></div>
+    <div
+      className={cn("relative overflow-hidden rounded-full", className)}
+      style={{ width: size, height: size }}
+    >
+      {/* Outer gold glow ring */}
+      <div
+        className="absolute inset-0 rounded-full blur-xl"
+        style={{ background: "radial-gradient(circle, rgba(212,175,55,0.25) 0%, transparent 70%)" }}
+      />
 
+      {/* Spinning earth */}
       <div className="w-full h-full relative rounded-full overflow-hidden">
         <div className="absolute inset-0 animate-spin-slow">
           <Image
@@ -25,12 +32,18 @@ export const CssGlobe = ({
           />
         </div>
 
-        {/* Add a gradient overlay that enhances the colors with theme colors */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-[#006A71]/10 via-transparent to-[#73f3f3]/10 mix-blend-overlay"></div>
+        {/* Gold tint overlay */}
+        <div
+          className="absolute inset-0 mix-blend-overlay"
+          style={{ background: "linear-gradient(135deg, rgba(212,175,55,0.12) 0%, transparent 50%, rgba(240,208,96,0.08) 100%)" }}
+        />
       </div>
 
-      {/* Add a pulsing glow effect with theme colors */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#006A71]/20 to-[#73f3f3]/20 rounded-full blur-xl animate-pulse"></div>
+      {/* Pulsing gold glow */}
+      <div
+        className="absolute inset-0 rounded-full blur-xl animate-pulse pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%)" }}
+      />
     </div>
-  )
-}
+  );
+};

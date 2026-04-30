@@ -1,31 +1,57 @@
-import React from 'react';
+"use client";
+import React from "react";
+import { motion } from "framer-motion";
+
+const capabilities = [
+  "Custom Web & Mobile App Development",
+  "Modern UI/UX Design",
+  "Full-Stack Solutions with Scalable Architecture",
+  "E-Commerce Platform Development",
+  "Enterprise Software & Admin Dashboards",
+  "Reliable Support & Maintenance Services",
+];
 
 const List = () => {
   return (
-    <section className="text-gray-300 body-font font-serif bg-[#030712]">
-      <div className="container px-5 py-24 mx-auto">
-        <div className="text-center mb-20">
-          <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-white mb-4">
-            TechExa Vision - Crafting Digital Excellence
-          </h1>
-          <p className="text-gray-400 leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
-            TechExa Vision is a cutting-edge software house committed to transforming ideas into powerful digital solutions. From web design to full-stack development and mobile applications, we deliver tailored software that empowers businesses to grow in the digital era.
+    <section className="bg-[#0B0B0C] text-[#A1A1AA] relative overflow-hidden">
+      {/* Subtle Rose Copper Gold dot pattern */}
+      <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
+
+      <div className="relative z-10 container px-5 py-24 mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="font-heading sm:text-3xl text-2xl font-bold text-[#FAFAFA] mb-4">
+            TechExa Vision — Crafting Digital Excellence
+          </h2>
+          <div className="h-px w-24 bg-gradient-to-r from-transparent via-[#B78460] to-transparent mx-auto mb-6" />
+          <p className="text-[#9A8F87] leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
+            A cutting-edge software house committed to transforming ideas into powerful digital solutions. From web design to full-stack development and mobile applications, we deliver tailored software that empowers businesses to grow.
           </p>
-        </div>
+        </motion.div>
+
         <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
-          {[
-            'Custom Web & Mobile App Development',
-            'Modern UI/UX Design',
-            'Full-Stack Solutions with Scalable Architecture',
-            'E-Commerce Platform Development',
-            'Enterprise Software & Admin Dashboards',
-            'Reliable Support & Maintenance Services'
-          ].map((item, index) => (
-            <div key={index} className="p-2 sm:w-1/2 w-full">
-              <div className="bg-gray-800/50 backdrop-blur-sm rounded flex p-4 h-full items-center border border-white/10 hover:border-blue-500/30 transition-all duration-300">
-                <span className="title-font font-medium text-gray-300">{item}</span>
+          {capabilities.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.07, duration: 0.4 }}
+              className="p-2 sm:w-1/2 w-full"
+            >
+              <div className="bg-[#141414] backdrop-blur-sm rounded-2xl flex p-4 h-full items-center border border-[#2A2420] hover:border-[rgba(183,132,96,0.35)] transition-all duration-300 group">
+                {/* Rose Copper Gold bullet */}
+                <span className="w-2 h-2 rounded-full bg-[#B78460] mr-3 shrink-0 group-hover:bg-[#E5C0A0] transition-colors" />
+                <span className="font-medium text-[#9A8F87] group-hover:text-[#FAFAFA] transition-colors text-sm">
+                  {item}
+                </span>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { ChipBadge } from "./AiChip";
+import { TiltWrapper } from "@/components/TiltWrapper";
 
 interface ServiceCard {
   icon: React.ReactNode;
@@ -65,21 +67,22 @@ export const ServicesCards: React.FC<ServicesCardsProps> = ({ services }) => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
       ),
-      title: "API Development",
-      description: "Robust, scalable APIs that power your applications and integrations.",
+      title: "AI Solutions",
+      description: "Intelligent automation, machine learning, and AI agents to enhance your business capabilities.",
     },
   ];
 
   const servicesToUse = services || defaultServices;
 
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
       {servicesToUse.map((service, index) => (
         <ServiceCard
           key={index}
           icon={service.icon}
           title={service.title}
           description={service.description}
+          index={index}
         />
       ))}
     </div>
@@ -90,31 +93,82 @@ interface ServiceCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
+  index: number;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, index }) => {
   return (
     <motion.div
-      whileHover={{ y: -8 }}
-      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0a0f1c]/80 p-6 backdrop-blur-xl transition-all duration-500 hover:border-white/20 hover:bg-[#0a0f1c] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.08, duration: 0.5 }}
+      whileHover={{ y: -5 }}
+      className="glass-card group relative overflow-hidden rounded-3xl p-6 backdrop-blur-xl transition-all duration-500"
+      style={{
+        background: "rgba(20, 20, 20, 0.70)",
+        border: "1px solid rgba(42, 36, 32, 0.9)",
+        boxShadow:
+          "inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.3), 0 4px 24px rgba(0,0,0,0.35)",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.borderColor = "rgba(183, 132, 96, 0.28)";
+        (e.currentTarget as HTMLElement).style.boxShadow =
+          "inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.3), 0 16px 40px rgba(0,0,0,0.4), 0 0 20px rgba(183,132,96,0.06)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.borderColor = "rgba(42, 36, 32, 0.9)";
+        (e.currentTarget as HTMLElement).style.boxShadow =
+          "inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.3), 0 4px 24px rgba(0,0,0,0.35)";
+      }}
     >
-      {/* Subtle gradient on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-      
-      {/* Content */}
+      {/* Copper hover overlay */}
+      <div
+        className="absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none"
+        style={{ background: "linear-gradient(135deg, rgba(183,132,96,0.04) 0%, transparent 60%)" }}
+      />
+
+      {/* ── Chip badge — top-right corner ─────────────────── */}
+      <div
+        className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-400"
+        style={{ filter: "drop-shadow(0 0 4px rgba(183,132,96,0.5))" }}
+      >
+        <ChipBadge className="w-7 h-7" />
+      </div>
+
       <div className="relative z-10">
-        {/* Icon */}
-        <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg">
-          {React.cloneElement(icon as React.ReactElement, {
-            className: "h-6 w-6 text-white",
-          })}
-        </div>
+        {/* Copper icon container with 3D Tilt effect */}
+        <TiltWrapper
+          intensity={25}
+          scale={1.05}
+          style={{ transformStyle: "preserve-3d" }}
+          className="mb-4 w-fit"
+        >
+          <div
+            className="inline-flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-700 ease-in-out shadow-[0_0_20px_rgba(183,132,96,0.3)] group-hover:shadow-[0_0_35px_rgba(183,132,96,0.6)] group-hover:rotate-[360deg]"
+            style={{
+              background: "linear-gradient(135deg, #B78460 0%, #8A5A3C 100%)",
+              boxShadow: "0 0 14px rgba(183,132,96,0.22), 0 2px 6px rgba(0,0,0,0.4)",
+              transform: "translateZ(50px)",
+              transformStyle: "preserve-3d"
+            }}
+          >
+            {React.cloneElement(icon as React.ReactElement, {
+              className: "h-6 w-6",
+              style: { color: "#F5F0EB", transform: "translateZ(20px)" },
+            })}
+          </div>
+        </TiltWrapper>
 
-        {/* Title */}
-        <h3 className="mb-2 text-xl font-bold text-white">{title}</h3>
-
-        {/* Description */}
-        <p className="text-slate-400">{description}</p>
+        <h3
+          className="font-heading mb-2 text-xl font-bold"
+          style={{ color: "#F5F0EB" }}
+        >
+          {title}
+        </h3>
+        <p className="text-sm leading-relaxed" style={{ color: "#9A8F87" }}>
+          {description}
+        </p>
       </div>
     </motion.div>
   );

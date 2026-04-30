@@ -7,84 +7,138 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Variables - Professional Software House Dark Theme */
+/* ============================================================
+   Rose Copper Gold Design System — CSS Custom Properties
+   Background:    #0B0B0C  (Matte Charcoal Black)
+   Surface/Card:  #141414  (Elevated Surface)
+   Copper Gold:   #B78460  (Rose Copper Gold — primary)
+   Champagne:     #E5C0A0  (Sand/Champagne — highlights)
+   Text Primary:  #F5F0EB  (Warm White)
+   Text Secondary:#9A8F87  (Warm Muted)
+   Border:        #2A2420  (Warm Dark Border)
+   ============================================================ */
 @layer base {
   :root {
-    --background: 0 0% 3%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 5%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 5%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 217 91% 60%; /* #3B82F6 - Blue */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 254 84% 68%; /* #8B5CF6 - Purple */
-    --secondary-foreground: 0 0% 100%;
-    --muted: 215 16% 18%;
-    --muted-foreground: 215 16% 65%; /* Slate-400 equivalent */
-    --accent: 217 91% 60%;
-    --accent-foreground: 0 0% 100%;
+    --background: 240 3% 5%;          /* #0B0B0C — Matte Charcoal */
+    --foreground: 30 20% 95%;         /* #F5F0EB — Warm White */
+    --card: 0 0% 8%;                  /* #141414 — Elevated Surface */
+    --card-foreground: 30 20% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 30 20% 95%;
+    --primary: 25 35% 55%;            /* #B78460 — Rose Copper Gold */
+    --primary-foreground: 240 3% 5%;
+    --secondary: 20 10% 15%;          /* #2A2420 — Warm Dark */
+    --secondary-foreground: 30 20% 95%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 20 8% 55%;    /* #9A8F87 — Warm Muted */
+    --accent: 25 35% 55%;             /* #B78460 — Copper Accent */
+    --accent-foreground: 240 3% 5%;
     --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 100% / 10%; /* border-white/10 */
-    --input: 0 0% 100% / 10%;
-    --ring: 217 91% 60%; /* Blue ring */
+    --destructive-foreground: 30 20% 95%;
+    --border: 20 12% 15%;             /* #2A2420 — Warm Border */
+    --input: 20 12% 15%;
+    --ring: 25 35% 55%;               /* #B78460 — Copper Focus Ring */
     --radius: 0.75rem;
 
-    /* Chart colors - Blue/Purple variants */
-    --chart-1: 217 91% 60%;
-    --chart-2: 254 84% 68%;
-    --chart-3: 200 80% 55%;
-    --chart-4: 270 70% 60%;
-    --chart-5: 230 75% 65%;
+    /* Chart colours — copper variants */
+    --chart-1: 25 35% 55%;
+    --chart-2: 30 45% 70%;
+    --chart-3: 20 28% 42%;
+    --chart-4: 35 40% 65%;
+    --chart-5: 15 30% 48%;
 
-    /* Sidebar colors */
-    --sidebar: 0 0% 5%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 10%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 0% 100% / 10%;
-    --sidebar-ring: 217 91% 60%;
+    /* Sidebar */
+    --sidebar: 0 0% 8%;
+    --sidebar-foreground: 30 20% 95%;
+    --sidebar-primary: 25 35% 55%;
+    --sidebar-primary-foreground: 240 3% 5%;
+    --sidebar-accent: 20 12% 15%;
+    --sidebar-accent-foreground: 30 20% 95%;
+    --sidebar-border: 20 12% 15%;
+    --sidebar-ring: 25 35% 55%;
   }
 
-  /* Global Reset */
+  /* Dark mode — same Rose Copper Gold values */
+  .dark {
+    --background: 240 3% 5%;
+    --foreground: 30 20% 95%;
+    --card: 0 0% 8%;
+    --card-foreground: 30 20% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 30 20% 95%;
+    --primary: 25 35% 55%;
+    --primary-foreground: 240 3% 5%;
+    --secondary: 20 10% 15%;
+    --secondary-foreground: 30 20% 95%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 20 8% 55%;
+    --accent: 25 35% 55%;
+    --accent-foreground: 240 3% 5%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 30 20% 95%;
+    --border: 20 12% 15%;
+    --input: 20 12% 15%;
+    --ring: 25 35% 55%;
+    --chart-1: 25 35% 55%;
+    --chart-2: 30 45% 70%;
+    --chart-3: 20 28% 42%;
+    --chart-4: 35 40% 65%;
+    --chart-5: 15 30% 48%;
+    --sidebar: 0 0% 8%;
+    --sidebar-foreground: 30 20% 95%;
+    --sidebar-primary: 25 35% 55%;
+    --sidebar-primary-foreground: 240 3% 5%;
+    --sidebar-accent: 20 12% 15%;
+    --sidebar-accent-foreground: 30 20% 95%;
+    --sidebar-border: 20 12% 15%;
+    --sidebar-ring: 25 35% 55%;
+  }
+
+  /* ── Global Reset — no harsh outline boxes ─────────────── */
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
+    outline: none;
+  }
+
+  *:focus-visible {
+    outline: 2px solid rgba(183, 132, 96, 0.55);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  a, button {
+    outline: none;
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid rgba(183, 132, 96, 0.45);
+    outline-offset: 3px;
+    border-radius: 6px;
   }
 
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    background-color: #0B0B0C;
+    /* Matte card-like grain texture — very subtle */
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23grain)' opacity='0.035'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
   }
 
-  /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
 
-  /* Custom scrollbar - Professional Blue */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #030712;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #3B82F6;
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #60A5FA;
-  }
+  /* Custom scrollbar — Rose Copper */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #0B0B0C; }
+  ::-webkit-scrollbar-thumb { background: #B78460; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #E5C0A0; }
 }
 
-/* Custom Theme Variables */
+/* ── Theme inline variables ─────────────────────────────── */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -123,176 +177,232 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Dark Theme (Default) */
-.dark {
-  --background: 0 0% 3%;
-  --foreground: 0 0% 100%;
-  --card: 0 0% 5%;
-  --card-foreground: 0 0% 100%;
-  --popover: 0 0% 5%;
-  --popover-foreground: 0 0% 100%;
-  --primary: 141 44% 26%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 0 0% 10%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 0 0% 15%;
-  --muted-foreground: 0 0% 65%;
-  --accent: 141 44% 26%;
-  --accent-foreground: 0 0% 100%;
-  --destructive: 0 63% 31%;
-  --destructive-foreground: 0 0% 100%;
-  --border: 141 44% 26% / 20%;
-  --input: 141 44% 26% / 20%;
-  --ring: 141 44% 26%;
-  --chart-1: 141 44% 26%;
-  --chart-2: 160 60% 45%;
-  --chart-3: 30 80% 55%;
-  --chart-4: 280 65% 60%;
-  --chart-5: 340 75% 55%;
-  --sidebar: 0 0% 5%;
-  --sidebar-foreground: 0 0% 100%;
-  --sidebar-primary: 141 44% 26%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 0 0% 10%;
-  --sidebar-accent-foreground: 0 0% 100%;
-  --sidebar-border: 141 44% 26% / 20%;
-  --sidebar-ring: 141 44% 26%;
-}
-
-/* Keyframes and Animations */
+/* ============================================================
+   Keyframes & Animations
+   ============================================================ */
 @layer utilities {
-  /* Gradient animation */
   .animate-gradient {
     background-size: 200% 200%;
     animation: gradient 8s linear infinite;
   }
-
   @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
-  /* Glow pulse animation */
-  .animate-glow {
-    animation: glow 3s ease-in-out infinite;
-  }
-
+  .animate-glow { animation: glow 3s ease-in-out infinite; }
   @keyframes glow {
-    0%, 100% {
-      opacity: 0.5;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.05);
-    }
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.05); }
   }
 
-  /* Float animation */
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
+  .animate-float { animation: float 6s ease-in-out infinite; }
   @keyframes float {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-20px); }
   }
 
-  /* Shimmer effect */
-  .animate-shimmer {
-    animation: shimmer 2s linear infinite;
-  }
-
+  .animate-shimmer { animation: shimmer 2s linear infinite; }
   @keyframes shimmer {
-    from {
-      background-position: 0 0;
-    }
-    to {
-      background-position: -200% 0;
-    }
+    from { background-position: 0 0; }
+    to   { background-position: -200% 0; }
   }
 
-  /* Border beam animation */
+  /* Border beam — Copper */
   .border-beam {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
     border-radius: inherit;
-    background: conic-gradient(from 180deg at 50% 50%, #255F38 0deg, #2f7a47 180deg, #255F38 360deg);
+    background: conic-gradient(from 180deg at 50% 50%, #B78460 0deg, #E5C0A0 180deg, #B78460 360deg);
     filter: blur(2px);
     z-index: -1;
-    animation: border-beam 3s linear infinite;
+    animation: border-beam-spin 3s linear infinite;
+  }
+  @keyframes border-beam-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
   }
 
-  /* Spotlight effect */
+  /* Spotlight — Copper */
   .spotlight-highlight {
-    background: radial-gradient(ellipse at center, rgba(37, 95, 56, 0.15) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(183, 132, 96, 0.12) 0%, transparent 70%);
   }
 
-  /* Glass morphism */
+  /* ── Glassmorphism — Matte Card Style ─────────────────── */
   .glass {
-    background: rgba(3, 7, 18, 0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(37, 95, 56, 0.2);
+    background: rgba(20, 20, 20, 0.65);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    /* Subtle inner shadow for 'pressed' card look */
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+      0 4px 24px rgba(0, 0, 0, 0.4);
   }
 
-  /* Text gradient */
+  .glass-navbar {
+    background: rgba(11, 11, 12, 0.82);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(183, 132, 96, 0.10);
+  }
+
+  /* ── Glass Card — Premium Glassmorphism ─────────────────── */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(183, 132, 96, 0.20);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+      0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ── Card inner shadow — 'pressed' embossed look ──────── */
+  .card-pressed {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+      0 1px 3px rgba(0, 0, 0, 0.5),
+      0 8px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  /* ── Text gradients ────────────────────────────────────── */
+  /* White → Copper (horizontal) */
   .text-gradient {
-    background: linear-gradient(to right, #ffffff, #255F38);
+    background: linear-gradient(to right, #F5F0EB, #B78460);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Green glow shadow */
-  .glow-green {
-    box-shadow: 0 0 20px rgba(37, 95, 56, 0.5),
-                0 0 40px rgba(37, 95, 56, 0.3),
-                0 0 60px rgba(37, 95, 56, 0.1);
+  /* Metallic embossed — top-to-bottom (hero titles) */
+  .text-gradient-metallic {
+    background: linear-gradient(to bottom, #F5F0EB 0%, #B78460 55%, #8A5A3C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  /* Card hover effect */
+  /* Copper gradient (heading variant) */
+  .text-gradient-copper {
+    background: linear-gradient(to right, #B78460, #E5C0A0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Deep-space radial glows — fixed to viewport ──────── */
+  .bg-deep-space::before {
+    content: "";
+    position: fixed;
+    top: -20%; left: -10%;
+    width: 60vw; height: 60vw;
+    background: radial-gradient(circle, rgba(140, 90, 60, 0.07) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .bg-deep-space::after {
+    content: "";
+    position: fixed;
+    bottom: -20%; right: -10%;
+    width: 55vw; height: 55vw;
+    background: radial-gradient(circle, rgba(140, 90, 60, 0.05) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Glow shadows ──────────────────────────────────────── */
+  .glow-copper {
+    box-shadow:
+      0 0 20px rgba(183, 132, 96, 0.4),
+      0 0 40px rgba(183, 132, 96, 0.2),
+      0 0 60px rgba(183, 132, 96, 0.08);
+  }
+
+  .glow-champagne {
+    box-shadow:
+      0 0 15px rgba(229, 192, 160, 0.18),
+      0 0 30px rgba(229, 192, 160, 0.08);
+  }
+
+  /* Copper button glow */
+  .btn-copper-glow {
+    box-shadow:
+      0 0 15px rgba(183, 132, 96, 0.25),
+      0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Card hover */
   .card-hover {
     transition: all 0.3s ease;
   }
-
   .card-hover:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(37, 95, 56, 0.2);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(183, 132, 96, 0.08);
   }
 }
 
-/* Aceternity UI Utilities */
+/* ============================================================
+   Background Pattern Utilities — Copper tinted
+   ============================================================ */
 @layer utilities {
-  /* Grid pattern background */
+  /* Grid pattern */
   .bg-grid {
     background-size: 40px 40px;
-    background-image: linear-gradient(to right, rgba(37, 95, 56, 0.05) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(37, 95, 56, 0.05) 1px, transparent 1px);
+    background-image:
+      linear-gradient(to right, rgba(183, 132, 96, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(183, 132, 96, 0.04) 1px, transparent 1px);
   }
 
   /* Dot pattern */
   .bg-dot-pattern {
-    background-image: radial-gradient(circle, rgba(37, 95, 56, 0.3) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(183, 132, 96, 0.07) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 
-  /* Noise texture */
-  .bg-noise {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  /* Float slow */
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+    50%       { transform: translateY(-15px) translateX(8px) rotate(3deg); }
+  }
+  .animate-float-slow { animation: float-slow 20s ease-in-out infinite; }
+
+  /* Particle */
+  @keyframes particle {
+    0%   { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
+    20%  { opacity: 0.5; }
+    100% { transform: translateY(-100px) translateX(20px) scale(1.2); opacity: 0; }
+  }
+  .animate-particle { animation: particle linear infinite; }
+
+  /* Spin slow */
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  .animate-spin-slow { animation: spin-slow 20s linear infinite; }
+
+  /* GPU helper */
+  .transform-gpu {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+
+  /* Map beam animation */
+  @keyframes map-beam {
+    0%   { stroke-dashoffset: 1000; opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+  .animate-map-beam {
+    animation: map-beam 3s ease-in-out infinite;
   }
 }

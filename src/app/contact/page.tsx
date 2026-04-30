@@ -1,407 +1,344 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { Dancing_Script, Roboto, Roboto_Mono } from "next/font/google"
-import { useState, useMemo } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-// import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react"
-import { CssGlobe } from "../components/ui/CssGlobe"
-import { Textarea } from "../components/ui/textarea"
-// import { CssGlobe } from "./components/css-globe"
+import type React from "react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
+import { Textarea } from "../components/ui/textarea";
+import WorldMap from "../components/ui/WorldMap";
+import { motion } from "framer-motion";
 
-const dancingScript = Dancing_Script({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-})
+// ── Rose Copper Gold palette ─────────────────────────────────
+const COPPER    = "#B78460";
+const CHAMPAGNE = "#E5C0A0";
+const BG        = "#0B0B0C";
+const SURFACE   = "#141414";
+const BORDER    = "#2A2420";
+const TEXT      = "#F5F0EB";
+const MUTED     = "#9A8F87";
 
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-})
-
-const robotoMono = Roboto_Mono({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-})
+// Static floating shapes — copper tinted
+const floatingShapes = [
+  { id: 0, size: "52px", delay: "0s",   left: "8%",  top: "15%", color: "rgba(183,132,96,0.07)" },
+  { id: 1, size: "38px", delay: "0.5s", left: "85%", top: "25%", color: "rgba(183,132,96,0.05)" },
+  { id: 2, size: "28px", delay: "1.0s", left: "20%", top: "70%", color: "rgba(183,132,96,0.08)" },
+  { id: 3, size: "44px", delay: "1.5s", left: "70%", top: "60%", color: "rgba(183,132,96,0.06)" },
+  { id: 4, size: "22px", delay: "2.0s", left: "45%", top: "85%", color: "rgba(183,132,96,0.07)" },
+];
 
 export default function ContactUs() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  })
-
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
-    type: "success" | "error" | null
-    message: string
-  }>({ type: null, message: "" })
-
-  // Memoized floating elements matching the loading theme
-  const floatingShapes = useMemo(
-    () =>
-      Array.from({ length: 8 }, (_, i) => ({
-        id: i,
-        size: `${Math.random() * 40 + 20}px`,
-        delay: `${i * 0.3}s`,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        color: `rgba(59, 130, 246, ${Math.random() * 0.15 + 0.05})`,
-      })),
-    [],
-  )
-
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 20 }, (_, i) => ({
-        id: i,
-        size: `${Math.random() * 3 + 1}px`,
-        delay: `${i * 0.2}s`,
-        duration: `${Math.random() * 4 + 3}s`,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-      })),
-    [],
-  )
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus({ type: null, message: "" })
-
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-      })
-
-      const data = await response.json()
-
+      });
+      const data = await response.json();
       if (response.ok) {
-        setSubmitStatus({
-          type: "success",
-          message: "Thank you! Your message has been sent successfully. We'll get back to you soon!",
-        })
-        setFormData({ name: "", email: "", subject: "", message: "" })
+        setSubmitStatus({ type: "success", message: "Thank you! Your message has been sent. We'll get back to you soon!" });
+        setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        setSubmitStatus({
-          type: "error",
-          message: data.error || "Failed to send message. Please try again.",
-        })
+        setSubmitStatus({ type: "error", message: data.error || "Failed to send. Please try again." });
       }
     } catch {
-      setSubmitStatus({
-        type: "error",
-        message: "Network error. Please check your connection and try again.",
-      })
+      setSubmitStatus({ type: "error", message: "Network error. Please check your connection." });
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {floatingShapes.map((shape) => (
+    <div className="min-h-screen relative overflow-hidden" style={{ backgroundColor: BG }}>
+
+      {/* Floating copper shapes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {floatingShapes.map((s) => (
           <div
-            key={shape.id}
-            className="absolute rounded-full blur-md transform-gpu animate-float-slow pointer-events-none"
-            style={{
-              width: shape.size,
-              height: shape.size,
-              left: shape.left,
-              top: shape.top,
-              background: shape.color,
-              animationDelay: shape.delay,
-            }}
+            key={s.id}
+            className="absolute rounded-full blur-xl transform-gpu animate-float-slow"
+            style={{ width: s.size, height: s.size, left: s.left, top: s.top, background: s.color, animationDelay: s.delay }}
           />
         ))}
       </div>
 
-      {/* Glow overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-blue-500/5 pointer-events-none" />
+      {/* Copper radial glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at top, rgba(140,90,60,0.06) 0%, transparent 60%)" }}
+      />
 
-      {/* Particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute rounded-full bg-blue-500 transform-gpu animate-particle"
+      <div className="relative z-10 container mx-auto px-4 py-24">
+
+        {/* ── Header ─────────────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <span
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-5"
             style={{
-              width: particle.size,
-              height: particle.size,
-              left: particle.left,
-              top: particle.top,
-              opacity: 0,
-              animationDelay: particle.delay,
-              animationDuration: particle.duration,
-              boxShadow: "0 0 8px rgba(59, 130, 246, 0.6)",
+              border: `1px solid rgba(183, 132, 96, 0.22)`,
+              background: "rgba(183, 132, 96, 0.07)",
+              color: COPPER,
             }}
-          />
-        ))}
-      </div>
-
-      {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 py-12 md:py-20">
-        {/* Header Section with Globe */}
-        <div className="text-center mb-16">
-          {/* Globe */}
-          <div className="flex justify-center mb-8">
-            <CssGlobe size={200} className="animate-float" />
-          </div>
+          >
+            Get In Touch
+          </span>
 
           <h1
-            className={`${dancingScript.className} text-5xl sm:text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-400 mb-6`}
+            className="font-heading font-bold text-transparent bg-clip-text mb-4"
             style={{
-              textShadow: "0 0 20px rgba(59, 130, 246, 0.5)",
-              transform: "perspective(500px) rotateX(5deg)",
+              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+              backgroundImage: `linear-gradient(to bottom, ${CHAMPAGNE} 0%, ${COPPER} 55%, #8A5A3C 100%)`,
             }}
           >
             Contact Us
           </h1>
-          <p
-            className={`${roboto.className} text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light`}
-          >
-            {"Ready to create your digital home? Get in touch with us and let's bring your vision to life."}
+          <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: MUTED }}>
+            Ready to build something exceptional? Get in touch and let&apos;s bring your vision to life.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        {/* ── World Map ──────────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="mb-14 max-w-4xl mx-auto"
+        >
+          <WorldMap />
+        </motion.div>
+
+        {/* ── Form + Info Grid ───────────────────────────────── */}
+        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+
           {/* Contact Form */}
-          <Card className="bg-gray-800/50 border-blue-500/30 backdrop-blur-sm shadow-2xl">
-            <CardContent className="p-8">
-              <h2 className={`${roboto.className} text-2xl font-semibold text-blue-400 mb-6 flex items-center gap-2`}>
-                <Send className="w-6 h-6" />
-                Send us a Message
-              </h2>
-
-              {/* Status Message */}
-              {submitStatus.type && (
-                <div
-                  className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
-                    submitStatus.type === "success"
-                      ? "bg-green-900/30 border border-green-500/30 text-green-300"
-                      : "bg-red-900/30 border border-red-500/30 text-red-300"
-                  }`}
-                >
-                  {submitStatus.type === "success" ? (
-                    <CheckCircle className="w-5 h-5 flex-shrink-0" />
-                  ) : (
-                    <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                  )}
-                  <p className={`${roboto.className} text-sm`}>{submitStatus.message}</p>
-                </div>
-              )}
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className={`${robotoMono.className} block text-sm font-medium text-gray-300 mb-2`}
-                    >
-                      Full Name
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      type="text"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className={`${roboto.className} bg-gray-700/50 border-blue-500/50 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/20`}
-                      placeholder="Your full name"
-                      required
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className={`${robotoMono.className} block text-sm font-medium text-gray-300 mb-2`}
-                    >
-                      Email Address
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className={`${roboto.className} bg-gray-700/50 border-blue-500/50 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/20`}
-                      placeholder="your.email@example.com"
-                      required
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className={`${robotoMono.className} block text-sm font-medium text-gray-300 mb-2`}
-                  >
-                    Subject
-                  </label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    type="text"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    className={`${roboto.className} bg-gray-700/50 border-blue-500/50 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/20`}
-                    placeholder="What's this about?"
-                    required
-                    disabled={isSubmitting}
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className={`${robotoMono.className} block text-sm font-medium text-gray-300 mb-2`}
-                  >
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={6}
-                    className={`${roboto.className} bg-gray-700/50 border-blue-500/50 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/20 resize-none`}
-                    placeholder="Tell us about your project or inquiry..."
-                    required
-                    disabled={isSubmitting}
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`${roboto.className} w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-600/90 hover:to-purple-600/90 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
-                  style={{
-                    boxShadow: "0 4px 15px rgba(59, 130, 246, 0.3)",
-                  }}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-5 h-5 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5 mr-2" />
-                      Send Message
-                    </>
-                  )}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <Card className="bg-gray-800/50 border-blue-500/30 backdrop-blur-sm shadow-2xl">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+          >
+            <Card
+              className="rounded-3xl"
+              style={{
+                background: "rgba(20, 20, 20, 0.70)",
+                border: `1px solid rgba(183, 132, 96, 0.14)`,
+                backdropFilter: "blur(24px)",
+                boxShadow:
+                  "inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.35), 0 8px 32px rgba(0,0,0,0.4)",
+              }}
+            >
               <CardContent className="p-8">
-                <h2 className={`${roboto.className} text-2xl font-semibold text-blue-400 mb-6`}>Get in Touch</h2>
+                <h2
+                  className="font-heading text-2xl font-semibold mb-6 flex items-center gap-2"
+                  style={{ color: COPPER }}
+                >
+                  <Send className="w-5 h-5" />
+                  Send us a Message
+                </h2>
+
+                {/* Status */}
+                {submitStatus.type && (
+                  <div
+                    className="mb-6 p-4 rounded-2xl flex items-center gap-3"
+                    style={{
+                      background: submitStatus.type === "success"
+                        ? "rgba(183, 132, 96, 0.08)"
+                        : "rgba(180, 60, 60, 0.10)",
+                      border: `1px solid ${submitStatus.type === "success" ? "rgba(183,132,96,0.28)" : "rgba(180,60,60,0.28)"}`,
+                      color: submitStatus.type === "success" ? CHAMPAGNE : "#f87171",
+                    }}
+                  >
+                    {submitStatus.type === "success"
+                      ? <CheckCircle className="w-5 h-5 shrink-0" />
+                      : <AlertCircle className="w-5 h-5 shrink-0" />}
+                    <p className="text-sm">{submitStatus.message}</p>
+                  </div>
+                )}
+
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {[
+                      { id: "name",  label: "Full Name",      type: "text",  placeholder: "Your full name" },
+                      { id: "email", label: "Email Address",  type: "email", placeholder: "your@email.com" },
+                    ].map(({ id, label, type, placeholder }) => (
+                      <div key={id}>
+                        <label htmlFor={id} className="block text-sm font-medium mb-2" style={{ color: MUTED }}>
+                          {label}
+                        </label>
+                        <Input
+                          id={id} name={id} type={type}
+                          value={formData[id as keyof typeof formData]}
+                          onChange={handleInputChange}
+                          placeholder={placeholder}
+                          required disabled={isSubmitting}
+                          className="rounded-xl"
+                          style={{
+                            background: BG,
+                            border: `1px solid ${BORDER}`,
+                            color: TEXT,
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium mb-2" style={{ color: MUTED }}>
+                      Subject
+                    </label>
+                    <Input
+                      id="subject" name="subject" type="text"
+                      value={formData.subject} onChange={handleInputChange}
+                      placeholder="What's this about?" required disabled={isSubmitting}
+                      className="rounded-xl"
+                      style={{ background: BG, border: `1px solid ${BORDER}`, color: TEXT }}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium mb-2" style={{ color: MUTED }}>
+                      Message
+                    </label>
+                    <Textarea
+                      id="message" name="message"
+                      value={formData.message} onChange={handleInputChange}
+                      rows={6} required disabled={isSubmitting}
+                      placeholder="Tell us about your project..."
+                      className="rounded-xl resize-none"
+                      style={{ background: BG, border: `1px solid ${BORDER}`, color: TEXT }}
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full rounded-full font-semibold py-3 transition-all duration-300 hover:scale-105 hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                    style={{
+                      background: `linear-gradient(135deg, ${COPPER} 0%, #8A5A3C 100%)`,
+                      color: TEXT,
+                      boxShadow: "0 0 15px rgba(183,132,96,0.22), 0 2px 8px rgba(0,0,0,0.5)",
+                    }}
+                  >
+                    {isSubmitting ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <div className="w-5 h-5 border-2 border-t-transparent rounded-full animate-spin" style={{ borderColor: `${TEXT} transparent transparent transparent` }} />
+                        Sending...
+                      </span>
+                    ) : (
+                      <span className="flex items-center justify-center gap-2">
+                        <Send className="w-5 h-5" />
+                        Send Message
+                      </span>
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="flex flex-col gap-6"
+          >
+            {/* Info card */}
+            <Card
+              className="rounded-3xl flex-1"
+              style={{
+                background: "rgba(20, 20, 20, 0.70)",
+                border: `1px solid rgba(183, 132, 96, 0.14)`,
+                backdropFilter: "blur(24px)",
+                boxShadow:
+                  "inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.35), 0 8px 32px rgba(0,0,0,0.4)",
+              }}
+            >
+              <CardContent className="p-8">
+                <h2 className="font-heading text-2xl font-semibold mb-6" style={{ color: COPPER }}>
+                  Get in Touch
+                </h2>
                 <div className="space-y-6">
-                  <div className="flex items-start gap-4 group">
-                    <div className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
-                      <Mail className="w-6 h-6 text-white" />
+                  {[
+                    { icon: <Mail className="w-5 h-5" />,   title: "Email",  line1: "03312436713aa@gmail.com", line2: "We'll respond within 24 hours" },
+                    { icon: <Phone className="w-5 h-5" />,  title: "Phone",  line1: "0331 2436713",            line2: "Mon–Fri, 9AM–6PM PKT" },
+                    { icon: <MapPin className="w-5 h-5" />, title: "Office", line1: "Garden East",             line2: "Karachi, Pakistan" },
+                  ].map(({ icon, title, line1, line2 }) => (
+                    <div key={title} className="flex items-start gap-4 group">
+                      <div
+                        className="p-3 rounded-xl shrink-0 transition-all duration-300"
+                        style={{
+                          background: `linear-gradient(135deg, ${COPPER} 0%, #8A5A3C 100%)`,
+                          color: TEXT,
+                          boxShadow: "0 2px 8px rgba(0,0,0,0.4)",
+                        }}
+                      >
+                        {icon}
+                      </div>
+                      <div>
+                        <h3 className="font-heading text-base font-semibold mb-0.5" style={{ color: TEXT }}>
+                          {title}
+                        </h3>
+                        <p className="text-sm" style={{ color: MUTED }}>{line1}</p>
+                        <p className="text-xs mt-0.5" style={{ color: "rgba(154,143,135,0.6)" }}>{line2}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className={`${roboto.className} text-lg font-medium text-white mb-1`}>Email</h3>
-                      <p className={`${roboto.className} text-gray-300`}>03312436713aa@gmail.com</p>
-                      <p className={`${roboto.className} text-gray-400 text-sm`}>Well respond within 24 hours</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 group">
-                    <div className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
-                      <Phone className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className={`${roboto.className} text-lg font-medium text-white mb-1`}>Phone</h3>
-                      <p className={`${roboto.className} text-gray-300`}>0331 2436713</p>
-                      <p className={`${roboto.className} text-gray-400 text-sm`}>Mon-Fri, 9AM-6PM PKT</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 group">
-                    <div className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
-                      <MapPin className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className={`${roboto.className} text-lg font-medium text-white mb-1`}>Office</h3>
-                      <p className={`${roboto.className} text-gray-300`}>Garden East</p>
-                      <p className={`${roboto.className} text-gray-300`}>Karachi, Pakistan</p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
-          </div>
+
+            {/* WhatsApp CTA */}
+            <Card
+              className="rounded-3xl"
+              style={{
+                background: "rgba(183, 132, 96, 0.05)",
+                border: `1px solid rgba(183, 132, 96, 0.14)`,
+              }}
+            >
+              <CardContent className="p-6 text-center">
+                <p className="text-sm mb-4" style={{ color: MUTED }}>
+                  Prefer a quick chat? Reach us on WhatsApp.
+                </p>
+                <a
+                  href="https://wa.me/923312436713"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 hover:scale-105 hover:brightness-110"
+                  style={{
+                    background: `linear-gradient(135deg, ${COPPER} 0%, #8A5A3C 100%)`,
+                    color: TEXT,
+                    boxShadow: "0 0 15px rgba(183,132,96,0.20)",
+                  }}
+                >
+                  Chat on WhatsApp
+                </a>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </div>
-
-      {/* Global styles matching the loading theme */}
-      <style jsx global>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-10px) rotate(2deg); }
-        }
-        
-        @keyframes float-slow {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          50% { transform: translateY(-20px) translateX(10px); }
-        }
-        
-        @keyframes particle {
-          0% { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
-          20% { opacity: 0.6; }
-          100% { transform: translateY(-100px) translateX(20px) scale(1.2); opacity: 0; }
-        }
-        
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        
-        .animate-float-slow {
-          animation: float-slow 10s ease-in-out infinite;
-        }
-        
-        .animate-particle {
-          animation: particle linear infinite;
-        }
-        
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-        
-        .transform-gpu {
-          transform-style: preserve-3d;
-          backface-visibility: hidden;
-          will-change: transform;
-        }
-      `}</style>
     </div>
-  )
+  );
 }

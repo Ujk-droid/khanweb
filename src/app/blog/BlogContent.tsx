@@ -41,34 +41,33 @@ const blogPosts: BlogPostSummary[] = [
 
 export default function BlogContent() {
   return (
-    <div className="min-h-screen bg-[#030712] text-white relative overflow-hidden">
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/5 to-[#030712]" />
-      
-      {/* Glow effects */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+    <div className="min-h-screen bg-[#0B0B0C] text-[#FAFAFA] relative overflow-hidden">
+      {/* Copper ambient orbs */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[rgba(183,132,96,0.05)] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[rgba(183,132,96,0.04)] rounded-full blur-3xl pointer-events-none" />
 
-      <div className="container mx-auto px-4 py-16 relative z-10">
-        <motion.div 
+      <div className="container mx-auto px-4 py-24 relative z-10">
+        {/* Header */}
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-4">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#B78460]/25 bg-[rgba(183,132,96,0.08)] text-[#B78460] text-sm font-medium mb-4">
             Latest Insights
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-300 bg-clip-text text-transparent">
+          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#B78460] to-[#E5C0A0]">
             Our Blog
           </h1>
-          <div className="h-1 w-24 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto mb-6 rounded-full"></div>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          <div className="h-px w-24 bg-gradient-to-r from-transparent via-[#B78460] to-transparent mx-auto mb-6" />
+          <p className="text-xl text-[#9A8F87] max-w-2xl mx-auto leading-relaxed">
             Stay updated with the latest news, insights, and developments from our team
           </p>
         </motion.div>
 
-        <motion.div 
+        {/* Blog Grid */}
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
