@@ -12,7 +12,7 @@ import { globSync } from "glob";
 // ── Configuration ─────────────────────────────────────────────
 
 const sourceFiles = globSync("src/**/*.{tsx,css}", { cwd: path.join(process.cwd(), "khanweb") })
-  .map(f => path.join(process.cwd(), "khanweb", f));
+  .map((f: string) => path.join(process.cwd(), "khanweb", f));
 
 const LEGACY_COLORS = {
   blue: [/#3B82F6/gi, /#2563EB/gi, /#60A5FA/gi, /#1D4ED8/gi],
@@ -81,6 +81,6 @@ try {
   console.log("\nALL COLOR CONSISTENCY PROPERTIES VERIFIED!");
 } catch (error) {
   console.error("\nPROPERTY VIOLATION DETECTED:");
-  console.error(error.message);
+  console.error((error as Error).message);
   process.exit(1);
 }

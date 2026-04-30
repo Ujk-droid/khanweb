@@ -61,6 +61,6 @@ try {
   console.log("\nALL DESIGN SYSTEM SMOKE TESTS PASSED!");
 } catch (error) {
   console.error("\nTEST FAILURE:");
-  console.error(error.message);
+  console.error((error as Error).message);
   process.exit(1);
 }

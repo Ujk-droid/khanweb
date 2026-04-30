@@ -9,7 +9,7 @@ type ToastType = {
 }
 
 type ToastContextType = {
-  toast: (arg0: { title: string; description: string }) => void
+  toast: (params: { title: string; description: string }) => void
   showToast: (toast: ToastType) => void
 }
 

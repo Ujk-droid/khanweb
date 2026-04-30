@@ -9,6 +9,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-reac
 import { Textarea } from "../components/ui/textarea";
 import WorldMap from "../components/ui/WorldMap";
 import { motion } from "framer-motion";
+import { useToast } from "../components/ui/custom-toast";
 
 // ── Rose Copper Gold palette ─────────────────────────────────
 const COPPER    = "#B78460";
@@ -29,6 +30,7 @@ const floatingShapes = [
 ];
 
 export default function ContactUs() {
+  const { showToast } = useToast();
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
@@ -54,6 +56,7 @@ export default function ContactUs() {
       const data = await response.json();
       if (response.ok) {
         setSubmitStatus({ type: "success", message: "Thank you! Your message has been sent. We'll get back to you soon!" });
+        showToast({ message: "Message sent successfully!", type: "success", duration: 5000 });
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
         setSubmitStatus({ type: "error", message: data.error || "Failed to send. Please try again." });
