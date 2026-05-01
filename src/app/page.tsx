@@ -1,7 +1,7 @@
-import { HeroSection } from "./components/Hero.tsx";
-import { ServicesCards } from "./components/ui/services-new.tsx";
-import WhyChooseUs from "./components/WhyChooseUs.tsx";
-import TestimonialsSection from "./components/Work.tsx";
+import { HeroSection } from "./components/Hero";
+import { ServicesCards } from "./components/ui/services-new";
+import WhyChooseUs from "./components/WhyChooseUs";
+import TestimonialsSection from "./components/Work";
 import Link from "next/link";
 
 export default function Home() {
