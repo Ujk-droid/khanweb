@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { ChipBadge } from "./AiChip.tsx";
+import { ChipBadge } from "./AiChip";
 import { TiltWrapper } from "@/components/TiltWrapper";
 
 interface ServiceCard {

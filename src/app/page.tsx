@@ -1,7 +1,7 @@
-import HeroSection from "./components/Hero";
-import { ServicesCards } from "./components/ui/services-new";
-import WhyChooseUs from "./components/WhyChooseUs";
-import TestimonialsSection from "./components/Work";
+import HeroSection from "@/app/components/Hero";
+import { ServicesCards } from "@/app/components/ui/services-new";
+import WhyChooseUs from "@/app/components/WhyChooseUs";
+import TestimonialsSection from "@/app/components/Work";
 import Link from "next/link";
 
 export default function Home() {
