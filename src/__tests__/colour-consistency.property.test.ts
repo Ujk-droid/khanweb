@@ -1,18 +1,20 @@
 import fs from "fs";
 import path from "path";
 import fc from "fast-check";
-import { globSync } from "glob";
-
 /**
- * Property-based tests for color consistency.
- * Validates that no legacy colors (Blue, Purple, Green) remain in the source code.
- * Target: Tasks 22.2 - 22.6
+ * Helper to recursively find files in a directory.
  */
+function getFiles(dir: string): string[] {
+  const dirents = fs.readdirSync(dir, { withFileTypes: true });
+  const files = dirents.map((dirent) => {
+    const res = path.resolve(dir, dirent.name);
+    return dirent.isDirectory() ? getFiles(res) : res;
+  });
+  return Array.prototype.concat(...files);
+}
 
-// ── Configuration ─────────────────────────────────────────────
-
-const sourceFiles = globSync("src/**/*.{tsx,css}", { cwd: path.join(process.cwd(), "khanweb") })
-  .map((f: string) => path.join(process.cwd(), "khanweb", f));
+const sourceFiles = getFiles(path.join(process.cwd(), "src"))
+  .filter((f: string) => f.endsWith(".tsx") || f.endsWith(".css"));
 
 const LEGACY_COLORS = {
   blue: [/#3B82F6/gi, /#2563EB/gi, /#60A5FA/gi, /#1D4ED8/gi],

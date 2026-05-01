@@ -12,22 +12,22 @@ interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
 export function AuroraBackground({
   className,
   children,
-  radialGradient = "conic-gradient(from 90deg at 50% 50%, #0000 90%, #255F38 180deg, #0000 270deg)",
+  radialGradient = "conic-gradient(from 90deg at 50% 50%, #0000 90%, #B78460 180deg, #0000 270deg)",
 }: AuroraBackgroundProps) {
   return (
-    <main className={cn("relative flex h-screen w-full items-center justify-center overflow-hidden bg-[#030712]", className)}>
+    <main className={cn("relative flex h-screen w-full items-center justify-center overflow-hidden bg-[#0B0B0C]", className)}>
       <div className="absolute inset-0 overflow-hidden">
         <div
           className={cn(
             "pointer-events-none absolute -inset-[10px] opacity-50 blur-[10px] filter",
             "animate-aurora",
-            "bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#255F38]/30 via-[#030712]/50 to-transparent"
+            "bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#B78460]/20 via-[#0B0B0C]/50 to-transparent"
           )}
           style={{
             background: radialGradient,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#255F38]/5 to-[#255F38]/10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#B78460]/3 to-[#B78460]/8" />
       </div>
       <div className="relative z-10">{children}</div>
     </main>

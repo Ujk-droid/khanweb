@@ -5,12 +5,12 @@ function GradientCard({ children, className }: { children: React.ReactNode; clas
   return (
     <div
       className={cn(
-        "relative rounded-xl p-[2px] overflow-hidden bg-gradient-to-r from-[#73f3f3] to-[#006A71]",
+        "relative rounded-xl p-[1px] overflow-hidden bg-gradient-to-r from-[#B78460] to-[#8A5A3C]",
         className,
       )}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-[#73f3f3] to-[#006A71] opacity-75 blur-[2px]"></div>
-      <div className="relative h-full rounded-lg bg-gray-950 p-5 z-10">{children}</div>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#B78460] to-[#8A5A3C] opacity-30 blur-[4px]"></div>
+      <div className="relative h-full rounded-[10px] bg-[#0B0B0C] p-5 z-10">{children}</div>
     </div>
   )
 }

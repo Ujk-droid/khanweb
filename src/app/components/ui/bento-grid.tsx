@@ -37,8 +37,8 @@ export const BentoCard = ({
   return (
     <div
       className={cn(
-        "group relative col-span-1 row-span-1 overflow-hidden rounded-xl border border-white/10 bg-[#0a0f1c] p-6",
-        "transition-all duration-300 hover:border-[#255F38]/50 hover:shadow-[0_0_30px_rgba(37,95,56,0.15)]",
+        "group relative col-span-1 row-span-1 overflow-hidden rounded-xl border border-white/5 bg-[#141414] p-6",
+        "transition-all duration-300 hover:border-[#B78460]/30 hover:shadow-[0_0_30px_rgba(183,132,96,0.1)]",
         colSpan === 2 && "md:col-span-2",
         rowSpan === 2 && "md:row-span-2",
         className
@@ -46,7 +46,7 @@ export const BentoCard = ({
     >
       {/* Gradient overlay on hover */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-[#255F38]/0 via-[#255F38]/0 to-[#255F38]/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className="absolute inset-0 bg-gradient-to-br from-[#B78460]/0 via-[#B78460]/0 to-[#B78460]/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
       />
       
       {/* Content */}
