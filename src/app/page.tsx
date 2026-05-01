@@ -1,4 +1,4 @@
-import { HeroSection } from "./components/Hero";
+import HeroSection from "./components/Hero";
 import { ServicesCards } from "./components/ui/services-new";
 import WhyChooseUs from "./components/WhyChooseUs";
 import TestimonialsSection from "./components/Work";
