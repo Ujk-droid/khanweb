@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
-import ClientLayout from "./components/ClientLayout.tsx";
+import ClientLayout from "./components/ClientLayout";
 import "./globals.css";
 
 // ── Fonts ──────────────────────────────────────────────────────────────────

@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SpotlightCard } from "./ui/spotlight.tsx";
-import { BentoGrid, BentoCardHeader, BentoCardTitle, BentoCardDescription, BentoCardContent } from "./ui/bento-grid.tsx";
+import { SpotlightCard } from "./ui/spotlight";
+import { BentoGrid, BentoCardHeader, BentoCardTitle, BentoCardDescription, BentoCardContent } from "./ui/bento-grid";
 import { 
   Code, 
   Globe, 

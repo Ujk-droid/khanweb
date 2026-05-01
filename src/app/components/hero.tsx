@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { HeroChip } from "./ui/AiChip.tsx";
+import { HeroChip } from "./ui/AiChip";
 
 export interface HeroProps {
   subtitle?: string;
