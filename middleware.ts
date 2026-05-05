@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const PUBLIC_PATHS = ['/', '/favicon.ico', '/robots.txt'];
-const PUBLIC_PREFIXES = ['/_next/', '/static/', '/api/', '/_vercel/', '/fonts/'];
+const PUBLIC_PATHS = ['/', '/favicon.ico', '/robots.txt', '/about', '/services', '/project', '/blog', '/team', '/contact'];
+const PUBLIC_PREFIXES = ['/_next/', '/static/', '/api/', '/_vercel/', '/fonts/', '.', '/blog/'];
 
 const isPublicPath = (pathname: string) => {
   if (PUBLIC_PATHS.includes(pathname)) return true;
@@ -24,5 +24,7 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/:path*'],
+  matcher: [
+    '/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|public|api).*)',
+  ],
 };
