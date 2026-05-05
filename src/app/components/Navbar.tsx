@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogOut, User } from "lucide-react";
+import { useAuth } from "@/lib/auth-context";
 
 // ── Rose Copper Gold palette constants ──────────────────────
 const COPPER      = "#B78460";
@@ -17,7 +18,9 @@ const BORDER      = "#2A2420";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const pathname = usePathname();
+  const { isAuthenticated, user, logout, loading, setLoginModalOpen, setSignupModalOpen } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -28,7 +31,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "Home",     href: "/" },
     { name: "Services", href: "/services" },
-    { name: "About",    href: "/about" },
+    { name: "About Us", href: "/about" },
     { name: "Project",  href: "/project" },
     { name: "Blog",     href: "/blog" },
     { name: "Team",     href: "/team" },
@@ -127,18 +130,92 @@ export default function Navbar() {
           </nav>
 
           {/* ── CTA Button — Desktop ─────────────────────────── */}
-          <div className="hidden md:block">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:brightness-110"
-              style={{
-                background: `linear-gradient(135deg, ${COPPER} 0%, #8A5A3C 100%)`,
-                color: "#F5F0EB",
-                boxShadow: "0 0 15px rgba(183,132,96,0.22), 0 2px 8px rgba(0,0,0,0.4)",
-              }}
-            >
-              Contact Us
-            </Link>
+          <div className="hidden md:flex items-center gap-4">
+            {isAuthenticated && user ? (
+              <div className="relative">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 hover:bg-opacity-80"
+                  style={{
+                    background: "rgba(183, 132, 96, 0.12)",
+                    border: "1px solid rgba(183, 132, 96, 0.3)",
+                  }}
+                >
+                  <User size={16} style={{ color: COPPER }} />
+                  <span className="text-sm" style={{ color: CHAMPAGNE }}>
+                    {user.email?.split('@')[0] || 'User'}
+                  </span>
+                </button>
+
+                {/* Dropdown Menu */}
+                <AnimatePresence>
+                  {showUserMenu && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="absolute top-full right-0 mt-2 w-48 rounded-xl shadow-lg"
+                      style={{
+                        background: "rgba(20, 20, 20, 0.95)",
+                        backdropFilter: "blur(24px)",
+                        border: `1px solid rgba(183, 132, 96, 0.2)`,
+                      }}
+                    >
+                      <div className="p-3 border-b" style={{ borderColor: "rgba(183, 132, 96, 0.1)" }}>
+                        <p className="text-xs" style={{ color: "#9A8F87" }}>Logged in as</p>
+                        <p className="text-sm font-semibold" style={{ color: CHAMPAGNE }}>{user.email}</p>
+                      </div>
+                      <button
+                        onClick={() => {
+                          logout();
+                          setShowUserMenu(false);
+                        }}
+                        className="w-full px-4 py-3 text-left text-sm flex items-center gap-2 transition-all duration-300 hover:bg-opacity-70"
+                        style={{
+                          color: "#ff6b6b",
+                          background: "rgba(255, 107, 107, 0.05)",
+                        }}
+                      >
+                        <LogOut size={16} />
+                        Logout
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : (
+              <>
+                <button
+                  onClick={() => setLoginModalOpen(true)}
+                  className="text-sm font-medium transition-colors hover:text-[#B78460]"
+                  style={{ color: CHAMPAGNE }}
+                >
+                  Login
+                </button>
+                <button
+                  onClick={() => setSignupModalOpen(true)}
+                  className="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300 hover:scale-105"
+                  style={{
+                    background: "rgba(183, 132, 96, 0.1)",
+                    color: COPPER,
+                    border: `1px solid ${COPPER}`,
+                  }}
+                >
+                  Sign Up
+                </button>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:brightness-110"
+                  style={{
+                    background: `linear-gradient(135deg, ${COPPER} 0%, #8A5A3C 100%)`,
+                    color: "#F5F0EB",
+                    boxShadow: "0 0 15px rgba(183,132,96,0.22), 0 2px 8px rgba(0,0,0,0.4)",
+                  }}
+                >
+                  Contact Us
+                </Link>
+              </>
+            )}
           </div>
 
           {/* ── Mobile Menu Button ───────────────────────────── */}
@@ -192,6 +269,57 @@ export default function Navbar() {
                     </Link>
                   );
                 })}
+
+                {!isAuthenticated && (
+                  <div className="flex flex-col gap-2 mt-4 px-4">
+                    <button
+                      onClick={() => {
+                        setLoginModalOpen(true);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="w-full py-3 rounded-xl text-center font-medium transition-all duration-300"
+                      style={{
+                        color: CHAMPAGNE,
+                        background: "rgba(183, 132, 96, 0.08)",
+                        border: "1px solid rgba(183, 132, 96, 0.2)",
+                      }}
+                    >
+                      Login
+                    </button>
+                    <button
+                      onClick={() => {
+                        setSignupModalOpen(true);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="w-full py-3 rounded-xl text-center font-medium transition-all duration-300"
+                      style={{
+                        color: COPPER,
+                        background: "rgba(183, 132, 96, 0.1)",
+                        border: `1px solid ${COPPER}`,
+                      }}
+                    >
+                      Sign Up
+                    </button>
+                  </div>
+                )}
+
+                {isAuthenticated && user && (
+                  <button
+                    onClick={() => {
+                      logout();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="mt-3 mx-4 px-6 py-3 text-center rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2"
+                    style={{
+                      background: "rgba(255, 107, 107, 0.1)",
+                      color: "#ff6b6b",
+                      border: "1px solid rgba(255, 107, 107, 0.2)",
+                    }}
+                  >
+                    <LogOut size={16} />
+                    Logout
+                  </button>
+                )}
 
                 <Link
                   href="/contact"

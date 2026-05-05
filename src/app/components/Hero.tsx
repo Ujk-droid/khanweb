@@ -1,11 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { HeroChip } from "./ui/AiChip";
+import { FloatingAiChip } from "./FloatingAiChip";
+import { LoginModal } from "./LoginModal";
+import { SignupModal } from "./SignupModal";
 
 export interface HeroProps {
   subtitle?: string;
@@ -18,6 +20,9 @@ export const HeroSection: React.FC<HeroProps> = ({
   ctaText = "Start Your Project",
   ctaHref = "/contact",
 }) => {
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [signupOpen, setSignupOpen] = useState(false);
+
   return (
     <section
       className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center pt-20"
@@ -60,38 +65,22 @@ export const HeroSection: React.FC<HeroProps> = ({
       />
 
       {/* ── AI Chip — large glowing background accent ───────── */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.85, rotate: -8 }}
-        animate={{ opacity: 1, scale: 1, rotate: -8 }}
-        transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
-        className="absolute pointer-events-none select-none"
-        style={{
-          right: "3%",
-          top: "12%",
-          width: "clamp(180px, 22vw, 320px)",
-          opacity: 0.22,
-          filter: "drop-shadow(0 0 18px rgba(183,132,96,0.35))",
-        }}
-      >
-        <HeroChip animated />
-      </motion.div>
+      <FloatingAiChip
+        position="right"
+        size="lg"
+        opacity={0.22}
+        blur={true}
+        animated={true}
+      />
 
-      {/* ── AI Chip — mirrored left, dimmer ─────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.85, rotate: 12 }}
-        animate={{ opacity: 1, scale: 1, rotate: 12 }}
-        transition={{ duration: 1.4, delay: 0.5, ease: "easeOut" }}
-        className="absolute pointer-events-none select-none"
-        style={{
-          left: "2%",
-          bottom: "15%",
-          width: "clamp(120px, 14vw, 200px)",
-          opacity: 0.12,
-          filter: "drop-shadow(0 0 12px rgba(183,132,96,0.25))",
-        }}
-      >
-        <HeroChip animated={false} />
-      </motion.div>
+      {/* ── AI Chip — mirrored left, matching ─────────────────── */}
+      <FloatingAiChip
+        position="left"
+        size="sm"
+        opacity={0.22}
+        blur={true}
+        animated={true}
+      />
 
       {/* ── Content ─────────────────────────────────────────── */}
       <div className="relative z-10 flex flex-col items-center justify-center px-4 py-20 text-center w-full max-w-5xl mx-auto">
@@ -195,26 +184,18 @@ export const HeroSection: React.FC<HeroProps> = ({
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
 
-          {/* Secondary */}
-          <Link
-            href="/project"
+          {/* Auth Button */}
+          <button
+            onClick={() => setLoginOpen(true)}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium backdrop-blur-sm transition-all duration-300 hover:brightness-110"
             style={{
-              border: "1px solid rgba(42, 36, 32, 0.9)",
-              background: "rgba(20, 20, 20, 0.6)",
+              border: "1px solid rgba(183, 132, 96, 0.30)",
+              background: "rgba(183, 132, 96, 0.06)",
               color: "#F5F0EB",
             }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(183, 132, 96, 0.30)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(183, 132, 96, 0.06)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(42, 36, 32, 0.9)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(20, 20, 20, 0.6)";
-            }}
           >
-            View Our Work
-          </Link>
+            Sign In / Sign Up
+          </button>
         </motion.div>
 
         {/* Stats */}
@@ -267,6 +248,24 @@ export const HeroSection: React.FC<HeroProps> = ({
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Authentication Modals */}
+      <LoginModal
+        isOpen={loginOpen}
+        onClose={() => setLoginOpen(false)}
+        onSwitchToSignup={() => {
+          setLoginOpen(false);
+          setSignupOpen(true);
+        }}
+      />
+      <SignupModal
+        isOpen={signupOpen}
+        onClose={() => setSignupOpen(false)}
+        onSwitchToLogin={() => {
+          setSignupOpen(false);
+          setLoginOpen(true);
+        }}
+      />
     </section>
   );
 };
