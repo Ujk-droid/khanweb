@@ -81,7 +81,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (token) {
           localStorage.setItem('techexaToken', token);
           if (typeof window !== 'undefined') {
-            document.cookie = `techexaToken=${token}; path=/; secure; samesite=None;`;
+            const cookieAttributes = window.location.protocol === 'https:'
+              ? '; Secure; SameSite=None'
+              : '; SameSite=Lax';
+            document.cookie = `techexaToken=${token}; path=/${cookieAttributes}`;
           }
           setIsAuthenticated(true);
           setUser(response.data.data);
@@ -96,7 +99,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     localStorage.removeItem('techexaToken');
     if (typeof window !== 'undefined') {
-      document.cookie = 'techexaToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=None;';
+      const cookieAttributes = window.location.protocol === 'https:'
+        ? '; Secure; SameSite=None'
+        : '';
+      document.cookie = `techexaToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT${cookieAttributes}`;
     }
     setIsAuthenticated(false);
     setUser(null);

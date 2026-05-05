@@ -1,13 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+const PUBLIC_PATHS = ['/', '/favicon.ico', '/robots.txt'];
+const PUBLIC_PREFIXES = ['/_next/', '/static/', '/api/', '/_vercel/', '/fonts/'];
+
+const isPublicPath = (pathname: string) => {
+  if (PUBLIC_PATHS.includes(pathname)) return true;
+  return PUBLIC_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+};
+
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Protect user-specific routes only; public marketing pages remain accessible.
-  const protectedRoutes = ['/dashboard', '/account', '/profile'];
-  const isProtected = protectedRoutes.some((route) => pathname === route || pathname.startsWith(`${route}/`));
-
-  if (!isProtected) {
+  if (isPublicPath(pathname)) {
     return NextResponse.next();
   }
 
@@ -20,5 +24,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/account/:path*', '/profile/:path*'],
+  matcher: ['/:path*'],
 };

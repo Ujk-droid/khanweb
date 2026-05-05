@@ -63,7 +63,7 @@ export const SignupModal: React.FC<SignupModalProps> = ({
     try {
       const message = await signup(email, password);
       setSuccess(
-        'Account created! Check your email for the verification link. Once verified, you can login.'
+        message || 'Account created successfully. You can now login.'
       );
       setTimeout(() => {
         setEmail('');

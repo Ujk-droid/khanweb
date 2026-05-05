@@ -10,10 +10,8 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
   const pathname = usePathname();
 
   // Define public routes that don't require authentication
-  const publicRoutes = ["/", "/about", "/services", "/project", "/blog", "/team", "/contact"];
-  const isPublicRoute = publicRoutes.some(route => 
-    route === "/" ? pathname === "/" : pathname.startsWith(route)
-  );
+  const publicRoutes = ["/"];
+  const isPublicRoute = publicRoutes.includes(pathname);
 
   useEffect(() => {
     // If not loading, not authenticated, and not on a public route, redirect to home
