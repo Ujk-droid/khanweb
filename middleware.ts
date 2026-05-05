@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const PUBLIC_PATHS = ['/', '/favicon.ico', '/robots.txt', '/about', '/services', '/project', '/blog', '/team', '/contact'];
-const PUBLIC_PREFIXES = ['/_next/', '/static/', '/api/', '/_vercel/', '/fonts/', '.', '/blog/'];
+const PUBLIC_PATHS = ['/', '/favicon.ico', '/robots.txt'];
+const PUBLIC_PREFIXES = ['/_next/', '/static/', '/api/', '/_vercel/', '/fonts/'];
 
 const isPublicPath = (pathname: string) => {
   if (PUBLIC_PATHS.includes(pathname)) return true;
@@ -17,7 +17,7 @@ export function middleware(req: NextRequest) {
 
   const token = req.cookies.get('techexaToken')?.value;
   if (!token) {
-    return NextResponse.redirect(new URL('/', req.url));
+    return NextResponse.redirect(new URL('/?signup=true', req.url));
   }
 
   return NextResponse.next();
