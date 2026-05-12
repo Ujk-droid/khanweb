@@ -1,9 +1,23 @@
 import type { Metadata } from "next";
-import { Outfit, Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { Outfit, Geist, Geist_Mono, Space_Grotesk, Inter, Montserrat } from "next/font/google";
 import ClientLayout from "./components/ClientLayout";
 import "./globals.css";
 
 // ── Fonts ──────────────────────────────────────────────────────────────────
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+  weight: ["400", "500", "800"],
+});
+
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
@@ -97,7 +111,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${outfit.variable} ${geist.variable} ${geistMono.variable} ${spaceGrotesk.variable}`}
+      className={`dark ${outfit.variable} ${geist.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${inter.variable} ${montserrat.variable}`}
     >
       <body className="font-sans bg-[#0B0B0C] text-[#F5F0EB] antialiased bg-deep-space">
         <ClientLayout>{children}</ClientLayout>

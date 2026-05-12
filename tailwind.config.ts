@@ -70,6 +70,8 @@ const config: Config = {
           border: "#2A2420",
           textPrimary: "#F5F0EB",
           textSecondary: "#9A8F87",
+          slate: "#94A3B8",
+          amberGold: "#FFA500",
         },
       },
       borderRadius: {

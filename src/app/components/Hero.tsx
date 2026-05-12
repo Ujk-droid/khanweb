@@ -134,22 +134,27 @@ export const HeroSection: React.FC<HeroProps> = ({
           </div>
         </motion.div>
 
-        {/* ── Hero Title — Embossed Copper Metallic ─────────── */}
+        {/* ── Hero Title — Engraved Metallic Gold ─────────── */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25 }}
           className="font-heading font-bold tracking-tight mb-6"
-          style={{ fontSize: "clamp(2.8rem, 8vw, 6rem)", lineHeight: 1.05 }}
+          style={{
+            fontSize: "clamp(2.8rem, 8vw, 6rem)",
+            lineHeight: 1.05,
+            fontFamily: "var(--font-montserrat)",
+            fontWeight: 800,
+            letterSpacing: "0.08em",
+            backgroundImage: "linear-gradient(to bottom, #F5F0EB 0%, #B78460 55%, #8A5A3C 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            textShadow: "none",
+            textDecoration: "none",
+          }}
         >
-          <span
-            className="text-transparent bg-clip-text"
-            style={{
-              backgroundImage: "linear-gradient(to bottom, #F5F0EB 0%, #B78460 50%, #8A5A3C 100%)",
-            }}
-          >
-            TechExa Vision
-          </span>
+          TechExa Vision
         </motion.h1>
 
         {/* Subtitle */}

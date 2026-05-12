@@ -209,6 +209,14 @@
     to   { background-position: -200% 0; }
   }
 
+  /* Metallic gold shimmer — for hero title */
+  .animate-gold-shimmer { animation: goldShimmer 4s ease-in-out infinite; }
+  @keyframes goldShimmer {
+    0%   { background-size: 200% 100%; background-position: 0% center; }
+    50%  { background-size: 200% 100%; background-position: 100% center; }
+    100% { background-size: 200% 100%; background-position: 0% center; }
+  }
+
   /* Border beam — Copper */
   .border-beam {
     position: absolute; top: 0; left: 0;

@@ -24,6 +24,8 @@ const C  = "#B78460";   // Rose Copper Gold
 const CH = "#E5C0A0";   // Champagne highlight
 const CB = "#8A5A3C";   // Dark Bronze shadow
 const DIM = "rgba(183,132,96,0.18)";  // dim trace
+const NEURAL_BLUE = "#64C8FF";  // Neural network blue
+const NEURAL_PURPLE = "#A855F7";  // Neural purple accent
 
 // ── Hero chip — 200×200 viewBox, full IC with traces ─────────
 export function HeroChip({ className = "", animated = true }: { className?: string; animated?: boolean }) {
@@ -44,6 +46,13 @@ export function HeroChip({ className = "", animated = true }: { className?: stri
             <stop offset="100%" stopColor="#0F0D0B" />
           </linearGradient>
 
+          {/* Neural network gradient — copper to blue */}
+          <linearGradient id="neuralGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%"   stopColor={C} />
+            <stop offset="50%"  stopColor={NEURAL_BLUE} />
+            <stop offset="100%" stopColor={NEURAL_PURPLE} />
+          </linearGradient>
+
           {/* Copper trace gradient */}
           <linearGradient id="traceGrad" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%"   stopColor={CB}  stopOpacity="0" />
@@ -60,9 +69,15 @@ export function HeroChip({ className = "", animated = true }: { className?: stri
             <stop offset="100%" stopColor={CB}  stopOpacity="0" />
           </linearGradient>
 
-          {/* Glow filter */}
+          {/* Enhanced Glow filter */}
           <filter id="chipGlow" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="2.5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+
+          {/* Neural glow filter — bright and saturated */}
+          <filter id="neuralGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3.5" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
 
@@ -76,6 +91,12 @@ export function HeroChip({ className = "", animated = true }: { className?: stri
           <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
             <stop offset="0%"  stopColor={CH} stopOpacity="1" />
             <stop offset="100%" stopColor={C} stopOpacity="0" />
+          </radialGradient>
+
+          {/* Neural node glow */}
+          <radialGradient id="neuralNodeGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"  stopColor={NEURAL_BLUE} stopOpacity="1" />
+            <stop offset="100%" stopColor={NEURAL_PURPLE} stopOpacity="0" />
           </radialGradient>
         </defs>
 
@@ -159,8 +180,20 @@ export function HeroChip({ className = "", animated = true }: { className?: stri
         <rect x="78" y="78" width="44" height="44" rx="3" fill="#0D0B09" />
         <rect
           x="78" y="78" width="44" height="44" rx="3"
-          fill="none" stroke={C} strokeWidth="0.8" opacity="0.5"
+          fill="none" stroke="url(#neuralGrad)" strokeWidth="1.2" opacity="0.8" filter="url(#neuralGlow)"
         />
+
+        {/* Neural network nodes inside processor */}
+        {[85, 100, 115].map((pos, i) => (
+          <circle key={`node-${i}`} cx={pos} cy="100" r="1.5" fill={NEURAL_BLUE} opacity="0.7" filter="url(#neuralGlow)" />
+        ))}
+        {[85, 100, 115].map((pos, i) => (
+          <circle key={`node-v-${i}`} cx="100" cy={pos} r="1.5" fill={NEURAL_PURPLE} opacity="0.6" filter="url(#neuralGlow)" />
+        ))}
+
+        {/* Neural connections */}
+        <line x1="85" y1="100" x2="115" y2="100" stroke={NEURAL_BLUE} strokeWidth="0.5" opacity="0.4" />
+        <line x1="100" y1="85" x2="100" y2="115" stroke={NEURAL_PURPLE} strokeWidth="0.5" opacity="0.4" />
 
         {/* CPU text */}
         <text

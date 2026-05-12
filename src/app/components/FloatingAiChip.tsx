@@ -63,30 +63,71 @@ export const FloatingAiChip: React.FC<FloatingAiChipProps> = ({
           width: sizeMap[size],
         }}
       >
-        {/* Pulsing copper glow background */}
+        {/* Intense 3D Neural Glow — Multiple layers */}
         {blur && (
-          <motion.div
-            animate={{
-              scale: [1, 1.05, 1],
-              opacity: [0.3, 0.45, 0.3],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute inset-0 blur-3xl rounded-full pointer-events-none"
-            style={{
-              background: "radial-gradient(circle, rgba(183, 132, 96, 0.25) 0%, transparent 70%)",
-              filter: "blur(40px)",
-            }}
-          />
+          <>
+            {/* Outer cyan-blue neural glow */}
+            <motion.div
+              animate={{
+                scale: [1, 1.15, 1],
+                opacity: [0.15, 0.35, 0.15],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute inset-0 blur-3xl rounded-full pointer-events-none"
+              style={{
+                background: "radial-gradient(circle, rgba(100, 200, 255, 0.3) 0%, transparent 70%)",
+                filter: "blur(50px)",
+              }}
+            />
+            {/* Inner warm amber neural glow */}
+            <motion.div
+              animate={{
+                scale: [1, 1.1, 1],
+                opacity: [0.2, 0.4, 0.2],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.2,
+              }}
+              className="absolute inset-0 blur-2xl rounded-full pointer-events-none"
+              style={{
+                background: "radial-gradient(circle, rgba(255, 157, 66, 0.4) 0%, transparent 65%)",
+                filter: "blur(35px)",
+              }}
+            />
+            {/* Deep purple core glow */}
+            <motion.div
+              animate={{
+                scale: [1, 1.08, 1],
+                opacity: [0.1, 0.25, 0.1],
+              }}
+              transition={{
+                duration: 7,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.4,
+              }}
+              className="absolute inset-0 blur-xl rounded-full pointer-events-none"
+              style={{
+                background: "radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, transparent 60%)",
+                filter: "blur(25px)",
+              }}
+            />
+          </>
         )}
 
-        {/* Subtle rotation and chip container */}
+        {/* Subtle rotation with 3D perspective and chip container */}
         <motion.div
           animate={{
             rotate: [0, 2, 0, -2, 0],
+            rotateX: [0, 3, 0, -3, 0],
+            rotateY: [0, 5, 0, -5, 0],
           }}
           transition={{
             duration: 8,
@@ -96,12 +137,40 @@ export const FloatingAiChip: React.FC<FloatingAiChipProps> = ({
           style={{
             opacity: opacity,
             filter: blur 
-              ? `drop-shadow(0 0 18px rgba(183,132,96,0.35))`
+              ? `drop-shadow(0 0 30px rgba(255,157,66,0.5)) drop-shadow(0 0 60px rgba(100,200,255,0.3)) drop-shadow(0 0 20px rgba(168,85,247,0.25))`
               : `drop-shadow(0 0 12px rgba(183,132,96,0.25))`,
+            perspective: "1000px",
+            transformStyle: "preserve-3d",
           }}
         >
           <HeroChip animated={animated} />
         </motion.div>
+
+        {/* Pulsing energy particles around chip */}
+        {animated && (
+          <>
+            {[0, 1, 2, 3].map((i) => (
+              <motion.div
+                key={`particle-${i}`}
+                className="absolute w-1 h-1 rounded-full pointer-events-none"
+                style={{
+                  background: i % 2 === 0 ? "rgba(255, 157, 66, 0.6)" : "rgba(100, 200, 255, 0.5)",
+                  left: `${50 + 40 * Math.cos((i / 4) * Math.PI * 2)}%`,
+                  top: `${50 + 40 * Math.sin((i / 4) * Math.PI * 2)}%`,
+                }}
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.2, 0.8, 0.2],
+                }}
+                transition={{
+                  duration: 2.5 + i * 0.4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            ))}
+          </>
+        )}
       </motion.div>
     </motion.div>
   );
