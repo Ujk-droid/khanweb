@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const PUBLIC_PATHS = ['/', '/favicon.ico', '/robots.txt'];
-const PUBLIC_PREFIXES = ['/_next/', '/static/', '/api/', '/_vercel/', '/fonts/'];
+const PUBLIC_PREFIXES = ['/_next/', '/static/', '/api/', '/_vercel/', '/fonts/', '/blog', '/about', '/services', '/contact', '/project', '/team', '/verify-email'];
 
 const isPublicPath = (pathname: string) => {
   if (PUBLIC_PATHS.includes(pathname)) return true;

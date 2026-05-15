@@ -30,7 +30,7 @@ const getBlogPost = async (slug: string): Promise<BlogPostContent | undefined> =
         <h2>Getting Support</h2>
         <p>Should you encounter any challenges, our support team is always ready to assist. You can reach out through the help center, email, or live chat.</p>
       `,
-      imageUrl: "/of3.webp",
+         imageUrl:"/five.png",
     },
     "industry-trends": {
       title: "Industry Trends and Insights",
@@ -46,7 +46,7 @@ const getBlogPost = async (slug: string): Promise<BlogPostContent | undefined> =
         <h2>Internet of Things (IoT)</h2>
         <p>IoT is expanding beyond smart homes to industrial applications, creating smarter, more efficient systems in manufacturing, healthcare, and urban planning.</p>
       `,
-      imageUrl: "/of2.jpg",
+     imageUrl: "/four.png",
     },
     "case-study-digital-transformation": {
       title: "Case Study: Digital Transformation",
@@ -62,7 +62,7 @@ const getBlogPost = async (slug: string): Promise<BlogPostContent | undefined> =
         <h2>Results</h2>
         <p>The digital transformation resulted in a 30% increase in operational efficiency, a 25% reduction in maintenance costs, and a significant improvement in customer satisfaction scores.</p>
       `,
-      imageUrl: "/office.jpeg",
+      imageUrl: "/two.png",
     },
   };
   return Promise.resolve(posts[slug]);

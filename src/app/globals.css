@@ -1,6 +1,7 @@
 /* Import Tailwind and Animate CSS */
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 /* Tailwind Base, Components, and Utilities */
 @tailwind base;

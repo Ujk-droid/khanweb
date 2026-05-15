@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     // Email content for you (the recipient)
     const mailOptions = {
       from: process.env.GMAIL_USER,
-      to: "03312436713aa@gmail.com",
+      to: process.env.CONTACT_RECIPIENT_EMAIL || "03312436713aa@gmail.com",
       subject: `New Contact Form Message: ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">

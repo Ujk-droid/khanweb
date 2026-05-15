@@ -19,7 +19,7 @@ const blogPosts: BlogPostSummary[] = [
     excerpt: "Learn how to get started with our comprehensive services and solutions.",
     date: "2023-05-15",
     slug: "getting-started",
-    imageUrl: "/of3.webp",
+     imageUrl:"/five.png",
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const blogPosts: BlogPostSummary[] = [
     excerpt: "Stay updated with the latest trends and insights in the technology industry.",
     date: "2023-06-22",
     slug: "industry-trends",
-    imageUrl: "/of2.jpg",
+    imageUrl: "/four.png",
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const blogPosts: BlogPostSummary[] = [
     excerpt: "Explore our recent case study on successful digital transformation projects.",
     date: "2023-07-10",
     slug: "case-study-digital-transformation",
-    imageUrl: "/office.jpeg",
+    imageUrl: "/two.png",
   },
 ];
 
