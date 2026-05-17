@@ -35,7 +35,7 @@ const teamMembers = [
     name: "Nimra Naz",
     role: "AI Automation Engineer",
     image:"/nimra.jpeg",
-    bio: "San add kar sakti hainpecialist in designing intelligent workflows, autonomous agents, and multi-layered system integrations to optimize business productivity.",
+    bio: "Expert in building smart chatbot systems, language model workflows, and context-aware business automations.",
     skills: ["AI Agents", "n8n", "Workflow Automation", "API Integration"],
     featured: false,
   },
