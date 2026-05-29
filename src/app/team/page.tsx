@@ -26,7 +26,7 @@ const teamMembers = [
   {
     name: "Ishtiaq Khan",
     role: "Chief Technology Officer",
-    image: null,
+    image: "ik.jpeg",
     bio: "Technology expert with deep knowledge of software architecture and emerging technologies. Leads the technical vision and development strategy for all projects.",
     skills: ["Software Architecture", "Cloud Solutions", "AI/ML", "DevOps"],
     featured: false,
