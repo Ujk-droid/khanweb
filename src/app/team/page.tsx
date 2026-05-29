@@ -10,7 +10,7 @@ const teamMembers = [
   {
     name: "Uzma Khan",
     role: "Founder & CEO",
-    image: "/uzmadp.png",
+    image: "/ujk.jpeg",
     bio: "Visionary leader with expertise in software development and business strategy. Founded TechExa Vision with a mission to transform digital experiences through innovation and excellence.",
     skills: ["Leadership", "Strategy", "Innovation", "Business Development"],
     featured: true,
