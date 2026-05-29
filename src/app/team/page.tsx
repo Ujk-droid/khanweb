@@ -34,7 +34,7 @@ const teamMembers = [
   {
     name: "Shagufta Khan",
     role: "Head of Design",
-    image:null,
+    image:"/sha.png",
     bio: "Creative design leader with a passion for creating beautiful, user-centered digital experiences. Oversees all design aspects from concept to implementation.",
     skills: ["UI/UX Design", "Brand Identity", "User Research", "Prototyping"],
     featured: false,
