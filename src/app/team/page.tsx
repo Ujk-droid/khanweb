@@ -15,6 +15,14 @@ const teamMembers = [
     skills: ["Leadership", "Strategy", "Innovation", "Business Development"],
     featured: true,
   },
+    {
+    name: "Taha Ahmed Siddique",
+    role: "Chief Technology Officer",
+    image: "/taha.jpeg",
+    bio: "Technology expert with deep knowledge of software architecture and emerging technologies. Leads the technical vision and development strategy for all projects.",
+    skills: ["Software Architecture", "Cloud Solutions", "AI/ML", "DevOps"],
+    featured: false,
+  },
   {
     name: "Ishtiaq Khan",
     role: "Chief Technology Officer",

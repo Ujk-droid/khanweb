@@ -71,7 +71,7 @@ export default function Navbar() {
                 }}
               />
               <Image
-                src="/logo1.jpg"
+                src="/mylogo.png"
                 alt="TechExa Vision Logo"
                 width={44}
                 height={44}

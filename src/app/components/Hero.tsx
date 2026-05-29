@@ -121,7 +121,7 @@ export const HeroSection: React.FC<HeroProps> = ({
             />
             <div className="relative h-36 w-36 md:h-44 md:w-44">
               <Image
-                src="/logo1.jpg"
+                src="/mylogo.png"
                 alt="TechExa Vision Logo"
                 fill
                 className="rounded-full object-cover transition-transform duration-500 group-hover:scale-105"
