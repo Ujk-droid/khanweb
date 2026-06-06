@@ -23,6 +23,14 @@ const teamMembers = [
     skills: ["Software Architecture", "Cloud Solutions", "AI/ML", "DevOps"],
     featured: false,
   },
+   {
+  name: "Mohammad Ali",
+  role: "Lead Frontend Engineer & React Expert",
+  image: "sirmali.png",
+  bio: "Specializes in building high-performance web architectures and elite user interfaces. Expert at turning complex backend business logic into seamless, stateful frontend applications using modern reactive frameworks.",
+  skills: ["React.js", "Next.js", "Tailwind CSS", "State Management (Redux/Zustand)"],
+  featured: false,
+},
   {
     name: "Ishtiaq Khan",
     role: "Chief Technology Officer",
@@ -31,6 +39,7 @@ const teamMembers = [
     skills: ["Software Architecture", "Cloud Solutions", "AI/ML", "DevOps"],
     featured: false,
   },
+ 
   {
     name: "Shagufta Khan",
     role: "Head of Design",
