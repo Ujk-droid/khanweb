@@ -49,6 +49,14 @@ const teamMembers = [
     featured: false,
   },
   {
+  "name": "Sania Tariq",
+  "role": "SEO & Social Media Manager",
+  "image": "/public/saniatariq.png",
+  "bio": "Results-driven digital marketer specializing in SEO strategies and social media management. Expert in driving organic growth, enhancing brand visibility, and crafting engaging content that resonates with audiences.",
+  "skills": ["Search Engine Optimization (SEO)", "Social Media Strategy", "Content Marketing", "Growth Analytics"],
+  "featured": false
+},
+  {
     name: "Nimra Naz",
     role: "AI Automation Engineer",
     image:"/nimra.jpeg",
