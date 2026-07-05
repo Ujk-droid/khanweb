@@ -117,11 +117,13 @@ export default function RootLayout({
       <body className="font-sans bg-[#0B0B0C] text-[#F5F0EB] antialiased bg-deep-space">
         <ClientLayout>{children}</ClientLayout>
 
-        {/* Google Analytics Scripts (Dashboard ke mutabiq ID set kar di hai) */}
+        {/* Google Analytics Global Tag Script */}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-KNE8TN14OP"
         />
+        
+        {/* Optimized Configuration Script for Next.js App Router */}
         <Script
           id="google-analytics"
           strategy="afterInteractive"
@@ -132,6 +134,7 @@ export default function RootLayout({
             gtag('js', new Date());
             gtag('config', 'G-KNE8TN14OP', {
               page_path: window.location.pathname,
+              send_page_view: true
             });
           `}
         </Script>
