@@ -117,13 +117,13 @@ export default function RootLayout({
       <body className="font-sans bg-[#0B0B0C] text-[#F5F0EB] antialiased bg-deep-space">
         <ClientLayout>{children}</ClientLayout>
 
-        {/* Google Analytics Global Tag Script */}
+        {/* Google Analytics Tag (Nayi ID G-EB0B386Y1G ke sath) */}
         <Script
           strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-KNE8TN14OP"
+          src="https://www.googletagmanager.com/gtag/js?id=G-EB0B386Y1G"
         />
         
-        {/* Optimized Configuration Script for Next.js App Router */}
+        {/* Next.js App Router Optimized Config Script */}
         <Script
           id="google-analytics"
           strategy="afterInteractive"
@@ -132,7 +132,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-KNE8TN14OP', {
+            gtag('config', 'G-EB0B386Y1G', {
               page_path: window.location.pathname,
               send_page_view: true
             });
