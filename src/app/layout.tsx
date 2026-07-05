@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Geist, Geist_Mono, Space_Grotesk, Inter, Montserrat } from "next/font/google";
-import Script from "next/script"; // 1. Script component import kiya
+import Script from "next/script";
 import ClientLayout from "./components/ClientLayout";
 import "./globals.css";
 
@@ -114,11 +114,13 @@ export default function RootLayout({
       lang="en"
       className={`dark ${outfit.variable} ${geist.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${inter.variable} ${montserrat.variable}`}
     >
-      {/* 2. Google Analytics Scripts yahan add kiye hain */}
-      <head>
+      <body className="font-sans bg-[#0B0B0C] text-[#F5F0EB] antialiased bg-deep-space">
+        <ClientLayout>{children}</ClientLayout>
+
+        {/* Google Analytics Scripts (Dashboard ke mutabiq ID set kar di hai) */}
         <Script
           strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-ECZB2EJDKD"
+          src="https://www.googletagmanager.com/gtag/js?id=G-KNE8TN14OP"
         />
         <Script
           id="google-analytics"
@@ -133,9 +135,6 @@ export default function RootLayout({
             });
           `}
         </Script>
-      </head>
-      <body className="font-sans bg-[#0B0B0C] text-[#F5F0EB] antialiased bg-deep-space">
-        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
