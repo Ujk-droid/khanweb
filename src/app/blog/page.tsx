@@ -3,8 +3,8 @@ import BlogContent from "./BlogContent";
 
 // Metadata for the main blog page
 export const metadata: Metadata = {
-  title: "Our Blog - Latest News & Insights",
-  description: "Stay updated with the latest news, insights, and developments from our team.",
+  title: "Web Development, App & AI Insights | TechExa Vision Blog",
+  description: "Practical guides on website costs in Pakistan, custom web applications, and AI chatbots for small businesses — from the TechExa Vision team.",
 };
 
 export default function BlogPage() {

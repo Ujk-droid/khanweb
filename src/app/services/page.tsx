@@ -66,6 +66,22 @@ export default function Services() {
             </p>
           </motion.div>
 
+          {/* Video Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mb-16 rounded-3xl overflow-hidden border border-[#B78460]/25"
+          >
+            <video
+              src="/video.mp4"
+              controls
+              className="w-full h-auto"
+              poster="/planet.avif"
+            />
+          </motion.div>
+
           {/* Services Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
