@@ -10,15 +10,15 @@ import { Textarea } from "../components/ui/textarea";
 import WorldMap from "../components/ui/WorldMap";
 import { motion } from "framer-motion";
 import { useToast } from "../components/ui/custom-toast";
-
-// ── Rose Copper Gold palette ─────────────────────────────────
-const COPPER    = "#B78460";
-const CHAMPAGNE = "#E5C0A0";
-const BG        = "#0B0B0C";
-const SURFACE   = "#141414";
-const BORDER    = "#2A2420";
-const TEXT      = "#F5F0EB";
-const MUTED     = "#9A8F87";
+import {
+  COPPER,
+  CHAMPAGNE,
+  MIDNIGHT as BG,
+  SURFACE,
+  BORDER_SUBTLE as BORDER,
+  TEXT_PRIMARY as TEXT,
+  TEXT_MUTED as MUTED,
+} from "@/lib/theme";
 
 // Static floating shapes — copper tinted
 const floatingShapes = [
@@ -88,7 +88,7 @@ export default function ContactUs() {
         style={{ background: "radial-gradient(ellipse at top, rgba(140,90,60,0.06) 0%, transparent 60%)" }}
       />
 
-      <div className="relative z-10 container mx-auto px-4 py-24">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 py-24">
 
         {/* ── Header ─────────────────────────────────────────── */}
         <motion.div
@@ -284,7 +284,7 @@ export default function ContactUs() {
                 </h2>
                 <div className="space-y-6">
                   {[
-                    { icon: <Mail className="w-5 h-5" />,   title: "Email",  line1: "03312436713aa@gmail.com", line2: "We'll respond within 24 hours" },
+                    { icon: <Mail className="w-5 h-5" />,   title: "Email",  line1: "info@techexavision.com", line2: "We'll respond within 24 hours" },
                     { icon: <Phone className="w-5 h-5" />,  title: "Phone",  line1: "0331 2436713",            line2: "Mon–Fri, 9AM–6PM PKT" },
                     { icon: <MapPin className="w-5 h-5" />, title: "Office", line1: "Garden East",             line2: "Karachi, Pakistan" },
                   ].map(({ icon, title, line1, line2 }) => (

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { motion } from "framer-motion";
 import { Calendar, ArrowRight } from "lucide-react";
 
@@ -31,7 +31,7 @@ export default function BlogCard({ post }: BlogCardProps) {
           {/* Image */}
           <div className="relative w-full aspect-video overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-t from-[#18181B]/80 to-transparent z-10" />
-            <Image
+            <CldImage
               src={post.imageUrl}
               alt={post.title}
               fill

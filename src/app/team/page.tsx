@@ -10,7 +10,7 @@ const teamMembers = [
   {
     name: "Uzma Khan",
     role: "Founder & CEO",
-    image: "/ujk.jpeg",
+    image: "https://res.cloudinary.com/ecasprck/image/upload/f_auto,q_auto,w_400/techexa-vision/ujk",
     bio: "Visionary leader with expertise in software development and business strategy. Founded TechExa Vision with a mission to transform digital experiences through innovation and excellence.",
     skills: ["Leadership", "Strategy", "Innovation", "Business Development"],
     featured: true,
@@ -18,7 +18,7 @@ const teamMembers = [
     {
     name: "Taha Ahmed Siddique",
     role: "Chief Technology Officer",
-    image: "/taha.jpeg",
+    image: "https://res.cloudinary.com/ecasprck/image/upload/f_auto,q_auto,w_400/techexa-vision/taha",
     bio: "Technology expert with deep knowledge of software architecture and emerging technologies. Leads the technical vision and development strategy for all projects.",
     skills: ["Software Architecture", "Cloud Solutions", "AI/ML", "DevOps"],
     featured: false,
@@ -26,7 +26,7 @@ const teamMembers = [
    {
   name: "Mohammad Ali",
   role: "Lead Frontend Engineer & React Expert",
-  image: "sirmali.png",
+  image: "https://res.cloudinary.com/ecasprck/image/upload/f_auto,q_auto,w_400/techexa-vision/sirmali",
   bio: "Specializes in building high-performance web architectures and elite user interfaces. Expert at turning complex backend business logic into seamless, stateful frontend applications using modern reactive frameworks.",
   skills: ["React.js", "Next.js", "Tailwind CSS", "State Management (Redux/Zustand)"],
   featured: false,
@@ -34,7 +34,7 @@ const teamMembers = [
   {
     name: "Ishtiaq Khan",
     role: "Chief Technology Officer",
-    image: "ik.jpeg",
+    image: "https://res.cloudinary.com/ecasprck/image/upload/f_auto,q_auto,w_400/techexa-vision/ik",
     bio: "Technology expert with deep knowledge of software architecture and emerging technologies. Leads the technical vision and development strategy for all projects.",
     skills: ["Software Architecture", "Cloud Solutions", "AI/ML", "DevOps"],
     featured: false,
@@ -43,7 +43,7 @@ const teamMembers = [
   {
     name: "Shagufta Khan",
     role: "Head of Design",
-    image:"/sha.png",
+    image: "https://res.cloudinary.com/ecasprck/image/upload/f_auto,q_auto,w_400/techexa-vision/sha",
     bio: "Creative design leader with a passion for creating beautiful, user-centered digital experiences. Oversees all design aspects from concept to implementation.",
     skills: ["UI/UX Design", "Brand Identity", "User Research", "Prototyping"],
     featured: false,
@@ -51,7 +51,7 @@ const teamMembers = [
   {
   "name": "Sania Tariq",
   "role": "SEO & Social Media Manager",
-  "image": "/saniatariq.png",
+  "image": "https://res.cloudinary.com/ecasprck/image/upload/f_auto,q_auto,w_400/techexa-vision/saniatariq",
   "bio": "Results-driven digital marketer specializing in SEO strategies and social media management. Expert in driving organic growth, enhancing brand visibility, and crafting engaging content that resonates with audiences.",
   "skills": ["Search Engine Optimization (SEO)", "Social Media Strategy", "Content Marketing", "Growth Analytics"],
   "featured": false
@@ -59,7 +59,7 @@ const teamMembers = [
   {
     name: "Nimra Naz",
     role: "AI Automation Engineer",
-    image:"/nimra.jpeg",
+    image: "https://res.cloudinary.com/ecasprck/image/upload/f_auto,q_auto,w_400/techexa-vision/nimra",
     bio: "Expert in building smart chatbot systems, language model workflows, and context-aware business automations.",
     skills: ["AI Agents", "n8n", "Workflow Automation", "API Integration"],
     featured: false,
@@ -67,7 +67,7 @@ const teamMembers = [
   {
     name: "Mahneera",
     role: "AI Automation Engineer",
-    image:"/mahneera.jpeg",
+    image: "https://res.cloudinary.com/ecasprck/image/upload/f_auto,q_auto,w_400/techexa-vision/mahneera",
     bio: "Expert in building smart chatbot systems, language model workflows, and context-aware business automations.",
     skills: ["OpenAI", "LangChain", "Chatbots", "Process Automation"],
     featured: false,
@@ -83,7 +83,7 @@ const teamMembers = [
   {
     name: "Adil M Ather",
     role: "WordPress Developer",
-    image:"/adil.jpeg",
+    image: "https://res.cloudinary.com/ecasprck/image/upload/f_auto,q_auto,w_400/techexa-vision/adil",
     bio: "Skilled developer specialized in building high-performance, dynamic, and visually stunning custom WordPress websites and architectures.",
     skills: ["WordPress", "Elementor", "PHP", "Custom Themes"],
     featured: false,

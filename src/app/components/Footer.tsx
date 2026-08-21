@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 import {
   FaInstagram,
@@ -55,8 +55,8 @@ export default function Footer() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center mb-4">
-              <Image
-                src="/logo1.jpg"
+              <CldImage
+                src="techexa-vision/logo1"
                 alt="TechExa Vision Logo"
                 width={50}
                 height={50}
@@ -73,10 +73,10 @@ export default function Footer() {
             {/* Social Icons */}
             <div className="flex space-x-3">
               {[
-                { href: "https://www.facebook.com/profile.php?id=61576313547700", icon: <FaFacebookF size={16} /> },
-                { href: "https://wa.me/923312436713",                              icon: <FaWhatsapp  size={16} /> },
-                { href: "https://www.instagram.com/uzmakhan11122",                 icon: <FaInstagram size={16} /> },
-                { href: "https://www.linkedin.com/in/uzma-khan-4818b42b4",         icon: <FaLinkedin  size={16} /> },
+                { href: "https://www.facebook.com/TechexaVision",                              icon: <FaFacebookF size={16} /> },
+                { href: "https://wa.me/923312436713",                                          icon: <FaWhatsapp  size={16} /> },
+                { href: "https://www.instagram.com/_techexavision_official_/",                 icon: <FaInstagram size={16} /> },
+                { href: "https://www.linkedin.com/company/111404936",                          icon: <FaLinkedin  size={16} /> },
               ].map(({ href, icon }) => (
                 <a
                   key={href}
@@ -164,9 +164,9 @@ export default function Footer() {
                 <span className="w-1 h-1 bg-[#B78460] rounded-full mt-2 shrink-0" />
                 <span>Garden East, Karachi, Pakistan</span>
               </li>
-              <li className="flex items-center gap-2 hover:text-[#B78460] transition-colors cursor-pointer">
+              <li className="flex items-center gap-2 hover:text-[#B78460] transition-colors">
                 <FaEnvelope className="text-[#B78460] shrink-0" />
-                03312436713aa@gmail.com
+                <a href="mailto:info@techexavision.com">info@techexavision.com</a>
               </li>
               <li className="flex items-center gap-2 hover:text-[#B78460] transition-colors cursor-pointer">
                 <FaPhone className="text-[#B78460] shrink-0" />

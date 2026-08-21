@@ -1,24 +1,14 @@
 import type { Metadata } from "next";
-import { Outfit, Geist, Geist_Mono, Space_Grotesk, Inter, Montserrat } from "next/font/google";
+import { Outfit, Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import ClientLayout from "./components/ClientLayout";
 import "./globals.css";
 
 // ── Fonts ──────────────────────────────────────────────────────────────────
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-  weight: ["400", "500", "800"],
-});
-
+// Only fonts actually wired to a Tailwind class (font-sans / font-heading /
+// font-mono) or referenced directly by a component (Outfit — AiChip, WorldMap
+// SVG text) are loaded. Montserrat and Inter were loaded but never used
+// anywhere and have been removed.
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
@@ -76,7 +66,7 @@ export const metadata: Metadata = {
       "Cutting-edge software solutions with modern design and exceptional performance. Web, mobile, and AI development from Karachi, Pakistan.",
     images: [
       {
-        url: "/logo1.jpg",
+        url: "https://res.cloudinary.com/ecasprck/image/upload/q_auto/techexa-vision/logo1.jpg",
         width: 400,
         height: 400,
         alt: "TechExa Vision Logo",
@@ -88,7 +78,7 @@ export const metadata: Metadata = {
     title: "TechExa Vision — Premium Software Development",
     description:
       "Premium software development from Karachi, Pakistan. Web, mobile, and AI solutions.",
-    images: ["/logo1.jpg"],
+    images: ["https://res.cloudinary.com/ecasprck/image/upload/q_auto/techexa-vision/logo1.jpg"],
   },
   robots: {
     index: true,
@@ -112,7 +102,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${outfit.variable} ${geist.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${inter.variable} ${montserrat.variable}`}
+      className={`dark ${outfit.variable} ${geist.variable} ${geistMono.variable} ${spaceGrotesk.variable}`}
     >
       <body className="font-sans bg-[#0B0B0C] text-[#F5F0EB] antialiased bg-deep-space">
         <ClientLayout>{children}</ClientLayout>

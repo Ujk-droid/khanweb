@@ -19,7 +19,7 @@ const blogPosts: BlogPostSummary[] = [
     excerpt: "A realistic 2026 breakdown of website, e-commerce, and custom web app pricing in Pakistan — and what actually affects the final cost.",
     date: "2026-07-08",
     slug: "website-development-cost-pakistan-2026",
-    imageUrl: "/five.png",
+    imageUrl: "techexa-vision/five",
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const blogPosts: BlogPostSummary[] = [
     excerpt: "Still running your business on spreadsheets and disconnected tools? Here are 7 clear signs it's time for a custom solution.",
     date: "2026-07-08",
     slug: "signs-business-needs-custom-web-application",
-    imageUrl: "/four.png",
+    imageUrl: "techexa-vision/four",
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const blogPosts: BlogPostSummary[] = [
     excerpt: "With 110M+ WhatsApp users in Pakistan, we break down whether AI chatbots are worth it — and which businesses benefit most.",
     date: "2026-07-08",
     slug: "ai-chatbots-small-business-pakistan",
-    imageUrl: "/two.png",
+    imageUrl: "techexa-vision/two",
   },
 ];
 

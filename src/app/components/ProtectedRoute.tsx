@@ -22,7 +22,14 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
     }
   }, [isAuthenticated, loading, pathname, router, isPublicRoute]);
 
-  // Show loading state while checking authentication
+  // Public marketing pages render immediately, regardless of auth state —
+  // they must never wait on the client-only auth check (this was the SSR/SEO bug:
+  // every page rendered nothing but the spinner below until auth resolved).
+  if (isPublicRoute) {
+    return <>{children}</>;
+  }
+
+  // Only real account-gated routes wait on auth resolution.
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#0B0B0C]">

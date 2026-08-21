@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import type React from "react";
+import React, { createElement } from "react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import type { MouseEvent, ReactNode } from "react";
 
@@ -53,9 +53,11 @@ export const HoverBorderGradient = ({
           `,
         }}
       />
-      <Tag className={cn("relative rounded-3xl", className)} {...props}>
-        {children}
-      </Tag>
+      {createElement(
+        Tag,
+        { className: cn("relative rounded-3xl", className), ...props },
+        children
+      )}
     </div>
   );
 };

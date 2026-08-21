@@ -38,9 +38,13 @@ function testTailwindConfig() {
   console.log("Checking tailwind.config.ts tokens...");
   const content = fs.readFileSync(tailwindConfigPath, "utf-8");
 
-  assert.ok(content.includes('copper: "#B78460"'), "Missing copper token");
-  assert.ok(content.includes('midnight: "#0B0B0C"'), "Missing midnight token");
-  assert.ok(content.includes('surface: "#141414"'), "Missing surface token");
+  // Tokens now alias the single-sourced CSS variables in globals.css
+  // (which still resolve to #B78460 / #0B0B0C / #141414) instead of
+  // repeating the literal hex — see the consolidation note above copper/
+  // midnight/surface in tailwind.config.ts.
+  assert.ok(content.includes('copper: "hsl(var(--primary))"'), "Missing copper token");
+  assert.ok(content.includes('midnight: "hsl(var(--background))"'), "Missing midnight token");
+  assert.ok(content.includes('surface: "hsl(var(--card))"'), "Missing surface token");
   console.log("✓ tailwind.config.ts tokens verified.");
 }
 

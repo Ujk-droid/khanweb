@@ -59,7 +59,7 @@ export default function Services() {
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#B78460]/25 bg-[rgba(183,132,96,0.08)] text-[#B78460] text-sm font-medium mb-4">
               What We Offer
             </span>
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-4 text-[#FAFAFA]">Our Services</h2>
+            <h1 className="font-heading text-3xl sm:text-4xl font-bold mb-4 text-[#FAFAFA]">Our Services</h1>
             <div className="h-px w-20 bg-gradient-to-r from-transparent via-[#B78460] to-transparent mx-auto mb-6" />
             <p className="text-[#9A8F87] max-w-2xl mx-auto text-sm sm:text-base">
               We provide comprehensive digital solutions to help your business thrive in the digital landscape.
@@ -75,10 +75,11 @@ export default function Services() {
             className="mb-16 rounded-3xl overflow-hidden border border-[#B78460]/25"
           >
             <video
-              src="/video.mp4"
+              src="https://res.cloudinary.com/ecasprck/video/upload/q_auto/techexa-vision/video.mp4"
               controls
               className="w-full h-auto"
-              poster="/planet.avif"
+              poster="https://res.cloudinary.com/ecasprck/image/upload/f_auto,q_auto/techexa-vision/planet"
+              preload="none"
             />
           </motion.div>
 
@@ -94,7 +95,7 @@ export default function Services() {
               >
                 <HoverBorderGradient
                   containerClassName="h-full"
-                  className="p-6 h-full bg-[#141414] border border-[#2A2420] rounded-3xl transition-all duration-300 hover:shadow-[0_16px_40px_rgba(183,132,96,0.08)]"
+                  className="p-6 h-full bg-[#141414]/60 backdrop-blur-xl border border-[#B78460]/20 rounded-3xl transition-all duration-300 hover:shadow-[0_16px_40px_rgba(183,132,96,0.08)] hover:-translate-y-1"
                   as="div"
                   from="rgba(183, 132, 96, 0.5)"
                   to="rgba(229, 192, 160, 0.2)"

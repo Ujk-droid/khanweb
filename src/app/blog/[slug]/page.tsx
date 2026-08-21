@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import CloudinaryImage from "../../components/CloudinaryImage";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -33,7 +33,7 @@ const getBlogPost = async (slug: string): Promise<BlogPostContent | undefined> =
         <p>Don't just compare prices — compare what's included. A cheap website with no SEO, no mobile optimization, and no ongoing support usually costs more in the long run once you factor in the redo.</p>
         <p><strong>Not sure what your project would actually cost?</strong> <a href="/contact">Get a free, no-obligation quote from our team</a> and we'll break down the exact cost for your specific needs.</p>
       `,
-      imageUrl: "/five.png",
+      imageUrl: "techexa-vision/five",
     },
     "signs-business-needs-custom-web-application": {
       title: "7 Signs Your Business Needs a Custom Web Application",
@@ -56,7 +56,7 @@ const getBlogPost = async (slug: string): Promise<BlogPostContent | undefined> =
         <p>Generic tools often cap users, storage, or features. A custom application is built to scale alongside your business instead of limiting it.</p>
         <p><strong>Recognize 3 or more of these signs?</strong> <a href="/contact">Talk to our team for a free consultation</a> — we'll help you figure out exactly what kind of solution makes sense for your business.</p>
       `,
-      imageUrl: "/four.png",
+      imageUrl: "techexa-vision/four",
     },
     "ai-chatbots-small-business-pakistan": {
       title: "Do WhatsApp & AI Chatbots Actually Help Small Businesses in Pakistan?",
@@ -75,7 +75,7 @@ const getBlogPost = async (slug: string): Promise<BlogPostContent | undefined> =
         <p>If you're currently answering the same 10-15 questions manually, every single day, the math usually works in your favor — a chatbot handles that volume instantly and lets you focus on the conversations that actually need a human touch.</p>
         <p><strong>Curious what a chatbot could handle for your specific business?</strong> <a href="/contact">Request a free demo</a> and we'll show you exactly how it would work for your customers.</p>
       `,
-      imageUrl: "/two.png",
+      imageUrl: "techexa-vision/two",
     },
   };
   return Promise.resolve(posts[slug]);
@@ -147,7 +147,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <p className="text-[#9A8F87] mb-8 border-b border-[#2A2420] pb-4 text-sm">{post.date}</p>
 
           <div className="relative w-full h-80 mb-8 rounded-2xl overflow-hidden">
-            <Image
+            <CloudinaryImage
               src={post.imageUrl}
               alt={post.title}
               fill

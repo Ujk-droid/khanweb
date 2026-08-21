@@ -55,7 +55,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.95, opacity: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-md rounded-2xl border border-slate-700/50 p-8"
+        className="w-full max-w-md rounded-2xl border border-[#B78460]/20 p-8"
         style={{
           background: 'rgba(15, 11, 12, 0.95)',
           backdropFilter: 'blur(10px)',
@@ -70,7 +70,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
           </h2>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white transition"
+            className="text-[#9A8F87] hover:text-white transition"
           >
             <X className="w-5 h-5" />
           </button>
@@ -104,16 +104,16 @@ export const LoginModal: React.FC<LoginModalProps> = ({
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+            <label className="block text-sm font-medium text-[#F5F0EB]/80 mb-2">
               Email Address
             </label>
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#9A8F87]" />
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#B78460]/50 focus:border-[#B78460]/50 transition"
+                className="w-full pl-10 pr-4 py-3 bg-[#0B0B0C]/50 border border-[#B78460]/20 rounded-lg text-white placeholder-[#9A8F87]/70 focus:outline-none focus:ring-2 focus:ring-[#B78460]/50 focus:border-[#B78460]/50 transition"
                 placeholder="your@email.com"
                 required
               />
@@ -122,23 +122,23 @@ export const LoginModal: React.FC<LoginModalProps> = ({
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+            <label className="block text-sm font-medium text-[#F5F0EB]/80 mb-2">
               Password
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#9A8F87]" />
               <input
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-10 pr-12 py-3 bg-slate-900/50 border border-slate-700/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#B78460]/50 focus:border-[#B78460]/50 transition"
+                className="w-full pl-10 pr-12 py-3 bg-[#0B0B0C]/50 border border-[#B78460]/20 rounded-lg text-white placeholder-[#9A8F87]/70 focus:outline-none focus:ring-2 focus:ring-[#B78460]/50 focus:border-[#B78460]/50 transition"
                 placeholder="••••••••"
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#9A8F87] hover:text-[#F5F0EB]/80 transition"
               >
                 {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
@@ -162,7 +162,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
           {/* Divider */}
           <div className="my-4 flex items-center gap-3">
             <div className="h-px flex-1" style={{ backgroundColor: 'rgba(183, 132, 96, 0.2)' }} />
-            <span className="text-sm text-slate-500">or</span>
+            <span className="text-sm text-[#9A8F87]">or</span>
             <div className="h-px flex-1" style={{ backgroundColor: 'rgba(183, 132, 96, 0.2)' }} />
           </div>
 

@@ -1,0 +1,163 @@
+{
+  "ad.jpg": {
+    "public_id": "techexa-vision/ad-jpg",
+    "resource_type": "image",
+    "width": 1280,
+    "height": 563
+  },
+  "ad.webp": {
+    "public_id": "techexa-vision/ad",
+    "resource_type": "image",
+    "width": 1920,
+    "height": 1080
+  },
+  "ad2.png": {
+    "public_id": "techexa-vision/ad2",
+    "resource_type": "image",
+    "width": 1896,
+    "height": 1080
+  },
+  "adil.jpeg": {
+    "public_id": "techexa-vision/adil",
+    "resource_type": "image",
+    "width": 638,
+    "height": 478
+  },
+  "fd.jpg": {
+    "public_id": "techexa-vision/fd",
+    "resource_type": "image",
+    "width": 1263,
+    "height": 590
+  },
+  "five.png": {
+    "public_id": "techexa-vision/five",
+    "resource_type": "image",
+    "width": 1024,
+    "height": 1024
+  },
+  "four.png": {
+    "public_id": "techexa-vision/four",
+    "resource_type": "image",
+    "width": 1024,
+    "height": 1024
+  },
+  "hk.jpg": {
+    "public_id": "techexa-vision/hk",
+    "resource_type": "image",
+    "width": 1273,
+    "height": 582
+  },
+  "hw.jpg": {
+    "public_id": "techexa-vision/hw",
+    "resource_type": "image",
+    "width": 1275,
+    "height": 587
+  },
+  "ik.jpeg": {
+    "public_id": "techexa-vision/ik",
+    "resource_type": "image",
+    "width": 820,
+    "height": 1457
+  },
+  "logo1.jpg": {
+    "public_id": "techexa-vision/logo1",
+    "resource_type": "image",
+    "width": 500,
+    "height": 500
+  },
+  "mahneera.jpeg": {
+    "public_id": "techexa-vision/mahneera",
+    "resource_type": "image",
+    "width": 543,
+    "height": 644
+  },
+  "mylogo.png": {
+    "public_id": "techexa-vision/mylogo",
+    "resource_type": "image",
+    "width": 1254,
+    "height": 1254
+  },
+  "nimra.jpeg": {
+    "public_id": "techexa-vision/nimra",
+    "resource_type": "image",
+    "width": 412,
+    "height": 570
+  },
+  "planet.avif": {
+    "public_id": "techexa-vision/planet",
+    "resource_type": "image",
+    "width": 626,
+    "height": 626
+  },
+  "saniatariq.png": {
+    "public_id": "techexa-vision/saniatariq",
+    "resource_type": "image",
+    "width": 1218,
+    "height": 1291
+  },
+  "sha.png": {
+    "public_id": "techexa-vision/sha",
+    "resource_type": "image",
+    "width": 1254,
+    "height": 1254
+  },
+  "sirmali.png": {
+    "public_id": "techexa-vision/sirmali",
+    "resource_type": "image",
+    "width": 800,
+    "height": 800
+  },
+  "taha.jpeg": {
+    "public_id": "techexa-vision/taha",
+    "resource_type": "image",
+    "width": 1086,
+    "height": 1448
+  },
+  "two.png": {
+    "public_id": "techexa-vision/two",
+    "resource_type": "image",
+    "width": 1024,
+    "height": 1024
+  },
+  "ujk.jpeg": {
+    "public_id": "techexa-vision/ujk",
+    "resource_type": "image",
+    "width": 1122,
+    "height": 1190
+  },
+  "ecommerce.mp4": {
+    "public_id": "techexa-vision/ecommerce",
+    "resource_type": "video",
+    "width": 1376,
+    "height": 720,
+    "duration": 46.625011
+  },
+  "personalassistant.mp4": {
+    "public_id": "techexa-vision/personalassistant",
+    "resource_type": "video",
+    "width": 1376,
+    "height": 720,
+    "duration": 38.615011
+  },
+  "portfolio.mp4": {
+    "public_id": "techexa-vision/portfolio",
+    "resource_type": "video",
+    "width": 2064,
+    "height": 1080,
+    "duration": 38.363106
+  },
+  "steelfabrications.mp4": {
+    "public_id": "techexa-vision/steelfabrications",
+    "resource_type": "video",
+    "width": 2064,
+    "height": 1080,
+    "duration": 39.101995
+  },
+  "video.mp4": {
+    "public_id": "techexa-vision/video",
+    "resource_type": "video",
+    "width": 1920,
+    "height": 1080,
+    "duration": 4
+  }
+}

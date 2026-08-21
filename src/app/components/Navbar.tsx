@@ -3,15 +3,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { usePathname } from "next/navigation";
 import { Menu, X, LogOut, User } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
-
-// ── Rose Copper Gold palette constants ──────────────────────
-const COPPER      = "#B78460";
-const CHAMPAGNE   = "#E5C0A0";
-const BG          = "#0B0B0C";
+import { COPPER, CHAMPAGNE } from "@/lib/theme";
 const SURFACE     = "#141414";
 const BORDER      = "#2A2420";
 
@@ -20,7 +16,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const pathname = usePathname();
-  const { isAuthenticated, user, logout, loading, setLoginModalOpen, setSignupModalOpen } = useAuth();
+  const { isAuthenticated, user, logout, loading } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -70,8 +66,8 @@ export default function Navbar() {
                   background: "rgba(183, 132, 96, 0.18)",
                 }}
               />
-              <Image
-                src="/mylogo.png"
+              <CldImage
+                src="techexa-vision/mylogo"
                 alt="TechExa Vision Logo"
                 width={44}
                 height={44}
@@ -185,15 +181,10 @@ export default function Navbar() {
               </div>
             ) : (
               <>
-                <button
-                  onClick={() => setLoginModalOpen(true)}
-                  className="text-sm font-medium transition-colors hover:text-[#B78460]"
-                  style={{ color: CHAMPAGNE }}
-                >
-                  Login
-                </button>
-                <button
-                  onClick={() => setSignupModalOpen(true)}
+                <a
+                  href="https://wa.me/923312436713"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300 hover:scale-105"
                   style={{
                     background: "rgba(183, 132, 96, 0.1)",
@@ -201,8 +192,8 @@ export default function Navbar() {
                     border: `1px solid ${COPPER}`,
                   }}
                 >
-                  Sign Up
-                </button>
+                  Book a Call
+                </a>
                 <Link
                   href="/contact"
                   className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:brightness-110"
@@ -212,7 +203,7 @@ export default function Navbar() {
                     boxShadow: "0 0 15px rgba(183,132,96,0.22), 0 2px 8px rgba(0,0,0,0.4)",
                   }}
                 >
-                  Contact Us
+                  Get a Quote
                 </Link>
               </>
             )}
@@ -272,34 +263,31 @@ export default function Navbar() {
 
                 {!isAuthenticated && (
                   <div className="flex flex-col gap-2 mt-4 px-4">
-                    <button
-                      onClick={() => {
-                        setLoginModalOpen(true);
-                        setIsMobileMenuOpen(false);
-                      }}
+                    <a
+                      href="https://wa.me/923312436713"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setIsMobileMenuOpen(false)}
                       className="w-full py-3 rounded-xl text-center font-medium transition-all duration-300"
                       style={{
-                        color: CHAMPAGNE,
+                        color: COPPER,
                         background: "rgba(183, 132, 96, 0.08)",
                         border: "1px solid rgba(183, 132, 96, 0.2)",
                       }}
                     >
-                      Login
-                    </button>
-                    <button
-                      onClick={() => {
-                        setSignupModalOpen(true);
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className="w-full py-3 rounded-xl text-center font-medium transition-all duration-300"
+                      Book a Call
+                    </a>
+                    <Link
+                      href="/contact"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="w-full py-3 rounded-xl text-center font-semibold transition-all duration-300"
                       style={{
-                        color: COPPER,
-                        background: "rgba(183, 132, 96, 0.1)",
-                        border: `1px solid ${COPPER}`,
+                        color: "#F5F0EB",
+                        background: `linear-gradient(135deg, ${COPPER} 0%, #8A5A3C 100%)`,
                       }}
                     >
-                      Sign Up
-                    </button>
+                      Get a Quote
+                    </Link>
                   </div>
                 )}
 

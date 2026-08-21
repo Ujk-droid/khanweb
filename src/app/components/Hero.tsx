@@ -1,13 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Suspense } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { FloatingAiChip } from "./FloatingAiChip";
-import { LoginModal } from "./LoginModal";
-import { SignupModal } from "./SignupModal";
+import { useIsDesktop } from "@/lib/useIsDesktop";
+
+// Heavy (WebGL) and desktop-only — never bundled/rendered for mobile
+// visitors, and never rendered on the server (react-three-fiber needs a
+// DOM/WebGL context). Mobile keeps the plain CSS radial-gradient glow
+// below as its background instead.
+const HeroParticles = dynamic(() => import("./three/HeroParticles"), {
+  ssr: false,
+});
 
 export interface HeroProps {
   subtitle?: string;
@@ -20,15 +28,14 @@ export const HeroSection: React.FC<HeroProps> = ({
   ctaText = "Start Your Project",
   ctaHref = "/contact",
 }) => {
-  const [loginOpen, setLoginOpen] = useState(false);
-  const [signupOpen, setSignupOpen] = useState(false);
+  const isDesktop = useIsDesktop();
 
   return (
     <section
       className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center pt-20"
       style={{ backgroundColor: "#0B0B0C" }}
     >
-      {/* ── Deep-space copper radial glows ─────────────────── */}
+      {/* ── Deep-space copper radial glows — always-on base/mobile fallback ── */}
       <div
         className="absolute pointer-events-none"
         style={{
@@ -45,6 +52,13 @@ export const HeroSection: React.FC<HeroProps> = ({
           background: "radial-gradient(circle, rgba(140, 90, 60, 0.06) 0%, transparent 65%)",
         }}
       />
+
+      {/* ── Ambient particle field — desktop only, lazy-loaded ──────── */}
+      {isDesktop && (
+        <Suspense fallback={null}>
+          <HeroParticles />
+        </Suspense>
+      )}
 
       {/* ── Matte grid texture ──────────────────────────────── */}
       <div
@@ -120,8 +134,8 @@ export const HeroSection: React.FC<HeroProps> = ({
               style={{ background: "radial-gradient(circle, rgba(183,132,96,0.14) 0%, transparent 70%)" }}
             />
             <div className="relative h-36 w-36 md:h-44 md:w-44">
-              <Image
-                src="/mylogo.png"
+              <CldImage
+                src="techexa-vision/mylogo"
                 alt="TechExa Vision Logo"
                 fill
                 className="rounded-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -143,7 +157,6 @@ export const HeroSection: React.FC<HeroProps> = ({
           style={{
             fontSize: "clamp(2.8rem, 8vw, 6rem)",
             lineHeight: 1.05,
-            fontFamily: "var(--font-montserrat)",
             fontWeight: 800,
             letterSpacing: "0.08em",
             backgroundImage: "linear-gradient(to bottom, #F5F0EB 0%, #B78460 55%, #8A5A3C 100%)",
@@ -189,9 +202,11 @@ export const HeroSection: React.FC<HeroProps> = ({
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
 
-          {/* Auth Button */}
-          <button
-            onClick={() => setLoginOpen(true)}
+          {/* Secondary CTA — Book a Call */}
+          <a
+            href="https://wa.me/923312436713"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium backdrop-blur-sm transition-all duration-300 hover:brightness-110"
             style={{
               border: "1px solid rgba(183, 132, 96, 0.30)",
@@ -199,8 +214,8 @@ export const HeroSection: React.FC<HeroProps> = ({
               color: "#F5F0EB",
             }}
           >
-            Sign In / Sign Up
-          </button>
+            Book a Call
+          </a>
         </motion.div>
 
         {/* Stats */}
@@ -253,24 +268,6 @@ export const HeroSection: React.FC<HeroProps> = ({
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Authentication Modals */}
-      <LoginModal
-        isOpen={loginOpen}
-        onClose={() => setLoginOpen(false)}
-        onSwitchToSignup={() => {
-          setLoginOpen(false);
-          setSignupOpen(true);
-        }}
-      />
-      <SignupModal
-        isOpen={signupOpen}
-        onClose={() => setSignupOpen(false)}
-        onSwitchToLogin={() => {
-          setSignupOpen(false);
-          setLoginOpen(true);
-        }}
-      />
     </section>
   );
 };

@@ -7,28 +7,28 @@ const projects = [
   {
     title: "SmartSteel SaaS",
     description: "An AI-driven SaaS for the steel fabrication industry that automates material costing and PDF estimate generation.",
-    video: "/steelfabrications.mp4",
+    video: "https://res.cloudinary.com/ecasprck/video/upload/q_auto/techexa-vision/steelfabrications.mp4",
     tags: ["Next.js", "FastAPI", "Hugging Face AI"],
     link: "#",
   },
   {
     title: "Digital FTE (AI Command Center)",
     description: "An autonomous business automation dashboard featuring LinkedIn outreach automation, WhatsApp API integration, and Gmail auto-reply agents.",
-    video: "/personalassistant.mp4",
+    video: "https://res.cloudinary.com/ecasprck/video/upload/q_auto/techexa-vision/personalassistant.mp4",
     tags: ["Next.js", "Node.js", "Python", "Docker"],
     link: "#",
   },
   {
     title: "Modern E-Commerce SaaS",
     description: "A multi-language (English, Arabic, Urdu) e-commerce platform with Stripe integration, a dynamic admin dashboard, and AI blog generation.",
-    video: "/ecommerce.mp4",
+    video: "https://res.cloudinary.com/ecasprck/video/upload/q_auto/techexa-vision/ecommerce.mp4",
     tags: ["Next.js 14", "Stripe", "PostgreSQL"],
     link: "#",
   },
   {
     title: "AI Estimate Generator",
     description: "A specialized tool for generating professional project estimates and invoices with a custom PDF engine.",
-    video: "/portfolio.mp4",
+    video: "https://res.cloudinary.com/ecasprck/video/upload/q_auto/techexa-vision/portfolio.mp4",
     tags: ["Next.js", "PDF Engine", "AI Automation"],
     link: "#",
   },
@@ -56,9 +56,9 @@ export default function Projects() {
             style={{ border: "1px solid rgba(183,132,96,0.22)", background: "rgba(183,132,96,0.07)", color: "#B78460" }}>
             Our Portfolio
           </span>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4" style={{ color: "#F5F0EB" }}>
+          <h1 className="font-heading text-3xl md:text-5xl font-bold mb-4" style={{ color: "#F5F0EB" }}>
             Our Projects
-          </h2>
+          </h1>
           <div className="h-px w-20 mx-auto mb-6" style={{ background: "linear-gradient(to right, transparent, #B78460, transparent)" }} />
           <p className="max-w-2xl mx-auto text-lg" style={{ color: "#9A8F87" }}>
             Explore our portfolio of successful projects that showcase our expertise and creativity.

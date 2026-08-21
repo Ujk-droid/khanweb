@@ -53,26 +53,22 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
         // ── Rose Copper Gold Design Tokens ────────────────────────
-        copper: "#B78460",          // Rose Copper Gold — primary accent
-        champagne: "#E5C0A0",       // Sand/Champagne — highlights
-        bronze: "#8A5A3C",          // Dark Bronze — gradient end
-        midnight: "#0B0B0C",        // Matte Charcoal Black — page background
-        surface: "#141414",         // Elevated Surface — cards/panels
-        "border-subtle": "#2A2420", // Warm Dark Border
-        // ── TechExa Vision semantic palette ───────────────────────
-        techexa: {
-          copper: "#B78460",
-          champagne: "#E5C0A0",
-          bronze: "#8A5A3C",
-          bg: "#0B0B0C",
-          bgSurface: "#141414",
-          bgElevated: "#1A1614",
-          border: "#2A2420",
-          textPrimary: "#F5F0EB",
-          textSecondary: "#9A8F87",
-          slate: "#94A3B8",
-          amberGold: "#FFA500",
-        },
+        // Single source of truth: values that already have a shadcn
+        // semantic slot (copper/midnight/surface/border-subtle) alias the
+        // CSS variable in globals.css instead of repeating the hex. Only
+        // champagne/bronze — pure gradient accents with no semantic slot —
+        // define their hex here directly. The old duplicate `techexa.*`
+        // nested object (and its two unused colors, slate/amberGold) has
+        // been removed; nothing in the codebase referenced it as a
+        // Tailwind class (raw hex/inline styles are used everywhere
+        // instead), except src/components/Loading.tsx which now uses the
+        // semantic bg-primary/bg-background classes directly.
+        copper: "hsl(var(--primary))",       // #B78460 — Rose Copper Gold
+        champagne: "#E5C0A0",                // Sand/Champagne — highlights
+        bronze: "#8A5A3C",                   // Dark Bronze — gradient end
+        midnight: "hsl(var(--background))",  // #0B0B0C — Matte Charcoal
+        surface: "hsl(var(--card))",         // #141414 — Elevated Surface
+        "border-subtle": "hsl(var(--border))", // #2A2420 — Warm Dark Border
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -126,7 +122,7 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "hero-gradient": "linear-gradient(to bottom, #0B0B0C, #141414)",
+        "hero-gradient": "linear-gradient(to bottom, hsl(var(--background)), hsl(var(--card)))",
         // Copper conic gradient for decorative elements
         "glow-conic": "conic-gradient(from 180deg at 50% 50%, #B78460 0deg, #E5C0A0 180deg, #B78460 360deg)",
         // Rose Copper brand gradient
