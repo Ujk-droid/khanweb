@@ -60,6 +60,22 @@ export const HeroSection: React.FC<HeroProps> = ({
         </Suspense>
       )}
 
+      {/* ── Text-protection scrim — shields just the narrow badge/title/
+          subtitle/CTA column behind it so lines/dots never clash with
+          copy. Kept tight on purpose: the left/right edges (where the
+          particle network is meant to actually be visible) must stay
+          clear of it. */}
+      {isDesktop && (
+        <div
+          className="absolute top-0 left-0 right-0 pointer-events-none"
+          style={{
+            height: "100vh",
+            background:
+              "radial-gradient(ellipse 480px 460px at 50% 52%, rgba(11,11,12,0.85) 0%, rgba(11,11,12,0.65) 40%, rgba(11,11,12,0.2) 72%, rgba(11,11,12,0) 100%)",
+          }}
+        />
+      )}
+
       {/* ── Matte grid texture ──────────────────────────────── */}
       <div
         className="absolute inset-0 pointer-events-none"

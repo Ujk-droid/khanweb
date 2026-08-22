@@ -32,6 +32,27 @@ const projects = [
     tags: ["Next.js", "PDF Engine", "AI Automation"],
     link: "#",
   },
+  {
+    title: "Our Services",
+    description: "A walkthrough showcase of our core service offerings — web and mobile development, UI/UX design, and AI-driven automation solutions.",
+    video: "https://res.cloudinary.com/ecasprck/video/upload/q_auto/techexa-vision/uzmainstapopin.mp4",
+    tags: ["Web Development", "Mobile Apps", "AI Solutions"],
+    link: "#",
+  },
+  {
+    title: "Kamran Steel Works",
+    description: "A modern business website for Kamran Steel Works, showcasing their steel fabrication services and product catalog to attract new clients.",
+    video: "https://res.cloudinary.com/ecasprck/video/upload/q_auto/techexa-vision/textmarketing.mp4",
+    tags: ["Next.js", "Business Website", "SEO"],
+    link: "#",
+  },
+  {
+    title: "Omega Inventory Dashboard",
+    description: "An inventory management dashboard for tracking stock levels, orders, and warehouse operations in real time.",
+    video: "https://res.cloudinary.com/ecasprck/video/upload/q_auto/techexa-vision/rizwanomega.mp4",
+    tags: ["Next.js", "Node.js", "Inventory Management"],
+    link: "#",
+  },
 ];
 
 export default function Projects() {
