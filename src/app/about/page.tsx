@@ -4,6 +4,7 @@ import { SparklesCore } from "../components/ui/sparkles";
 import Friends from "../components/Friends";
 import List from "../components/List";
 import AboutHero from "../components/AboutHero";
+import { useIsDesktop } from "@/lib/useIsDesktop";
 
 const aboutCards = [
   { title: "Our Mission",  text: "Empowering businesses with innovative digital solutions." },
@@ -13,6 +14,10 @@ const aboutCards = [
 ];
 
 export default function About() {
+  // Canvas particle animation is desktop-only — mirrors the Hero's WebGL
+  // gating so mobile never runs a continuous rAF-driven canvas background.
+  const isDesktop = useIsDesktop();
+
   return (
     <>
       <AboutHero />
@@ -20,17 +25,19 @@ export default function About() {
       {/* About section with Rose Copper Gold sparkles */}
       <section id="about" className="py-20 bg-[#0B0B0C] relative overflow-hidden">
         {/* Rose Copper Gold sparkles */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none">
-          <SparklesCore
-            id="tsparticles"
-            background="transparent"
-            minSize={0.5}
-            maxSize={1.2}
-            particleDensity={50}
-            className="w-full h-full"
-            particleColor="#B78460"
-          />
-        </div>
+        {isDesktop && (
+          <div className="absolute inset-0 w-full h-full pointer-events-none">
+            <SparklesCore
+              id="tsparticles"
+              background="transparent"
+              minSize={0.5}
+              maxSize={1.2}
+              particleDensity={50}
+              className="w-full h-full"
+              particleColor="#B78460"
+            />
+          </div>
+        )}
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="flex flex-col items-center gap-12 text-center md:text-left md:flex-row">

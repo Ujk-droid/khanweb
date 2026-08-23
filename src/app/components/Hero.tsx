@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { FloatingAiChip } from "./FloatingAiChip";
+import { TechOrbitVisual } from "./TechOrbitVisual";
 import { useIsDesktop } from "@/lib/useIsDesktop";
 
 // Heavy (WebGL) and desktop-only — never bundled/rendered for mobile
@@ -94,23 +94,11 @@ export const HeroSection: React.FC<HeroProps> = ({
         }}
       />
 
-      {/* ── AI Chip — large glowing background accent ───────── */}
-      <FloatingAiChip
-        position="right"
-        size="lg"
-        opacity={0.22}
-        blur={true}
-        animated={true}
-      />
+      {/* ── Tech orbit — large glowing circular diagram accent ─ */}
+      <TechOrbitVisual position="right" size="lg" />
 
-      {/* ── AI Chip — mirrored left, matching ─────────────────── */}
-      <FloatingAiChip
-        position="left"
-        size="sm"
-        opacity={0.22}
-        blur={true}
-        animated={true}
-      />
+      {/* ── Tech orbit — mirrored left, smaller/subtler ───────── */}
+      <TechOrbitVisual position="left" size="sm" />
 
       {/* ── Content ─────────────────────────────────────────── */}
       <div className="relative z-10 flex flex-col items-center justify-center px-4 py-20 text-center w-full max-w-5xl mx-auto">

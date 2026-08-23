@@ -211,7 +211,7 @@ export default function Navbar() {
 
           {/* ── Mobile Menu Button ───────────────────────────── */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden w-11 h-11 flex items-center justify-center"
             style={{ color: "#F5F0EB" }}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
@@ -309,18 +309,20 @@ export default function Navbar() {
                   </button>
                 )}
 
-                <Link
-                  href="/contact"
-                  className="mt-3 mx-4 px-6 py-3 text-center rounded-full font-semibold transition-all duration-300 hover:scale-105"
-                  style={{
-                    background: `linear-gradient(135deg, ${COPPER} 0%, #8A5A3C 100%)`,
-                    color: "#F5F0EB",
-                    boxShadow: "0 0 15px rgba(183,132,96,0.22)",
-                  }}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Contact Us
-                </Link>
+                {isAuthenticated && (
+                  <Link
+                    href="/contact"
+                    className="mt-3 mx-4 px-6 py-3 text-center rounded-full font-semibold transition-all duration-300 hover:scale-105"
+                    style={{
+                      background: `linear-gradient(135deg, ${COPPER} 0%, #8A5A3C 100%)`,
+                      color: "#F5F0EB",
+                      boxShadow: "0 0 15px rgba(183,132,96,0.22)",
+                    }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Contact Us
+                  </Link>
+                )}
               </nav>
             </div>
           </motion.div>

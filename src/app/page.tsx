@@ -2,6 +2,7 @@ import HeroSection from "@/app/components/Hero";
 import { ServicesCards } from "@/app/components/ui/services-new";
 import WhyChooseUs from "@/app/components/WhyChooseUs";
 import TestimonialsSection from "@/app/components/Work";
+import TechStack from "@/app/components/TechStack";
 import Link from "next/link";
 
 export default function Home() {
@@ -55,6 +56,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── Tech Stack ───────────────────────────────────────────── */}
+      <TechStack />
 
       {/* ── Why Choose Us ────────────────────────────────────────── */}
       <WhyChooseUs />

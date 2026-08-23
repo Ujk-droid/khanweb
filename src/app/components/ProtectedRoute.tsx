@@ -10,7 +10,7 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
   const pathname = usePathname();
 
   // Define public routes that don't require authentication
-  const publicRoutes = ["/", "/about", "/services", "/contact", "/project", "/blog", "/team", "/verify-email"];
+  const publicRoutes = ["/", "/about", "/services", "/contact", "/project", "/blog", "/team", "/verify-email", "/privacy-policy", "/terms-of-service"];
   const isPublicRoute = publicRoutes.some(route => 
     pathname === route || (route !== "/" && pathname.startsWith(route + "/"))
   );

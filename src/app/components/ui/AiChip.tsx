@@ -7,16 +7,14 @@ import TiltWrapper from "@/components/TiltWrapper";
 //  AiChip — Rose Copper Gold Integrated Circuit SVG
 //
 //  Variants:
-//    "hero"   — large, animated, used as background accent
 //    "badge"  — small, static, used as card corner badge
 //    "divider"— horizontal circuit-trace divider between sections
 // ─────────────────────────────────────────────────────────────
 
 interface AiChipProps {
-  variant?: "hero" | "badge" | "divider";
+  variant?: "badge" | "divider";
   className?: string;
   size?: number;
-  animated?: boolean;
 }
 
 // ── Shared copper palette ────────────────────────────────────
@@ -24,246 +22,6 @@ const C  = "#B78460";   // Rose Copper Gold
 const CH = "#E5C0A0";   // Champagne highlight
 const CB = "#8A5A3C";   // Dark Bronze shadow
 const DIM = "rgba(183,132,96,0.18)";  // dim trace
-const NEURAL_BLUE = "#64C8FF";  // Neural network blue
-const NEURAL_PURPLE = "#A855F7";  // Neural purple accent
-
-// ── Hero chip — 200×200 viewBox, full IC with traces ─────────
-export function HeroChip({ className = "", animated = true }: { className?: string; animated?: boolean }) {
-  return (
-    <TiltWrapper className={className}>
-      <svg
-        viewBox="0 0 200 200"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full"
-        aria-hidden="true"
-      >
-        <defs>
-          {/* Metallic copper gradient for chip body */}
-          <linearGradient id="chipBody" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%"   stopColor="#1A1410" />
-            <stop offset="50%"  stopColor="#141210" />
-            <stop offset="100%" stopColor="#0F0D0B" />
-          </linearGradient>
-
-          {/* Neural network gradient — copper to blue */}
-          <linearGradient id="neuralGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%"   stopColor={C} />
-            <stop offset="50%"  stopColor={NEURAL_BLUE} />
-            <stop offset="100%" stopColor={NEURAL_PURPLE} />
-          </linearGradient>
-
-          {/* Copper trace gradient */}
-          <linearGradient id="traceGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"   stopColor={CB}  stopOpacity="0" />
-            <stop offset="40%"  stopColor={C}   stopOpacity="1" />
-            <stop offset="60%"  stopColor={CH}  stopOpacity="1" />
-            <stop offset="100%" stopColor={CB}  stopOpacity="0" />
-          </linearGradient>
-
-          {/* Vertical trace gradient */}
-          <linearGradient id="traceGradV" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stopColor={CB}  stopOpacity="0" />
-            <stop offset="40%"  stopColor={C}   stopOpacity="1" />
-            <stop offset="60%"  stopColor={CH}  stopOpacity="1" />
-            <stop offset="100%" stopColor={CB}  stopOpacity="0" />
-          </linearGradient>
-
-          {/* Enhanced Glow filter */}
-          <filter id="chipGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="2.5" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-
-          {/* Neural glow filter — bright and saturated */}
-          <filter id="neuralGlow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="3.5" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-
-          {/* Pulse glow filter */}
-          <filter id="pulseGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-
-          {/* Travelling light animation along a path */}
-          <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"  stopColor={CH} stopOpacity="1" />
-            <stop offset="100%" stopColor={C} stopOpacity="0" />
-          </radialGradient>
-
-          {/* Neural node glow */}
-          <radialGradient id="neuralNodeGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"  stopColor={NEURAL_BLUE} stopOpacity="1" />
-            <stop offset="100%" stopColor={NEURAL_PURPLE} stopOpacity="0" />
-          </radialGradient>
-        </defs>
-
-        {/* ── Outer circuit board traces (left side) ─────────── */}
-        {/* Left pins */}
-        {[30, 50, 70, 90, 110, 130, 150, 170].map((y, i) => (
-          <g key={`lpin-${i}`}>
-            <line x1="0" y1={y} x2="55" y2={y} stroke={DIM} strokeWidth="1" />
-            <line x1="0" y1={y} x2="55" y2={y} stroke={`url(#traceGrad)`} strokeWidth="0.8" opacity="0.6" />
-            {/* Pin pad */}
-            <rect x="0" y={y - 3} width="8" height="6" rx="1" fill={CB} opacity="0.7" />
-            {/* 90° corner trace for alternating pins */}
-            {i % 2 === 0 && (
-              <path d={`M 20 ${y} L 20 ${y + 10} L 40 ${y + 10}`} stroke={DIM} strokeWidth="0.7" fill="none" />
-            )}
-          </g>
-        ))}
-
-        {/* Right pins */}
-        {[30, 50, 70, 90, 110, 130, 150, 170].map((y, i) => (
-          <g key={`rpin-${i}`}>
-            <line x1="145" y1={y} x2="200" y2={y} stroke={DIM} strokeWidth="1" />
-            <line x1="145" y1={y} x2="200" y2={y} stroke={`url(#traceGrad)`} strokeWidth="0.8" opacity="0.6" />
-            <rect x="192" y={y - 3} width="8" height="6" rx="1" fill={CB} opacity="0.7" />
-            {i % 2 === 1 && (
-              <path d={`M 180 ${y} L 180 ${y - 10} L 160 ${y - 10}`} stroke={DIM} strokeWidth="0.7" fill="none" />
-            )}
-          </g>
-        ))}
-
-        {/* Top pins */}
-        {[40, 60, 80, 100, 120, 140, 160].map((x, i) => (
-          <g key={`tpin-${i}`}>
-            <line x1={x} y1="0" x2={x} y2="55" stroke={DIM} strokeWidth="1" />
-            <line x1={x} y1="0" x2={x} y2="55" stroke={`url(#traceGradV)`} strokeWidth="0.8" opacity="0.6" />
-            <rect x={x - 3} y="0" width="6" height="8" rx="1" fill={CB} opacity="0.7" />
-          </g>
-        ))}
-
-        {/* Bottom pins */}
-        {[40, 60, 80, 100, 120, 140, 160].map((x, i) => (
-          <g key={`bpin-${i}`}>
-            <line x1={x} y1="145" x2={x} y2="200" stroke={DIM} strokeWidth="1" />
-            <line x1={x} y1="145" x2={x} y2="200" stroke={`url(#traceGradV)`} strokeWidth="0.8" opacity="0.6" />
-            <rect x={x - 3} y="192" width="6" height="8" rx="1" fill={CB} opacity="0.7" />
-          </g>
-        ))}
-
-        {/* ── Chip body ───────────────────────────────────────── */}
-        <rect x="55" y="55" width="90" height="90" rx="6" fill="url(#chipBody)" />
-
-        {/* Chip body border — copper metallic */}
-        <rect
-          x="55" y="55" width="90" height="90" rx="6"
-          fill="none"
-          stroke={C}
-          strokeWidth="1.2"
-          opacity="0.7"
-        />
-
-        {/* Inner chip border */}
-        <rect
-          x="62" y="62" width="76" height="76" rx="4"
-          fill="none"
-          stroke={CB}
-          strokeWidth="0.6"
-          opacity="0.4"
-        />
-
-        {/* ── Internal die grid ───────────────────────────────── */}
-        {/* Horizontal internal traces */}
-        {[75, 88, 100, 112, 125].map((y, i) => (
-          <line key={`ih-${i}`} x1="62" y1={y} x2="138" y2={y} stroke={DIM} strokeWidth="0.5" />
-        ))}
-        {/* Vertical internal traces */}
-        {[75, 88, 100, 112, 125].map((x, i) => (
-          <line key={`iv-${i}`} x1={x} y1="62" x2={x} y2="138" stroke={DIM} strokeWidth="0.5" />
-        ))}
-
-        {/* ── Core processor block ────────────────────────────── */}
-        <rect x="78" y="78" width="44" height="44" rx="3" fill="#0D0B09" />
-        <rect
-          x="78" y="78" width="44" height="44" rx="3"
-          fill="none" stroke="url(#neuralGrad)" strokeWidth="1.2" opacity="0.8" filter="url(#neuralGlow)"
-        />
-
-        {/* Neural network nodes inside processor */}
-        {[85, 100, 115].map((pos, i) => (
-          <circle key={`node-${i}`} cx={pos} cy="100" r="1.5" fill={NEURAL_BLUE} opacity="0.7" filter="url(#neuralGlow)" />
-        ))}
-        {[85, 100, 115].map((pos, i) => (
-          <circle key={`node-v-${i}`} cx="100" cy={pos} r="1.5" fill={NEURAL_PURPLE} opacity="0.6" filter="url(#neuralGlow)" />
-        ))}
-
-        {/* Neural connections */}
-        <line x1="85" y1="100" x2="115" y2="100" stroke={NEURAL_BLUE} strokeWidth="0.5" opacity="0.4" />
-        <line x1="100" y1="85" x2="100" y2="115" stroke={NEURAL_PURPLE} strokeWidth="0.5" opacity="0.4" />
-
-        {/* CPU text */}
-        <text
-          x="100" y="97"
-          textAnchor="middle"
-          fontSize="7"
-          fontFamily="Outfit, monospace"
-          fontWeight="600"
-          fill={CH}
-          letterSpacing="1"
-          opacity="0.9"
-        >
-          AI
-        </text>
-        <text
-          x="100" y="108"
-          textAnchor="middle"
-          fontSize="5"
-          fontFamily="Outfit, monospace"
-          fontWeight="400"
-          fill={C}
-          letterSpacing="0.5"
-          opacity="0.7"
-        >
-          CHIP
-        </text>
-
-        {/* Corner notch (IC orientation marker) */}
-        <circle cx="62" cy="62" r="3" fill="#0D0B09" stroke={C} strokeWidth="0.6" opacity="0.6" />
-
-        {/* ── Animated travelling light pulses ────────────────── */}
-        {animated && (
-          <>
-            {/* Pulse on left trace row 3 */}
-            <circle r="2.5" fill="url(#dotGlow)" filter="url(#pulseGlow)">
-              <animateMotion dur="2.4s" repeatCount="indefinite" begin="0s">
-                <mpath href="#traceL3" />
-              </animateMotion>
-            </circle>
-
-            {/* Pulse on right trace row 5 */}
-            <circle r="2" fill="url(#dotGlow)" filter="url(#pulseGlow)">
-              <animateMotion dur="2.8s" repeatCount="indefinite" begin="0.6s">
-                <mpath href="#traceR5" />
-              </animateMotion>
-            </circle>
-
-            {/* Pulse on top trace col 3 */}
-            <circle r="2" fill="url(#dotGlow)" filter="url(#pulseGlow)">
-              <animateMotion dur="3.2s" repeatCount="indefinite" begin="1.2s">
-                <mpath href="#traceT3" />
-              </animateMotion>
-            </circle>
-
-            {/* Pulsing core glow */}
-            <rect x="78" y="78" width="44" height="44" rx="3" fill="none" stroke={C} strokeWidth="1.5" opacity="0">
-              <animate attributeName="opacity" values="0;0.4;0" dur="2s" repeatCount="indefinite" />
-              <animate attributeName="stroke-width" values="1.5;3;1.5" dur="2s" repeatCount="indefinite" />
-            </rect>
-          </>
-        )}
-
-        {/* Hidden paths for animateMotion */}
-        <path id="traceL3" d="M 0 70 L 55 70" visibility="hidden" />
-        <path id="traceR5" d="M 200 110 L 145 110" visibility="hidden" />
-        <path id="traceT3" d="M 80 0 L 80 55" visibility="hidden" />
-      </svg>
-    </TiltWrapper>
-  );
-}
 
 // ── Badge chip — 32×32, minimal IC corner badge ──────────────
 export function ChipBadge({ className = "" }: { className?: string }) {
@@ -418,8 +176,7 @@ export function CircuitDivider({
 }
 
 // ── Default export — convenience wrapper ─────────────────────
-export default function AiChip({ variant = "badge", className = "", size, animated = true }: AiChipProps) {
-  if (variant === "hero")    return <HeroChip    className={className} animated={animated} />;
+export default function AiChip({ variant = "badge", className = "", size }: AiChipProps) {
   if (variant === "divider") return <CircuitDivider className={className} width={size ?? 600} />;
   return <ChipBadge className={className} />;
 }

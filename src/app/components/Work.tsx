@@ -40,9 +40,40 @@ const testimonials = [
   },
 ];
 
+const reviewJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "TechExa Vision",
+  url: "https://techexavision.com",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: (
+      testimonials.reduce((sum, t) => sum + t.rating, 0) / testimonials.length
+    ).toFixed(1),
+    reviewCount: testimonials.length,
+    bestRating: 5,
+    worstRating: 1,
+  },
+  review: testimonials.map((t) => ({
+    "@type": "Review",
+    author: { "@type": "Person", name: t.name },
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: t.rating,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    reviewBody: t.text,
+  })),
+};
+
 export default function TestimonialsSection() {
   return (
     <section className="relative py-24 bg-[#0B0B0C] overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewJsonLd) }}
+      />
       {/* Subtle copper ambient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(183,132,96,0.04)_0%,_transparent_60%)] pointer-events-none" />
 

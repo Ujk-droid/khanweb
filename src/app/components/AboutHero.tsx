@@ -1,22 +1,29 @@
 "use client";
 import React from "react";
 import { SparklesCore } from "../components/ui/sparkles";
+import { useIsDesktop } from "@/lib/useIsDesktop";
 
 const AboutHero = () => {
+  // Canvas particle animation is desktop-only — mirrors the Hero's WebGL
+  // gating so mobile never runs a continuous rAF-driven canvas background.
+  const isDesktop = useIsDesktop();
+
   return (
     <section className="relative overflow-hidden bg-[#0B0B0C] pt-24 pb-16">
       {/* Rose Copper Gold sparkles background */}
-      <div className="absolute inset-0 z-0">
-        <SparklesCore
-          id="heroSparkles"
-          background="transparent"
-          minSize={0.6}
-          maxSize={1.4}
-          particleDensity={80}
-          className="w-full h-full"
-          particleColor="#B78460"
-        />
-      </div>
+      {isDesktop && (
+        <div className="absolute inset-0 z-0">
+          <SparklesCore
+            id="heroSparkles"
+            background="transparent"
+            minSize={0.6}
+            maxSize={1.4}
+            particleDensity={80}
+            className="w-full h-full"
+            particleColor="#B78460"
+          />
+        </div>
+      )}
 
       {/* Rose Copper Gold gradient overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(183,132,96,0.08)_0%,_transparent_70%)] z-10" />

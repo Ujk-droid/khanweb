@@ -66,9 +66,9 @@ export const metadata: Metadata = {
       "Cutting-edge software solutions with modern design and exceptional performance. Web, mobile, and AI development from Karachi, Pakistan.",
     images: [
       {
-        url: "https://res.cloudinary.com/ecasprck/image/upload/q_auto/techexa-vision/logo1.jpg",
-        width: 400,
-        height: 400,
+        url: "https://res.cloudinary.com/ecasprck/image/upload/w_1200,h_630,c_pad,b_rgb:0B0B0C,q_auto,f_jpg/techexa-vision/logo1.jpg",
+        width: 1200,
+        height: 630,
         alt: "TechExa Vision Logo",
       },
     ],
@@ -78,7 +78,9 @@ export const metadata: Metadata = {
     title: "TechExa Vision — Premium Software Development",
     description:
       "Premium software development from Karachi, Pakistan. Web, mobile, and AI solutions.",
-    images: ["https://res.cloudinary.com/ecasprck/image/upload/q_auto/techexa-vision/logo1.jpg"],
+    images: [
+      "https://res.cloudinary.com/ecasprck/image/upload/w_1200,h_630,c_pad,b_rgb:0B0B0C,q_auto,f_jpg/techexa-vision/logo1.jpg",
+    ],
   },
   robots: {
     index: true,
@@ -93,6 +95,33 @@ export const metadata: Metadata = {
   },
 };
 
+// ── Organization JSON-LD ───────────────────────────────────────────────────
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "TechExa Vision",
+  url: "https://techexavision.com",
+  logo: "https://res.cloudinary.com/ecasprck/image/upload/q_auto/techexa-vision/logo1.jpg",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Garden East",
+    addressLocality: "Karachi",
+    addressCountry: "Pakistan",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    email: "info@techexavision.com",
+    telephone: "+92-331-2436713",
+    areaServed: "PK",
+  },
+  sameAs: [
+    "https://www.facebook.com/TechexaVision",
+    "https://www.instagram.com/_techexavision_official_/",
+    "https://www.linkedin.com/company/111404936",
+  ],
+};
+
 // ── Root Layout (Server Component) ────────────────────────────────────────
 export default function RootLayout({
   children,
@@ -105,6 +134,10 @@ export default function RootLayout({
       className={`dark ${outfit.variable} ${geist.variable} ${geistMono.variable} ${spaceGrotesk.variable}`}
     >
       <body className="font-sans bg-[#0B0B0C] text-[#F5F0EB] antialiased bg-deep-space">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <ClientLayout>{children}</ClientLayout>
 
         {/* ── Google Analytics ── */}

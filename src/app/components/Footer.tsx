@@ -83,7 +83,7 @@ export default function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group p-2 rounded-full border border-[#2A2420] hover:border-[#B78460]/50 hover:bg-[rgba(183,132,96,0.1)] transition-all duration-300"
+                  className="group w-11 h-11 flex items-center justify-center rounded-full border border-[#2A2420] hover:border-[#B78460]/50 hover:bg-[rgba(183,132,96,0.1)] transition-all duration-300"
                 >
                   <span className="text-[#B78460] group-hover:text-[#E5C0A0] transition-colors">
                     {icon}
@@ -101,7 +101,7 @@ export default function Footer() {
             transition={{ delay: 0.1, duration: 0.5 }}
           >
             <h3 className="font-heading text-base font-semibold text-[#FAFAFA] mb-4">Services</h3>
-            <ul className="space-y-2">
+            <ul>
               {[
                 "Web Design",
                 "Full-Stack Development",
@@ -112,7 +112,7 @@ export default function Footer() {
                 <li key={label}>
                   <Link
                     href="/services"
-                    className="group flex items-center text-sm text-[#9A8F87] hover:text-[#B78460] transition-colors duration-300"
+                    className="group flex items-center py-3 text-sm text-[#9A8F87] hover:text-[#B78460] transition-colors duration-300"
                   >
                     <span className="w-1 h-1 bg-[#B78460] rounded-full mr-2 group-hover:bg-[#E5C0A0] transition-colors" />
                     {label}
@@ -130,7 +130,7 @@ export default function Footer() {
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             <h3 className="font-heading text-base font-semibold text-[#FAFAFA] mb-4">Company</h3>
-            <ul className="space-y-2">
+            <ul>
               {[
                 ["About Us",  "/about"],
                 ["Services",  "/services"],
@@ -141,7 +141,7 @@ export default function Footer() {
                 <li key={label}>
                   <Link
                     href={path}
-                    className="group flex items-center text-sm text-[#9A8F87] hover:text-[#B78460] transition-colors duration-300"
+                    className="group flex items-center py-3 text-sm text-[#9A8F87] hover:text-[#B78460] transition-colors duration-300"
                   >
                     <span className="w-1 h-1 bg-[#B78460] rounded-full mr-2 group-hover:bg-[#E5C0A0] transition-colors" />
                     {label}
@@ -159,18 +159,28 @@ export default function Footer() {
             transition={{ delay: 0.3, duration: 0.5 }}
           >
             <h3 className="font-heading text-base font-semibold text-[#FAFAFA] mb-4">Contact</h3>
-            <ul className="space-y-3 text-sm text-[#9A8F87]">
-              <li className="flex items-start gap-2">
+            <ul className="text-sm text-[#9A8F87]">
+              <li className="flex items-start gap-2 py-2.5">
                 <span className="w-1 h-1 bg-[#B78460] rounded-full mt-2 shrink-0" />
                 <span>Garden East, Karachi, Pakistan</span>
               </li>
-              <li className="flex items-center gap-2 hover:text-[#B78460] transition-colors">
-                <FaEnvelope className="text-[#B78460] shrink-0" />
-                <a href="mailto:info@techexavision.com">info@techexavision.com</a>
+              <li>
+                <a
+                  href="mailto:info@techexavision.com"
+                  className="flex items-center gap-2 py-3 hover:text-[#B78460] transition-colors"
+                >
+                  <FaEnvelope className="text-[#B78460] shrink-0" />
+                  info@techexavision.com
+                </a>
               </li>
-              <li className="flex items-center gap-2 hover:text-[#B78460] transition-colors cursor-pointer">
-                <FaPhone className="text-[#B78460] shrink-0" />
-                0331 2436713
+              <li>
+                <a
+                  href="tel:+923312436713"
+                  className="flex items-center gap-2 py-3 hover:text-[#B78460] transition-colors"
+                >
+                  <FaPhone className="text-[#B78460] shrink-0" />
+                  0331 2436713
+                </a>
               </li>
             </ul>
           </motion.div>
@@ -183,10 +193,10 @@ export default function Footer() {
               © {new Date().getFullYear()} TechExa Vision. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <Link href="/privacy-policy" className="text-[#9A8F87] hover:text-[#B78460] text-sm transition-colors">
+              <Link href="/privacy-policy" className="flex items-center py-3 text-[#9A8F87] hover:text-[#B78460] text-sm transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/terms-of-service" className="text-[#9A8F87] hover:text-[#B78460] text-sm transition-colors">
+              <Link href="/terms-of-service" className="flex items-center py-3 text-[#9A8F87] hover:text-[#B78460] text-sm transition-colors">
                 Terms of Service
               </Link>
             </div>
