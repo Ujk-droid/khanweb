@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
             
             <p style="color: #333; font-size: 16px; line-height: 1.6;">
               We typically respond within 24 hours during business days. If your inquiry is urgent, 
-              please feel free to call us at <strong>0331 2436713</strong>.
+              please call our Pakistan business line at <strong>+92 329 8388739</strong> or UK business line at <strong>+44 7888 295318</strong>.
             </p>
             
             <div style="text-align: center; margin: 30px 0;">

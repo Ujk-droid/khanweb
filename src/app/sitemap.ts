@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://techexavision.com";
+const baseUrl = "https://www.techexavision.com";
 
 const blogSlugs = [
   "website-development-cost-pakistan-2026",

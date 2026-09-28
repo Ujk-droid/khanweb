@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/verify-email"],
     },
-    sitemap: "https://techexavision.com/sitemap.xml",
+    sitemap: "https://www.techexavision.com/sitemap.xml",
   };
 }

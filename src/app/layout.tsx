@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     template: "%s | TechExa Vision",
   },
   description:
-    "TechExa Vision delivers cutting-edge web, mobile, and AI solutions. Transform your business with our expert team in Karachi, Pakistan.",
+    "TechExa Vision delivers cutting-edge web, mobile, and AI solutions. Based in Pakistan, serving clients in Kuwait, GCC, UK & worldwide.",
   keywords: [
     "software development",
     "web design",
@@ -53,13 +53,13 @@ export const metadata: Metadata = {
     "Karachi",
     "Pakistan",
   ],
-  authors: [{ name: "TechExa Vision", url: "https://techexavision.com" }],
+  authors: [{ name: "TechExa Vision", url: "https://www.techexavision.com/" }],
   creator: "TechExa Vision",
-  metadataBase: new URL("https://techexavision.com"),
+  metadataBase: new URL("https://www.techexavision.com/"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://techexavision.com",
+    url: "https://www.techexavision.com/",
     siteName: "TechExa Vision",
     title: "TechExa Vision — Premium Software Development",
     description:
@@ -100,7 +100,7 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "TechExa Vision",
-  url: "https://techexavision.com",
+  url: "https://www.techexavision.com/",
   logo: "https://res.cloudinary.com/ecasprck/image/upload/q_auto/techexa-vision/logo1.jpg",
   address: {
     "@type": "PostalAddress",
@@ -108,13 +108,27 @@ const organizationJsonLd = {
     addressLocality: "Karachi",
     addressCountry: "Pakistan",
   },
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "customer service",
-    email: "info@techexavision.com",
-    telephone: "+92-331-2436713",
-    areaServed: "PK",
-  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      email: "info@techexavision.com",
+      telephone: "+923298388739",
+      areaServed: "PK",
+    },
+    {
+      "@type": "ContactPoint",
+      contactType: "business contact",
+      telephone: "+447888295318",
+      areaServed: "GB",
+    },
+    {
+      "@type": "ContactPoint",
+      contactType: "WhatsApp",
+      telephone: "+923312436713",
+      areaServed: "PK",
+    },
+  ],
   sameAs: [
     "https://www.facebook.com/TechexaVision",
     "https://www.instagram.com/_techexavision_official_/",

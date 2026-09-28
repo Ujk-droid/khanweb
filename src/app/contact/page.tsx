@@ -284,10 +284,12 @@ export default function ContactUs() {
                 </h2>
                 <div className="space-y-6">
                   {[
-                    { icon: <Mail className="w-5 h-5" />,   title: "Email",  line1: "info@techexavision.com", line2: "We'll respond within 24 hours" },
-                    { icon: <Phone className="w-5 h-5" />,  title: "Phone",  line1: "0331 2436713",            line2: "Mon–Fri, 9AM–6PM PKT" },
-                    { icon: <MapPin className="w-5 h-5" />, title: "Office", line1: "Garden East",             line2: "Karachi, Pakistan" },
-                  ].map(({ icon, title, line1, line2 }) => (
+                    { icon: <Mail className="w-5 h-5" />, title: "Email", line1: "info@techexavision.com", line2: "We'll respond within 24 hours", href: "mailto:info@techexavision.com" },
+                    { icon: <Phone className="w-5 h-5" />, title: "UK Business", line1: "+44 7888 295318", href: "tel:+447888295318" },
+                    { icon: <Phone className="w-5 h-5" />, title: "Pakistan Business", line1: "+92 329 8388739", href: "tel:+923298388739" },
+                    { icon: <Phone className="w-5 h-5" />, title: "WhatsApp", line1: "+92 331 2436713", href: "https://wa.me/923312436713", target: "_blank" as const },
+                    { icon: <MapPin className="w-5 h-5" />, title: "Office", line1: "Garden East", line2: "Karachi, Pakistan" },
+                  ].map(({ icon, title, line1, line2, href, target }) => (
                     <div key={title} className="flex items-start gap-4 group">
                       <div
                         className="p-3 rounded-xl shrink-0 transition-all duration-300"
@@ -303,8 +305,20 @@ export default function ContactUs() {
                         <h3 className="font-heading text-base font-semibold mb-0.5" style={{ color: TEXT }}>
                           {title}
                         </h3>
-                        <p className="text-sm" style={{ color: MUTED }}>{line1}</p>
-                        <p className="text-xs mt-0.5" style={{ color: "rgba(154,143,135,0.6)" }}>{line2}</p>
+                        {href ? (
+                          <a
+                            href={href}
+                            target={target}
+                            rel={target ? "noopener noreferrer" : undefined}
+                            className="text-sm hover:underline"
+                            style={{ color: MUTED }}
+                          >
+                            {line1}
+                          </a>
+                        ) : (
+                          <p className="text-sm" style={{ color: MUTED }}>{line1}</p>
+                        )}
+                        {line2 && <p className="text-xs mt-0.5" style={{ color: "rgba(154,143,135,0.6)" }}>{line2}</p>}
                       </div>
                     </div>
                   ))}

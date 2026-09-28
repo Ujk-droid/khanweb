@@ -44,7 +44,7 @@ const reviewJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "TechExa Vision",
-  url: "https://techexavision.com",
+  url: "https://www.techexavision.com/",
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: (

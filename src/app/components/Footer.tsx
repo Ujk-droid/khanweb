@@ -175,11 +175,31 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="tel:+923312436713"
+                  href="tel:+447888295318"
                   className="flex items-center gap-2 py-3 hover:text-[#B78460] transition-colors"
                 >
                   <FaPhone className="text-[#B78460] shrink-0" />
-                  0331 2436713
+                  UK: +44 7888 295318
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+923298388739"
+                  className="flex items-center gap-2 py-3 hover:text-[#B78460] transition-colors"
+                >
+                  <FaPhone className="text-[#B78460] shrink-0" />
+                  Pakistan: +92 329 8388739
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/923312436713"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 py-3 hover:text-[#B78460] transition-colors"
+                >
+                  <FaWhatsapp className="text-[#B78460] shrink-0" />
+                  WhatsApp: +92 331 2436713
                 </a>
               </li>
             </ul>
